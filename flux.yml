@@ -4,19 +4,19 @@
 
 - hosts: all
   vars:
-     project: FluxInstall
-  vars_file:
-  		- 'vars.yml'
+    project: FluxInstall
+    vars_file:
+      - 'vars.yml'
 
 
 - name: Common Role
   import_role:
-  		name: common
+    name: common
 
 - name: Docker Role
   import_role:
-  		name: flux
+    name: flux
 
 - name: Flux Role
   import_role:
-  		name: flux
+    name: flux
