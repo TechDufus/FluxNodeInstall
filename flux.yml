@@ -13,6 +13,10 @@
   import_role:
   		name: common
 
+- name: Docker Role
+  import_role:
+  		name: flux
+
 - name: Flux Role
   import_role:
   		name: flux
