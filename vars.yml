@@ -1,4 +1,8 @@
 global:
   user: mowat
 
-docker:
+nvm:
+  repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
+  node:
+    versions:
+      - 16.19.1

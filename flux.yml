@@ -10,20 +10,15 @@
     - name: Common Role
       import_role:
         name: common
-      tags:
-        - common
-        - never
 
     - name: Docker Role
       import_role:
         name: docker
-      tags:
-        - docker
-        - never
+
+    - name: NVM Role
+      import_role:
+        name: nvm
 
     - name: Flux Role
       import_role:
         name: flux
-      tags:
-        - flux
-        - never

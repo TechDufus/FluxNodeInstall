@@ -1,0 +1,30 @@
+---
+- name: Remove and Purge nodejs and npm
+  shell: |
+    rm -rf ~/n
+    sudo apt remove nodejs npm  -y
+    sudo apt purge nodejs -y
+    rm -rf /usr/local/bin/npm
+    rm -rf /usr/local/share/man/man1/node*
+    rm -rf /usr/local/lib/dtrace/node.d
+    rm -rf /home/{{ global.user }}/.npm
+    rm -rf /home/{{ global.user }}/.nvm
+    rm -rf /home/{{ global.user }}/.pm2
+    rm -rf /home/{{ global.user }}/.node-gyp
+    rm -rf /opt/local/bin/node
+    rm -rf opt/local/include/node
+    rm -rf /opt/local/lib/node_modules
+    rm -rf /usr/local/lib/node*
+    rm -rf /usr/local/include/node*
+    rm -rf /usr/local/bin/node*
+  ignore_errors: true
+
+- name: Adding NVM config to .bashrc
+  ansible.builtin.blockinfile:
+    path: "/home/{{ global.user }}/.bashrc"
+    marker: "# {mark} FluxNodeInstall Ansible MANAGED BLOCK"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+    state: absent

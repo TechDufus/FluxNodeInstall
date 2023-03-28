@@ -1,2 +1,26 @@
 ---
-# tasks file for nvm
+- name: Install NVM
+  ansible.builtin.include_tasks:
+    file: nvm-install.yml
+    apply:
+      tags:
+        - nvm-install
+        - nvm
+      become: true
+  tags:
+    - nvm-install
+    - nvm
+    - never
+
+- name: Purge NVM Config
+  ansible.builtin.include_tasks:
+    file: nvm-purge.yml
+    apply:
+      tags:
+        - nvm-purge
+        - nvm
+      become: true
+  tags:
+    - nvm-purge
+    - nvm
+    - never
