@@ -1,0 +1,29 @@
+---
+- name: Stop Docker service and socket
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  with_items:
+    - docker
+    - docker.socket
+  ignore_errors: true
+
+- name: Purge Docker-related packages
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - runc
+    state: absent
+
+- name: Remove docker-archive-keyring.gpg if present
+  ansible.builtin.file:
+    path: /usr/share/keyrings/docker-archive-keyring.gpg
+    state: absent
+
+- name: Remove docker.list if present
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/docker.list
+    state: absent
