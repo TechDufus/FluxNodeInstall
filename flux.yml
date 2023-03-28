@@ -6,7 +6,7 @@
   vars:
      project: FluxInstall
   vars_file:
-  		- 'vars'
+  		- 'vars.yml'
 
 
 - name: Common Role
