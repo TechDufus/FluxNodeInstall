@@ -9,4 +9,10 @@
   		- 'vars'
 
 
-- name: 
+- name: Common Role
+  import_role:
+  		name: common
+
+- name: Flux Role
+  import_role:
+  		name: flux
