@@ -1,0 +1,12 @@
+---
+#
+# This is the primary playbook
+
+- hosts: all
+  vars:
+     project: FluxInstall
+  vars_file:
+  		- 'vars'
+
+
+- name: 
