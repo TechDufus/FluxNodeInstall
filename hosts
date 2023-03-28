@@ -1,0 +1,11 @@
+#
+# Ansible Inventory
+#
+# [all]
+# fluxnode ansible_host=localhost etc..
+
+[all]
+fluxnode1 ansible_port=45137
+[all:vars]
+ansible_host=65.109.90.79
+placeholder=var
