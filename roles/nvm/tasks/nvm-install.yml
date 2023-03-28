@@ -1,0 +1,42 @@
+---
+# Should we detect for an existing nvm / node is installed
+
+- name: Ensure NVM Directory exists
+  ansible.builtin.file:
+    path: "/home/{{ global.user }}/.nvm"
+    mode: 0755
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    state: directory
+
+- name: Adding NVM config to .bashrc
+  ansible.builtin.blockinfile:
+    path: "/home/{{ global.user }}/.bashrc"
+    marker: "# {mark} FluxNodeInstall Ansible MANAGED BLOCK"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+- name: Download NVM Install Script
+  ansible.builtin.uri:
+    url: "{{ nvm.repo }}"
+    return_content: true
+  register: nvm_installer
+
+- name: Run NVM Installer
+  ansible.builtin.shell:
+    cmd: NVM_DIR="/home/{{ global.user }}/.nvm" bash -i
+    stdin: "{{ nvm_installer.content }}"
+
+- name: Install Node 16 with nvm and check version
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    nvm install "{{ item }}"
+    node --version
+  args:
+    executable: /bin/bash
+    chdir: "/home/{{ global.user }}"
+    creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ item }}"
+  loop: "{{ nvm.node.versions }}"
+

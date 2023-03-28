@@ -1,7 +1,7 @@
 ---
-- name: Install Docker
+- name: Purge Docker Config
   ansible.builtin.include_tasks:
-    file: docker-install.yml
+    file: docker-purge.yml
     apply:
       tags:
         - docker-purge
