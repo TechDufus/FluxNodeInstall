@@ -6,3 +6,7 @@ nvm:
   node:
     versions:
       - 16.19.1
+
+ip:
+  url1: https://api.ipify.org
+  url2: https://api4.my-ip.io/ip
