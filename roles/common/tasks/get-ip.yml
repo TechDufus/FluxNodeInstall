@@ -1,18 +1,18 @@
 ---
 - name: Get public IP using ipify
-  uri:
+  ansible.builtin.uri:
     url: "{{ ip.url1 }}"
     return_content: true
   register: public_ip
   ignore_errors: true
 
 - name: Get public IP using api4.my-ip.io
-  uri:
+  ansible.builtin.uri:
     url: "{{ ip.url2 }}"
     return_content: true
   register: public_ip_fallback
   when: public_ip is failed
 
 - name: Set WANIP ternary
-  set_fact:
-    WANIP: "{{ public_ip is success | ternary(public_ip.content, public_ip_fallback.content) }}"
+  ansible.builtin.set_fact:
+    wanip: "{{ public_ip is success | ternary(public_ip.content, public_ip_fallback.content) }}"
