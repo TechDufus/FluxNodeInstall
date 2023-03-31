@@ -5,7 +5,7 @@
     apply:
       tags:
         - docker-purge
-        - pugre
+        - purge
         - docker
       become: true
   tags:
