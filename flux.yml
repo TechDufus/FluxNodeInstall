@@ -18,3 +18,11 @@
     - name: NVM Role
       import_role:
         name: nvm
+
+    - name: Flux Role
+      import_role:
+        name: flux
+
+    - name: Daemon Role
+      import_role:
+        name: daemon

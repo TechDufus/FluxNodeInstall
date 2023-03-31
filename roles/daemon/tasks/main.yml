@@ -1,0 +1,13 @@
+---
+- name: Download Daemon Boostrap
+  ansible.builtin.include_tasks:
+    file: bootstrap-download.yml
+    apply:
+      tags:
+        - daemon-bootstrap
+        - daemon
+      become: true
+  tags:
+    - daemon-bootstrap
+    - daemon
+    - never

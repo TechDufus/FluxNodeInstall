@@ -48,3 +48,5 @@ apt:
       - fail2ban
     yolo:
       - python-zmq
+  bootstrap_url: http://cdn-8.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
+  path: "/home/{{ global.user }}/.flux"
