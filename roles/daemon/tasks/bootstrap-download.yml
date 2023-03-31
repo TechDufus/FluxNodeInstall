@@ -7,7 +7,6 @@
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
 
-# daemon tasks go here
 - name: Download and unpack bootstrap
   ansible.builtin.unarchive:
     remote_src: true
