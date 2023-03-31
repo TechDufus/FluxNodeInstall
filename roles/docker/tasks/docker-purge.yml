@@ -17,6 +17,7 @@
       - containerd.io
       - runc
     state: absent
+    autoremove: true
 
 - name: Remove docker-archive-keyring.gpg if present
   ansible.builtin.file:
