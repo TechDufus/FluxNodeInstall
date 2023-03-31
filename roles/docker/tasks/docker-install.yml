@@ -7,7 +7,9 @@
   ansible.builtin.setup:
 
 - name: Add Docker GPG key and APT repository
-  shell: curl -fsSL https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    keyring: /usr/share/keyrings/docker-archive-keyring.gpg
 
 - name: Add APT Repository
   ansible.builtin.apt_repository:

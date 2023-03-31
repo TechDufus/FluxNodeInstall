@@ -13,3 +13,38 @@ ip:
 
 daemon:
   bootstrap_url: http://cdn-${server_index}.runonflux.io/apps/fluxshare/getfile/
+
+apt:
+  packages:
+    required:
+      - software-properties-common
+      - ca-certificates
+      - nano
+      - htop
+      - pwgen
+      - ufw
+      - figlet
+      - tmux
+      - jq
+      - zip
+      - gzip
+      - pv
+      - unzip
+      - git
+      - build-essential
+      - libtool
+      - pkg-config
+      - libc6-dev
+      - m4
+      - g++-multilib
+      - autoconf
+      - ncurses-dev
+      - python
+      - wget
+      - curl
+      - bc
+      - bsdmainutils
+      - automake
+      - fail2ban
+    yolo:
+      - python-zmq
