@@ -1,14 +1,39 @@
 ---
-# tasks file for common
-- name: Gather WAN IP
+- name: Install Packages
   ansible.builtin.include_tasks:
-    file: get-ip.yml
+    file: common-installPackages.yml
     apply:
       tags:
-        - get-ip
+        - common-installPackages
         - common
       become: true
   tags:
-    - get-ip
+    - common-installPackages
+    - common
+    - never
+
+# - name: Purge Packages
+#   ansible.builtin.include_tasks:
+#     file: common-purgePackages.yml
+#     apply:
+#       tags:
+#         - common-purgePackages
+#         - purge
+#       become: true
+#   tags:
+#     - common-purgePackages
+#     - purge
+#     - never
+#
+- name: Gather WAN IP
+  ansible.builtin.include_tasks:
+    file: common-getIP.yml
+    apply:
+      tags:
+        - common-getIP
+        - common
+      become: true
+  tags:
+    - common-getIP
     - common
     - never

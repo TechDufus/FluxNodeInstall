@@ -1,0 +1,22 @@
+---
+- name: Update APT Cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install Packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ apt.packages.required }}"
+
+## There are packages in the multitoolbox that fail on certain
+# distros. Because we aren't sure what target system these are
+# meant for, we are going to include them in this never failing
+# `yolo` install task until they can be tracked down and properly
+# installed with the correct distro.
+- name: Install YOLO Packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  failed_when: false
+  loop: "{{ apt.packages.yolo }}"
