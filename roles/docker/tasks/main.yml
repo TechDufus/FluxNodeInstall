@@ -5,10 +5,12 @@
     apply:
       tags:
         - docker-purge
+        - purge
         - docker
       become: true
   tags:
     - docker-purge
+    - purge
     - docker
     - never
 
