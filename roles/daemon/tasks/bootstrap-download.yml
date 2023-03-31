@@ -5,6 +5,7 @@
     mode: 0755
     state: directory
     owner: "{{ global.user }}"
+    group: "{{ global.user }}"
 
 # daemon tasks go here
 - name: Download and unpack bootstrap
@@ -12,4 +13,4 @@
     remote_src: true
     src: "{{ daemon.bootstrap_url }}"
     dest: "{{ daemon.path }}"
-    mode: 0755
+    mode: 0644
