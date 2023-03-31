@@ -1,2 +1,32 @@
 ---
 # vars file for packages
+default_packages:
+  - software-properties-common
+  - ca-certificates
+  - nano
+  - htop
+  - pwgen
+  - ufw
+  - figlet
+  - tmux
+  - jq
+  - zip
+  - gzip
+  - pv
+  - unzip
+  - git
+  - build-essential
+  - libtool
+  - pkg-config
+  - libc6-dev
+  - m4
+  - g++-multilib
+  - autoconf
+  - ncurses-dev
+  - python
+  - wget
+  - curl
+  - bc
+  - bsdmainutils
+  - automake
+  - fail2ban
