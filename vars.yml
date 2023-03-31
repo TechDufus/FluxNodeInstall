@@ -10,3 +10,6 @@ nvm:
 ip:
   url1: https://api.ipify.org
   url2: https://api4.my-ip.io/ip
+
+daemon:
+  bootstrap_url: http://cdn-${server_index}.runonflux.io/apps/fluxshare/getfile/

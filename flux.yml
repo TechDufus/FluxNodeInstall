@@ -22,3 +22,7 @@
     - name: Flux Role
       import_role:
         name: flux
+
+    - name: Package Role
+      import_role:
+        name: packages

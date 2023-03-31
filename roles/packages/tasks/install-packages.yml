@@ -1,0 +1,36 @@
+---
+- name: Install Packages
+  ansible.builtin.apt:
+    update_cache: true
+    package:
+      - software-properties-common
+      - ca-certificates
+      - nano
+      - htop
+      - pwgen
+      - ufw
+      - figlet
+      - tmux
+      - jq
+      - zip
+      - gzip
+      - pv
+      - unzip
+      - git
+      - build-essential
+      - libtool
+      - pkg-config
+      - libc6-dev
+      - m4
+      - g++-multilib
+      - autoconf
+      - ncurses-dev
+      - python
+      - wget
+      - curl
+      - bc
+      - bsdmainutils
+      - automake
+      - fail2ban
+    state: present
+  ignore_errors: true

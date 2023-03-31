@@ -1,0 +1,26 @@
+---
+- name: Install Packages
+  ansible.builtin.include_tasks:
+    file: install-packages.yml
+    apply:
+      tags:
+        - install-packages
+        - packages
+      become: true
+  tags:
+  - install-packages
+  - packages
+  - never
+
+- name: Remove Packages
+  ansible.builtin.include_tasks:
+    file: remove-packages.yml
+    apply:
+      tags:
+        - remove-packages
+        - packages
+      become: true
+  tags:
+  - remove-packages
+  - packages
+  - never

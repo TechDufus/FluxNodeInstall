@@ -1,0 +1,37 @@
+# we should make this OS dependent OR simply support only 20.04 LTS for the time being
+# I removed packages that were in toolbox but not in 20.04
+---
+- name: Remove Packages
+  ansible.builtin.apt:
+    update_cache: true
+    package:
+      - software-properties-common
+      - ca-certificates
+      - nano
+      - htop
+      - pwgen
+      - ufw
+      - figlet
+      - tmux
+      - jq
+      - zip
+      - gzip
+      - pv
+      - unzip
+      - git
+      - build-essential
+      - libtool
+      - pkg-config
+      - libc6-dev
+      - m4
+      - g++-multilib
+      - autoconf
+      - ncurses-dev
+      - python
+      - wget
+      - curl
+      - bc
+      - bsdmainutils
+      - automake
+      - fail2ban
+    state: absent
