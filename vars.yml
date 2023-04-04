@@ -1,5 +1,5 @@
 global:
-  user: mowat
+  user: techdufus
 
 nvm:
   repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh

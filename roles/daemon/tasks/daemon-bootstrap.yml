@@ -2,7 +2,7 @@
 - name: Create .flux dir if it doesn't exist
   ansible.builtin.file:
     path: "{{ daemon.path }}"
-    mode: 0755
+    mode: "0755"
     state: directory
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
@@ -12,4 +12,4 @@
     remote_src: true
     src: "{{ daemon.bootstrap_url }}"
     dest: "{{ daemon.path }}"
-    mode: 0644
+    mode: "0644"
