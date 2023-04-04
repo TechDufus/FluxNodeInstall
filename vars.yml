@@ -12,7 +12,8 @@ ip:
   url2: https://api4.my-ip.io/ip
 
 daemon:
-  bootstrap_url: http://cdn-${server_index}.runonflux.io/apps/fluxshare/getfile/
+  bootstrap_url: http://cdn-8.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
+  path: "/home/{{ global.user }}/.flux"
 
 apt:
   packages:
@@ -48,5 +49,3 @@ apt:
       - fail2ban
     yolo:
       - python-zmq
-  bootstrap_url: http://cdn-8.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
-  path: "/home/{{ global.user }}/.flux"
