@@ -1,0 +1,25 @@
+- name: Add GPG Keys
+  ansible.builtin.apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: 4B69CA27A986265D
+    keyring: /usr/share/keyrings/flux-archive-keyring.gpg
+
+- name: Add Daemon APT Repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=$arch signed-by=/usr/share/keyrings/flux-archive-keyring.gpg] https://apt.runonflux.io/ {{ ansible_distribution_release }} main"
+    state: present
+    filename: /etc/apt/sources.list.d/flux
+
+- name: Install Flux Daemon and Bench
+  ansible.builtin.apt:
+    name:
+      - flux
+      - fluxbench
+    update_cache: true
+    state: present
+
+- name: Verify Permissions
+  ansible.builtin.file:
+    path: "/usr/local/bin"
+    mode: 0755
+    state: directory

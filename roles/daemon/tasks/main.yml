@@ -11,3 +11,16 @@
     - daemon-bootstrap
     - daemon
     - never
+
+- name: Install Daemon from Apt
+  ansible.builtin.include_tasks:
+    file: daemon-install.yml
+    apply:
+      tags:
+        - daemon-install
+        - daemon
+      become: true
+  tags:
+    - daemon-install
+    - daemon
+    - never
