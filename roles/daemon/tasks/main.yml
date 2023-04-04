@@ -12,7 +12,7 @@
     - daemon
     - never
 
-- name: Install Daemon from Apt
+- name: Install Flux Daemon and Flux Bench
   ansible.builtin.include_tasks:
     file: daemon-install.yml
     apply:
@@ -22,5 +22,18 @@
       become: true
   tags:
     - daemon-install
+    - daemon
+    - never
+
+- name: Remove Flux Daemon and Bench
+  ansible.builtin.include_tasks:
+    file: daemon-purge.yml
+    apply:
+      tags:
+        - daemon-purge
+        - daemon
+      become: true
+  tags:
+    - daemon-purge
     - daemon
     - never

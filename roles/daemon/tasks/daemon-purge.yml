@@ -14,5 +14,5 @@
 
 - name: Remove flux.list if present
   ansible.builtin.file:
-    path: /etc/apt/sources.list.d/flux
+    path: /etc/apt/sources.list.d/flux.list
     state: absent

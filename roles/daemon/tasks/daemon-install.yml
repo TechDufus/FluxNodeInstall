@@ -1,3 +1,11 @@
+---
+- name: Detect architecture
+  ansible.builtin.set_fact:
+    system_arch: "{{ ansible_machine | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
+
+- name: Gather facts
+  ansible.builtin.setup:
+
 - name: Add GPG Keys
   ansible.builtin.apt_key:
     keyserver: hkp://keyserver.ubuntu.com:80
@@ -6,7 +14,7 @@
 
 - name: Add Daemon APT Repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch=$arch signed-by=/usr/share/keyrings/flux-archive-keyring.gpg] https://apt.runonflux.io/ {{ ansible_distribution_release }} main"
+    repo: "deb [arch={{ system_arch }} signed-by=/usr/share/keyrings/flux-archive-keyring.gpg] https://apt.runonflux.io/ {{ ansible_distribution_release }} main"
     state: present
     filename: /etc/apt/sources.list.d/flux
 
