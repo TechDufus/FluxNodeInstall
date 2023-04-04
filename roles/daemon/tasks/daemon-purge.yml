@@ -9,10 +9,10 @@
 
 - name: Remove flux-archive-keyring.gpg if present
   ansible.builtin.file:
-    path: /usr/share/keyrings/flux-archive-keyring.gpg
+    path: "{{ daemon.keyring }}"
     state: absent
 
 - name: Remove flux.list if present
   ansible.builtin.file:
-    path: /etc/apt/sources.list.d/flux.list
+    path: "{{ daemon.list_file }}.list"
     state: absent

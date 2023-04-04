@@ -10,13 +10,13 @@
   ansible.builtin.apt_key:
     keyserver: hkp://keyserver.ubuntu.com:80
     id: 4B69CA27A986265D
-    keyring: /usr/share/keyrings/flux-archive-keyring.gpg
+    keyring: "{{ daemon.keyring }}"
 
 - name: Add Daemon APT Repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ system_arch }} signed-by=/usr/share/keyrings/flux-archive-keyring.gpg] https://apt.runonflux.io/ {{ ansible_distribution_release }} main"
+    repo: "deb [arch={{ system_arch }} signed-by={{ daemon.keyring }}] https://apt.runonflux.io/ {{ ansible_distribution_release }} main"
     state: present
-    filename: /etc/apt/sources.list.d/flux
+    filename: "{{ daemon.list_file }}"
 
 - name: Install Flux Daemon and Bench
   ansible.builtin.apt:
