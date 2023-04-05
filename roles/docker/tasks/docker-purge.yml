@@ -7,7 +7,7 @@
   with_items:
     - docker
     - docker.socket
-  ignore_errors: true
+  failed_when: false
 
 - name: Purge Docker-related packages
   ansible.builtin.apt:

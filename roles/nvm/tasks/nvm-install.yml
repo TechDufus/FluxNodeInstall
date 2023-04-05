@@ -39,4 +39,3 @@
     chdir: "/home/{{ global.user }}"
     creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ item }}"
   loop: "{{ nvm.node.versions }}"
-
