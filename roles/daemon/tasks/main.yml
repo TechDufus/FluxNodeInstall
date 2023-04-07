@@ -37,3 +37,16 @@
     - daemon-purge
     - daemon
     - never
+
+- name: ZKsnark Fetch
+  ansible.builtin.include_tasks:
+    file: daemon-zksnark.yml
+    apply:
+      tags:
+        - daemon-zksnark
+        - daemon
+      become: true
+  tags:
+    - daemon-zksnark
+    - daemon
+    - never

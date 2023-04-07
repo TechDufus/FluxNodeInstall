@@ -3,9 +3,6 @@
   ansible.builtin.set_fact:
     system_arch: "{{ ansible_machine | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
 
-- name: Gather facts
-  ansible.builtin.setup:
-
 - name: Add GPG Keys
   ansible.builtin.apt_key:
     keyserver: hkp://keyserver.ubuntu.com:80

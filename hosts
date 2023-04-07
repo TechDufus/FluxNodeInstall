@@ -10,5 +10,5 @@ fluxnode1 ansible_port=45137
 ansible_host=65.109.90.79
 placeholder=var
 
-[dufus]
-test-box ansible_host=10.0.0.12 ansible_user=techdufus ansible_ssh_private_key_file=~/.ssh/id_ed25519
+#[dufus]
+#test-box ansible_host=10.0.0.12 ansible_user=techdufus ansible_ssh_private_key_file=~/.ssh/id_ed25519
