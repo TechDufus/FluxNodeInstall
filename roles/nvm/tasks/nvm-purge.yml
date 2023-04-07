@@ -1,6 +1,6 @@
 ---
 - name: Remove and Purge nodejs and npm
-  shell: |
+  ansible.builtin.shell: |
     rm -rf ~/n
     sudo apt remove nodejs npm  -y
     sudo apt purge nodejs -y
@@ -17,7 +17,7 @@
     rm -rf /usr/local/lib/node*
     rm -rf /usr/local/include/node*
     rm -rf /usr/local/bin/node*
-  ignore_errors: true
+  failed_when: false
 
 - name: Adding NVM config to .bashrc
   ansible.builtin.blockinfile:

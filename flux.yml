@@ -2,19 +2,24 @@
 #
 # This is the primary playbook
 
-- hosts: all
+- name: Flux Node Install
+  hosts: all
   vars_files:
     - vars.yml
 
   tasks:
     - name: Common Role
-      import_role:
+      ansible.builtin.import_role:
         name: common
 
     - name: Docker Role
-      import_role:
+      ansible.builtin.import_role:
         name: docker
 
     - name: NVM Role
-      import_role:
+      ansible.builtin.import_role:
         name: nvm
+
+    - name: Daemon Role
+      ansible.builtin.import_role:
+        name: daemon
