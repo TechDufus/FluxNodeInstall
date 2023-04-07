@@ -1,0 +1,15 @@
+---
+- name: Create .flux dir if it doesn't exist
+  ansible.builtin.file:
+    path: "{{ daemon.path }}"
+    mode: "0755"
+    state: directory
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
+- name: Download and unpack bootstrap
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ daemon.bootstrap_url }}"
+    dest: "{{ daemon.path }}"
+    mode: "0644"

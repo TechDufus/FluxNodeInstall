@@ -1,0 +1,11 @@
+---
+- name: Run ZKSnark Fetch
+  ansible.builtin.command: bash -ilc flux-fetch-params.sh
+  changed_when: true
+  become_user: "{{ global.user }}"
+
+- name: User Perms
+  ansible.builtin.file:
+    dest: /home/{{ global.user }}
+    recurse: true
+    owner: "{{ global.user }}"
