@@ -50,3 +50,16 @@
     - daemon-zksnark
     - daemon
     - never
+
+- name: Daemon Scripts
+  ansible.builtin.include_tasks:
+    file: daemon-scripts.yml
+    apply:
+      tags:
+        - daemon-scripts
+        - daemon
+      become: true
+  tags:
+    - daemon-scripts
+    - daemon
+    - never

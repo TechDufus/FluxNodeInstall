@@ -16,3 +16,18 @@
   ansible.builtin.file:
     path: "{{ daemon.list_file }}.list"
     state: absent
+
+- name: Remove start daemon service scripts
+  ansible.builtin.file:
+    path: "/home/{{ global.user }}/start_daemon_service.sh"
+    state: absent
+
+- name: Remove stop daemon service scripts
+  ansible.builtin.file:
+    path: "/home/{{ global.user }}/stop_daemon_service.sh"
+    state: absent
+
+- name: Remove zelcash servie script
+  ansible.builtin.file:
+    path: /etc/systemd/system/zelcash.service
+    state: absent
