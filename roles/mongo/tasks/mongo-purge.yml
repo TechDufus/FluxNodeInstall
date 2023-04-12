@@ -1,0 +1,23 @@
+---
+- name: Remove mongo keyring.gpg if present
+  ansible.builtin.file:
+    path: "{{ mongo.keyring }}"
+    state: absent
+
+- name: Remove mongo 4.0 list if present
+  ansible.builtin.file:
+    path: "{{ mongo.list4 }}.list"
+    state: absent
+
+- name: Remove mongo list 6.0  if present
+  ansible.builtin.file:
+    path: "{{ mongo.list6 }}.list"
+    state: absent
+
+- name: Remove Mongo
+  ansible.builtin.apt:
+    name: mongod*
+    purge: true
+    state: absent
+    autoremove: true
+    force: true

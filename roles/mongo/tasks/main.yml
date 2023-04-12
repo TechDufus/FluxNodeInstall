@@ -1,0 +1,30 @@
+---
+- name: Install MongoDB
+  ansible.builtin.include_tasks:
+    file: mongo-install.yml
+    apply:
+      tags:
+        - mongo-install
+        - purge
+        - mongo
+      become: true
+  tags:
+    - mongo-install
+    - purge
+    - mongo
+    - never
+
+- name: Remove MongoDB
+  ansible.builtin.include_tasks:
+    file: mongo-purge.yml
+    apply:
+      tags:
+        - mongo-purge
+        - purge
+        - mongo
+      become: true
+  tags:
+    - mongo-purge
+    - purge
+    - mongo
+    - never
