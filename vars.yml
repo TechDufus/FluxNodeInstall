@@ -94,3 +94,22 @@ nodes:
     zel_id: 'asoetuhastoeuhasotnehusatoheusnathoeusntahoesuntha'
     outpoint: '0'
     index: '0'
+
+logrotate:
+  service:
+    - name: "bench_debug_log"
+      path: "/home/{{ global.user }}/.fluxbench/debug.log"
+      rotate: "monthly"
+      number: "2"
+    - name: "daemon_debug_log"
+      path: "/home/{{ global.user }}/.flux/debug.log"
+      rotate: "daily"
+      number: "7"
+    - name: "mongod_debug_log"
+      path: "/var/log/mongodb/*.log"
+      rotate: "daily"
+      number: "14"
+    - name: "docker_debug_log"
+      path: "/var/lib/docker/containers/*/*.log"
+      rotate: "daily"
+      number: "7"
