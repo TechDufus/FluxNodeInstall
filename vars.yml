@@ -25,8 +25,8 @@ mongo:
   keyring: /usr/share/keyrings/mongodb-archive-keyring.gpg
   path4: https://www.mongodb.org/static/pgp/server-4.4.asc
   path6: https://www.mongodb.org/static/pgp/server-6.0.asc
-  list6: /etc/apt/sources.list.d/mongodb-org-6.0.list
-  list4: /etc/apt/sources.list.d/mongodb-org-4.4.list
+  list6: /etc/apt/sources.list.d/mongodb-org-6.0
+  list4: /etc/apt/sources.list.d/mongodb-org-4.4
 
 apt:
   packages:
