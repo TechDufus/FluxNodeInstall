@@ -14,9 +14,12 @@ ip:
 daemon:
   bootstrap_url: http://cdn-8.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
   path: "/home/{{ global.user }}/.flux"
+  config: "flux.conf"
   keyring: /usr/share/keyrings/flux-archive-keyring.gpg
   list_file: /etc/apt/sources.list.d/flux
   service_name: "zelcash.service"
+  identitykey: "test"
+  outpoint: "test"
 
 docker:
   keyring: /usr/share/keyrings/docker-archive-keyring.gpg

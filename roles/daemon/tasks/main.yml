@@ -63,3 +63,16 @@
     - daemon-scripts
     - daemon
     - never
+
+- name: Daemon Conf File
+  ansible.builtin.include_tasks:
+    file: daemon-conf.yml
+    apply:
+      tags:
+        - daemon-conf
+        - daemon
+      become: true
+  tags:
+    - daemon-conf
+    - daemon
+    - never

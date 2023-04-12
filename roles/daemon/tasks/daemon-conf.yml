@@ -1,0 +1,20 @@
+---
+- name: Generate RPC User
+  ansible.builtin.command:
+    cmd: pwgen -1 8 -n
+  register: rpcuser
+  changed_when: false
+
+- name: Generate RPC Password
+  ansible.builtin.command:
+    cmd: pwgen -1 20 -n
+  register: rpcpassword
+  changed_when: false
+
+- name: Generate Daemon config
+  ansible.builtin.template:
+    src: daemonconf.j2
+    dest: "{{ daemon.path }}/{{ daemon.config }}"
+    force: true
+    owner: "{{ global.user }}"
+    mode: "0664"
