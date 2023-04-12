@@ -23,3 +23,7 @@
     - name: Daemon Role
       ansible.builtin.import_role:
         name: daemon
+
+    - name: Sysbench Role
+      ansible.builtin.import_role:
+        name: sysbench

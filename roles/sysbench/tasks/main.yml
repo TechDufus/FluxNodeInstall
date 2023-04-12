@@ -1,0 +1,26 @@
+---
+- name: Install Sysbench
+  ansible.builtin.include_tasks:
+    file: sysbench-install.yml
+    apply:
+      tags:
+        - sysbench-install
+        - sysbench
+      become: true
+  tags:
+    - sysbench-install
+    - sysbench
+    - never
+
+- name: Remove Sysbench
+  ansible.builtin.include_tasks:
+    file: sysbench-purge.yml
+    apply:
+      tags:
+        - sysbench-purge
+        - sysbench
+      become: true
+  tags:
+    - sysbench-purge
+    - sysbench
+    - never

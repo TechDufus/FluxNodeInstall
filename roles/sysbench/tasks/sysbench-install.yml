@@ -1,0 +1,17 @@
+---
+- name: Download Sysbench Installer
+  ansible.builtin.uri:
+    url: "{{ sysbench.repo }}"
+    return_content: true
+  register: sysbench_installer
+
+- name: Run Installer
+  ansible.builtin.command:
+    cmd: bash -i
+    stdin: "{{ sysbench_installer.content }}"
+  changed_when: false
+
+- name: Install Sysbench
+  ansible.builtin.apt:
+    name: sysbench
+    update_cache: true

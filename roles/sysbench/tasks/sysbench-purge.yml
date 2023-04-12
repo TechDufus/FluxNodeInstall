@@ -1,0 +1,12 @@
+---
+- name: Remove Sysbench Apt List
+  ansible.builtin.file:
+    path: "{{ sysbench.list_file }}"
+    state: absent
+
+- name: Remove Sysbench
+  ansible.builtin.apt:
+    name: sysbench
+    state: absent
+    purge: true
+    autoremove: true
