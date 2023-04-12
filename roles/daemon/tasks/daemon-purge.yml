@@ -32,6 +32,4 @@
 
 - name: Reload and enable "{{ daemon.service_name }}"
   ansible.builtin.systemd:
-    name: "{{ daemon.service_name }}"
     daemon_reload: true
-    enabled: true
