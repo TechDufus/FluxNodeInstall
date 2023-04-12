@@ -4,7 +4,7 @@
 - name: Ensure NVM Directory exists
   ansible.builtin.file:
     path: "/home/{{ global.user }}/.nvm"
-    mode: 0755
+    mode: "0755"
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
     state: directory
