@@ -27,6 +27,18 @@ mongo:
   path6: https://www.mongodb.org/static/pgp/server-6.0.asc
   list6: /etc/apt/sources.list.d/mongodb-org-6.0
   list4: /etc/apt/sources.list.d/mongodb-org-4.4
+  mongo4:
+    packages:
+      - name: mongodb-org
+        version: 4.4.18
+      - name: mongodb-org-server
+        version: 4.4.18
+      - name: mongodb-org-shell
+        version: 4.4.18
+      - name: mongodb-org-mongos
+        version: 4.4.18
+      - name: mongodb-org-tools
+        version: 4.4.18
 
 apt:
   packages:
