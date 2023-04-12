@@ -1,0 +1,6 @@
+---
+- name: Remove Flux OS
+  ansible.builtin.file:
+    path: "{{ flux_os.path }}"
+    state: absent
+    force: true

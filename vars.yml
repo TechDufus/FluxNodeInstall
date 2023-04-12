@@ -1,6 +1,14 @@
 global:
   user: mowat
 
+flux_os:
+  path: "/home/{{ global.user }}/zelflux"
+  zelid: test
+  apiport: 16127
+  kadena: kadena:test
+  development: "false"
+  testnet: "false"
+
 nvm:
   repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
   node:
