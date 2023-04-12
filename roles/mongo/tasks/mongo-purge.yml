@@ -6,10 +6,10 @@
 
 - name: Remove mongo 4 list if present
   ansible.builtin.file:
-    path: "{{ mongo.list4 }}"
+    path: "{{ mongo.list4 }}.list"
     state: absent
 
 - name: Remove mongo list 6  if present
   ansible.builtin.file:
-    path: "{{ mongo.list6 }}"
+    path: "{{ mongo.list6 }}.list"
     state: absent
