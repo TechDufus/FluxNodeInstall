@@ -16,3 +16,20 @@
   ansible.builtin.file:
     path: "{{ daemon.list_file }}.list"
     state: absent
+
+- name: Remove start / stop daemon service scripts
+  ansible.builtin.file:
+    path: "/home/{{ global.user }}/{{ item }}"
+    state: absent
+  loop:
+    - "start_daemon_service.sh"
+    - "stop_daemon_service.sh"
+
+- name: Remove "{{ daemon.service_name }}"
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ daemon.service_name }}"
+    state: absent
+
+- name: Reload and enable "{{ daemon.service_name }}"
+  ansible.builtin.systemd:
+    daemon_reload: true

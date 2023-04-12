@@ -1,0 +1,11 @@
+---
+- name: Copy Daemon Start/Stop Service Scripts
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/home/{{ global.user }}/{{ item }}"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0755"
+  loop:
+    - "start_daemon_service.sh"
+    - "stop_daemon_service.sh"
