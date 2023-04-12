@@ -14,13 +14,17 @@
   ansible.builtin.apt_key:
     keyring: "{{ mongo.keyring }}"
     url: "{{ mongo.path4 }}"
-  when: "ansible_distribution_release == 'focal' and avx_check.stdout == '0'"
+  when:
+    - ansible_distribution_release == 'focal'
+    - avx_check.stdout == '0'
 
 - name: Add mongo key 6.0
   ansible.builtin.apt_key:
     keyring: "{{ mongo.keyring }}"
     url: "{{ mongo.path6 }}"
-  when: "(ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy') and avx_check.stdout != '0'"
+  when:
+    - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
+    - avx_check.stdout != '0'
 
 - name: Add APT Repository 4.0
   ansible.builtin.apt_repository:
@@ -28,7 +32,9 @@
      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
     state: present
     filename: "{{ mongo.list4 }}"
-  when: "ansible_distribution_release == 'focal' and avx_check.stdout == '0'"
+  when:
+    - ansible_distribution_release == 'focal'
+    - avx_check.stdout == '0'
 
 - name: Add APT Repository 6.0
   ansible.builtin.apt_repository:
@@ -36,7 +42,9 @@
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
     state: present
     filename: "{{ mongo.list6 }}"
-  when: "(ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy') and avx_check.stdout != '0'"
+  when:
+    - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
+    - avx_check.stdout != '0'
 
 - name: Install Mongo 4.0
   ansible.builtin.apt:
@@ -47,11 +55,15 @@
       - mongodb-org-mongos=4.4.18
       - mongodb-org-tools=4.4.18
     update_cache: true
-  when: "ansible_distribution_release == 'focal' and avx_check.stdout == '0'"
+  when:
+    - ansible_distribution_release == 'focal'
+    - avx_check.stdout == '0'
 
 - name: Install Mongo 6.0
   ansible.builtin.apt:
     name:
       - mongodb-org
     update_cache: true
-  when: "(ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy') and avx_check.stdout != '0'"
+  when:
+    - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
+    - avx_check.stdout != '0'
