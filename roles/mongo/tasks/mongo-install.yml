@@ -24,7 +24,7 @@
 
 - name: Add APT Repository 4.0
   ansible.builtin.apt_repository:
-    repo: "deb [arch=$arch signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
+    repo: "deb [arch={{ system_arch }} signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
     state: present
     filename: "{{ mongo.list4 }}"
@@ -32,7 +32,7 @@
 
 - name: Add APT Repository 6.0
   ansible.builtin.apt_repository:
-    repo: "deb [arch=$arch signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
+    repo: "deb [arch={{ system_arch }} signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
     state: present
     filename: "{{ mongo.list6 }}"
