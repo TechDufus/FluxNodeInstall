@@ -21,3 +21,4 @@
     state: absent
     autoremove: true
     allow_change_held_packages: true
+    force: true
