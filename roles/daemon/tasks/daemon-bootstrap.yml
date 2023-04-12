@@ -7,6 +7,11 @@
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
 
+- name: Starting Bootstrap Download
+  ansible.builtin.debug:
+    msg: Starting bootstrap download, which will take a while.
+  run_once: true
+
 - name: Download and unpack bootstrap
   ansible.builtin.unarchive:
     remote_src: true

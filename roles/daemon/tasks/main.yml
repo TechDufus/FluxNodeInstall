@@ -31,11 +31,11 @@
     apply:
       tags:
         - daemon-purge
-        - daemon
+        - pugre
       become: true
   tags:
     - daemon-purge
-    - daemon
+    - pugre
     - never
 
 - name: ZKsnark Fetch
@@ -48,5 +48,18 @@
       become: true
   tags:
     - daemon-zksnark
+    - daemon
+    - never
+
+- name: Daemon Scripts
+  ansible.builtin.include_tasks:
+    file: daemon-scripts.yml
+    apply:
+      tags:
+        - daemon-scripts
+        - daemon
+      become: true
+  tags:
+    - daemon-scripts
     - daemon
     - never

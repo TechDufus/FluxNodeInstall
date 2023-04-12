@@ -1,0 +1,18 @@
+[Unit]
+Description=Flux daemon service
+After=network.target
+[Service]
+Type=forking
+User=flux1
+Group=flux1
+ExecStart=/home/flux1/start_daemon_service.sh
+ExecStop=-/home/flux1/stop_daemon_service.sh
+Restart=always
+RestartSec=10
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=15s
+StartLimitInterval=120s
+StartLimitBurst=5
+[Install]
+WantedBy=multi-user.target
