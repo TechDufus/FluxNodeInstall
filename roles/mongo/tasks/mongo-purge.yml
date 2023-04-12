@@ -1,0 +1,15 @@
+---
+- name: Remove mongo keyring.gpg if present
+  ansible.builtin.file:
+    path: "{{ mongo.keyring }}"
+    state: absent
+
+- name: Remove mongo 4 list if present
+  ansible.builtin.file:
+    path: "{{ mongo.list4 }}"
+    state: absent
+
+- name: Remove mongo list 6  if present
+  ansible.builtin.file:
+    path: "{{ mongo.list6 }}"
+    state: absent
