@@ -20,7 +20,7 @@
   ansible.builtin.apt_key:
     keyring: "{{ mongo.keyring }}"
     url: "{{ mongo.path6 }}"
-  when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
+  when: "(ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy') and avx_check.stdout != '0'"
 
 - name: Add APT Repository 4.0
   ansible.builtin.apt_repository:
@@ -36,7 +36,7 @@
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
     state: present
     filename: "{{ mongo.list6 }}"
-  when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
+  when: "(ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy') and avx_check.stdout != '0'"
 
 - name: Install Mongo 4.0
   ansible.builtin.apt:
@@ -54,4 +54,4 @@
     name:
       - mongodb-org
     update_cache: true
-  when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
+  when: "(ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy') and avx_check.stdout != '0'"
