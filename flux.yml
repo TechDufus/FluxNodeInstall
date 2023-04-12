@@ -27,3 +27,7 @@
     - name: Sysbench Role
       ansible.builtin.import_role:
         name: sysbench
+
+    - name: Mongo Role
+      ansible.builtin.import_role:
+        name: mongo

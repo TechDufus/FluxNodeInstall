@@ -1,0 +1,72 @@
+---
+- name: Detect architecture
+  ansible.builtin.set_fact:
+    system_arch: "{{ ansible_machine | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
+
+- name: Check AVX
+  ansible.builtin.command:
+    cmd: "grep -c avx /proc/cpuinfo"
+  register: avx_check
+  changed_when: false
+  failed_when: false
+
+- name: Add mongo key 4.0
+  ansible.builtin.apt_key:
+    keyring: "{{ mongo.keyring }}"
+    url: "{{ mongo.path4 }}"
+  when:
+    - ansible_distribution_release == 'focal'
+    - avx_check.stdout == '0'
+
+- name: Add mongo key 6.0
+  ansible.builtin.apt_key:
+    keyring: "{{ mongo.keyring }}"
+    url: "{{ mongo.path6 }}"
+  when:
+    - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
+    - avx_check.stdout != '0'
+
+- name: Add APT Repository 4.0
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
+     https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
+    state: present
+    filename: "{{ mongo.list4 }}"
+  when:
+    - ansible_distribution_release == 'focal'
+    - avx_check.stdout == '0'
+
+- name: Add APT Repository 6.0
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
+      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
+    state: present
+    filename: "{{ mongo.list6 }}"
+  when:
+    - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
+    - avx_check.stdout != '0'
+
+- name: Install Mongo 4.0
+  ansible.builtin.apt:
+    name: "{{ item.name }}={{ item.version }}"
+    update_cache: true
+    force: true
+  loop: "{{ mongo.mongo4.packages }}"
+  when:
+    - ansible_distribution_release == 'focal'
+    - avx_check.stdout == '0'
+
+- name: Install Mongo 6.0
+  ansible.builtin.apt:
+    name:
+      - mongodb-org
+    update_cache: true
+  when:
+    - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
+    - avx_check.stdout != '0'
+
+- name: Hold Mongo 4.4.18 packages
+  ansible.builtin.dpkg_selections:
+    name: "{{ item.name }}"
+    selection: hold
+  loop: "{{ mongo.mongo4.packages }}"
