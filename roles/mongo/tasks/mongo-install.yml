@@ -1,0 +1,39 @@
+---
+- name: Detect architecture
+  ansible.builtin.set_fact:
+    system_arch: "{{ ansible_machine | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
+
+- name: Check AVX
+  ansible.builtin.command:
+    cmd: "grep -c avx /proc/cpuinfo"
+  register: avx_check
+  changed_when: false
+  failed_when: false
+
+- name: Add mongo key 4.4
+  ansible.builtin.apt_key:
+    keyring: "{{ mongo.keyring }}"
+    url: "{{ mongo.path4 }}"
+  when: "ansible_distribution_release == 'focal' and avx_check.stdout == '0'"
+
+- name: Add mongo key 6.0
+  ansible.builtin.apt_key:
+    keyring: "{{ mongo.keyring }}"
+    url: "{{ mongo.path6 }}"
+  when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
+
+- name: Add APT Repository 4.0
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=$arch signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
+     https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
+    state: present
+    filename: "{{ docker.list4 }}"
+  when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
+
+- name: Add APT Repository 6.0
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=$arch signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
+      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
+    state: present
+    filename: "{{ docker.list6 }}"
+  when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
