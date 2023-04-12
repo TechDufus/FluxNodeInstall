@@ -17,17 +17,21 @@
     path: "{{ daemon.list_file }}.list"
     state: absent
 
-- name: Remove start daemon service scripts
+- name: Remove start / stop daemon service scripts
   ansible.builtin.file:
-    path: "/home/{{ global.user }}/start_daemon_service.sh"
+    path: "/home/{{ global.user }}/{{ item }}"
+    state: absent
+  loop:
+    - "start_daemon_service.sh"
+    - "stop_daemon_service.sh"
+
+- name: Remove "{{ daemon.service_name }}"
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ daemon.service_name }}"
     state: absent
 
-- name: Remove stop daemon service scripts
-  ansible.builtin.file:
-    path: "/home/{{ global.user }}/stop_daemon_service.sh"
-    state: absent
-
-- name: Remove zelcash servie script
-  ansible.builtin.file:
-    path: /etc/systemd/system/zelcash.service
-    state: absent
+- name: Reload and enable "{{ daemon.service_name }}"
+  ansible.builtin.systemd:
+    name: "{{ daemon.service_name }}"
+    daemon_reload: true
+    enabled: true

@@ -23,6 +23,20 @@
     update_cache: true
     state: present
 
+- name: Install Flux Daemon Service "{{ daemon.service_name }}"
+  ansible.builtin.copy:
+    dest: "/etc/systemd/system/{{ daemon.service_name }}"
+    src: "{{ daemon.service_name }}"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Reload and enable "{{ daemon.service_name }}"
+  ansible.builtin.systemd:
+    name: "{{ daemon.service_name }}"
+    daemon_reload: true
+    enabled: true
+
 - name: Verify Permissions
   ansible.builtin.file:
     path: "/usr/local/bin"

@@ -16,6 +16,7 @@ daemon:
   path: "/home/{{ global.user }}/.flux"
   keyring: /usr/share/keyrings/flux-archive-keyring.gpg
   list_file: /etc/apt/sources.list.d/flux
+  service_name: "zelcash.service"
 
 docker:
   keyring: /usr/share/keyrings/docker-archive-keyring.gpg
