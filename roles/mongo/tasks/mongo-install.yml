@@ -28,7 +28,7 @@
 
 - name: Add APT Repository 4.0
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ system_arch }} signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
+    repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
     state: present
     filename: "{{ mongo.list4 }}"
@@ -36,9 +36,15 @@
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
 
+- name: Hold Mongo 4.4.18 packages
+  ansible.builtin.dpkg_selections:
+    name: "{{ item.name }}"
+    selection: hold
+  loop: "{{ mongo.mongo4.packages }}"
+
 - name: Add APT Repository 6.0
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ system_arch }} signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
+    repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
     state: present
     filename: "{{ mongo.list6 }}"
@@ -48,13 +54,10 @@
 
 - name: Install Mongo 4.0
   ansible.builtin.apt:
-    name:
-      - mongodb-org=4.4.18
-      - mongodb-org-server=4.4.18
-      - mongodb-org-shell=4.4.18
-      - mongodb-org-mongos=4.4.18
-      - mongodb-org-tools=4.4.18
+    name: "{{ item.name }}={{ item.version }}"
     update_cache: true
+    force: true
+  loop: "{{ mongo.mongo4.packages }}"
   when:
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
