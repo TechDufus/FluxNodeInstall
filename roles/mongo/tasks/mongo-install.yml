@@ -27,7 +27,7 @@
     repo: "deb [arch=$arch signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
     state: present
-    filename: "{{ docker.list4 }}"
+    filename: "{{ mongo.list4 }}"
   when: "ansible_distribution_release == 'focal' and avx_check.stdout == '0'"
 
 - name: Add APT Repository 6.0
@@ -35,5 +35,5 @@
     repo: "deb [arch=$arch signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg]
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
     state: present
-    filename: "{{ docker.list6 }}"
+    filename: "{{ mongo.list6 }}"
   when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
