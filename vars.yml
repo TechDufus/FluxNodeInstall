@@ -20,6 +20,9 @@ daemon:
   service_name: "zelcash.service"
   identitykey: "test"
   outpoint: "test"
+  index: "test"
+  rpcport: "16124"
+  port: "16125"
 
 docker:
   keyring: /usr/share/keyrings/docker-archive-keyring.gpg
