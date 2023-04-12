@@ -10,7 +10,7 @@
   changed_when: false
   failed_when: false
 
-- name: Add mongo key 4.4
+- name: Add mongo key 4.0
   ansible.builtin.apt_key:
     keyring: "{{ mongo.keyring }}"
     url: "{{ mongo.path4 }}"
@@ -36,4 +36,22 @@
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
     state: present
     filename: "{{ mongo.list6 }}"
+  when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"
+
+- name: Install Mongo 4.0
+  ansible.builtin.apt:
+    name:
+      - mongodb-org=4.4.18
+      - mongodb-org-server=4.4.18
+      - mongodb-org-shell=4.4.18
+      - mongodb-org-mongos=4.4.18
+      - mongodb-org-tools=4.4.18
+    update_cache: true
+  when: "ansible_distribution_release == 'focal' and avx_check.stdout == '0'"
+
+- name: Install Mongo 6.0
+  ansible.builtin.apt:
+    name:
+      - mongodb-org
+    update_cache: true
   when: "ansible_distribution_release == 'focal' and avx_check.stdout != '0'"

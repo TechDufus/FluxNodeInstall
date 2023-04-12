@@ -4,12 +4,30 @@
     path: "{{ mongo.keyring }}"
     state: absent
 
-- name: Remove mongo 4 list if present
+- name: Remove mongo 4.0 list if present
   ansible.builtin.file:
     path: "{{ mongo.list4 }}.list"
     state: absent
 
-- name: Remove mongo list 6  if present
+- name: Remove mongo list 6.0  if present
   ansible.builtin.file:
     path: "{{ mongo.list6 }}.list"
     state: absent
+
+- name: Remove Mongo 4.0
+  ansible.builtin.apt:
+    name:
+      - mongodb-org=4.4.18
+      - mongodb-org-server=4.4.18
+      - mongodb-org-shell=4.4.18
+      - mongodb-org-mongos=4.4.18
+      - mongodb-org-tools=4.4.18
+    state: absent
+    autoremove: true
+
+- name: Remove Mongo 6.0
+  ansible.builtin.apt:
+    name:
+      - mongodb-org
+    state: absent
+    autoremove: true
