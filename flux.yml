@@ -27,3 +27,7 @@
     - name: Daemon Role
       ansible.builtin.import_role:
         name: daemon
+
+    - name: Log Rotate Role
+      ansible.builtin.import_role:
+        name: logrotate
