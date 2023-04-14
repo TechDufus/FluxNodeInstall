@@ -1,18 +1,40 @@
 ---
-- name: Remove mongo keyring.gpg if present
-  ansible.builtin.file:
-    path: "{{ mongo.keyring }}"
+- name: Detect architecture
+  ansible.builtin.set_fact:
+    system_arch: "{{ ansible_machine | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
+
+- name: Check AVX
+  ansible.builtin.command:
+    cmd: "grep -c avx /proc/cpuinfo"
+  register: avx_check
+  changed_when: false
+  failed_when: false
+
+- name: Remove mongo key 4.0
+  ansible.builtin.apt_key:
+    keyring: "{{ mongo.keyring }}"
+    url: "{{ mongo.path4 }}"
     state: absent
 
-- name: Remove mongo 4.0 list if present
-  ansible.builtin.file:
-    path: "{{ mongo.list4 }}.list"
+- name: Remove mongo key 6.0
+  ansible.builtin.apt_key:
+    keyring: "{{ mongo.keyring }}"
+    url: "{{ mongo.path6 }}"
     state: absent
 
-- name: Remove mongo list 6.0  if present
-  ansible.builtin.file:
-    path: "{{ mongo.list6 }}.list"
+- name: Removing APT Repository 4.0
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
+     https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
     state: absent
+    filename: "{{ mongo.list4 }}"
+
+- name: Remove APT Repository 6.0
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
+      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
+    state: absent
+    filename: "{{ mongo.list6 }}"
 
 - name: Remove Mongo
   ansible.builtin.apt:

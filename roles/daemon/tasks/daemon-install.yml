@@ -1,4 +1,12 @@
 ---
+- name: Create .flux dir if it doesn't exist
+  ansible.builtin.file:
+    path: "{{ daemon.path }}"
+    mode: "0755"
+    state: directory
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
 - name: Detect architecture
   ansible.builtin.set_fact:
     system_arch: "{{ ansible_machine | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
@@ -24,21 +32,34 @@
     state: present
 
 - name: Install Flux Daemon Service "{{ daemon.service_name }}"
-  ansible.builtin.copy:
+  ansible.builtin.template:
     dest: "/etc/systemd/system/{{ daemon.service_name }}"
-    src: "{{ daemon.service_name }}"
+    src: "{{ daemon.service_name }}.j2"
     owner: root
     group: root
     mode: "0644"
-
-- name: Reload and enable "{{ daemon.service_name }}"
-  ansible.builtin.systemd:
-    name: "{{ daemon.service_name }}"
-    daemon_reload: true
-    enabled: true
 
 - name: Verify Permissions
   ansible.builtin.file:
     path: "/usr/local/bin"
     mode: "0755"
     state: directory
+
+- name: Run ZKSnark Fetch
+  ansible.builtin.command: bash -ilc flux-fetch-params.sh
+  changed_when: true
+  become_user: "techdufus"
+
+- name: User Perms
+  ansible.builtin.file:
+    dest: /home/{{ global.user }}
+    recurse: true
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
+- name: Reload and enable "{{ daemon.service_name }}"
+  ansible.builtin.systemd:
+    name: "{{ daemon.service_name }}"
+    daemon_reload: true
+    state: started
+    enabled: true

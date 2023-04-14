@@ -14,9 +14,12 @@ ip:
 daemon:
   bootstrap_url: http://cdn-8.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
   path: "/home/{{ global.user }}/.flux"
+  config: "flux.conf"
   keyring: /usr/share/keyrings/flux-archive-keyring.gpg
   list_file: /etc/apt/sources.list.d/flux
   service_name: "zelcash.service"
+  rpcport: "16124"
+  port: "16125"
 
 docker:
   keyring: /usr/share/keyrings/docker-archive-keyring.gpg
@@ -75,3 +78,19 @@ apt:
       - fail2ban
     yolo:
       - python-zmq
+
+nodes:
+  dufus:
+    upnp_port: '16157'
+    collid: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
+    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
+    zel_id: 'asoetuhastoeuhasotnehusatoheusnathoeusntahoesuntha'
+    outpoint: '0'
+    index: '0'
+  fluxnode1:
+    upnp_port: '16157'
+    collid: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
+    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
+    zel_id: 'asoetuhastoeuhasotnehusatoheusnathoeusntahoesuntha'
+    outpoint: '0'
+    index: '0'
