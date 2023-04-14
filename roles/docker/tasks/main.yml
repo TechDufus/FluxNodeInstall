@@ -21,8 +21,10 @@
       tags:
         - docker-install
         - docker
+        - all
       become: true
   tags:
     - docker-install
     - docker
+    - all
     - never

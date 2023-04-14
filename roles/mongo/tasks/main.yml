@@ -5,13 +5,13 @@
     apply:
       tags:
         - mongo-install
-        - purge
         - mongo
+        - all
       become: true
   tags:
     - mongo-install
-    - purge
     - mongo
+    - all
     - never
 
 - name: Remove MongoDB
@@ -21,10 +21,8 @@
       tags:
         - mongo-purge
         - purge
-        - mongo
       become: true
   tags:
     - mongo-purge
     - purge
-    - mongo
     - never

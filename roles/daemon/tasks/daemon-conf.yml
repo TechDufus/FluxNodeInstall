@@ -1,0 +1,81 @@
+---
+- name: Detect current daemon conf file
+  ansible.builtin.stat:
+    path: "{{ daemon.path }}/{{ daemon.config }}"
+  register: daemon_conf_file
+
+- name: Create .flux dir if it doesn't exist
+  ansible.builtin.file:
+    path: "{{ daemon.path }}"
+    mode: "0755"
+    state: directory
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
+- name: Generate RPC Information
+  when: not daemon_conf_file.stat.exists
+  block:
+    - name: Generate RPC User
+      ansible.builtin.command:
+        cmd: pwgen -1 8 -n
+      register: rpcuser_stdout
+      changed_when: false
+
+    - name: Generate RPC Password
+      ansible.builtin.command:
+        cmd: pwgen -1 20 -n
+      register: rpcpassword_stdout
+      changed_when: false
+
+    - name: Setting RPC Facts
+      ansible.builtin.set_fact:
+        rpcuser: "{{ rpcuser_stdout.stdout }}"
+        rpcpassword: "{{ rpcpassword_stdout.stdout }}"
+
+- name: Extract RPC infos
+  when: daemon_conf_file.stat.exists
+  block:
+    - name: Extract RPC User from current daemon conf
+      ansible.builtin.shell:
+        cmd: |
+          grep "^rpcuser=" "{{ daemon.path }}/{{ daemon.config }}" | awk -F '=' '{print $2}'
+      register: rpcuser_stdout
+      changed_when: false
+
+    - name: Extract RPC Password from current daemon conf
+      ansible.builtin.shell:
+        cmd: |
+          grep "^rpcpassword=" "{{ daemon.path }}/{{ daemon.config }}" | awk -F '=' '{print $2}'
+      register: rpcpassword_stdout
+      changed_when: false
+
+    - name: Setting RPC Facts
+      ansible.builtin.set_fact:
+        rpcuser: "{{ rpcuser_stdout.stdout }}"
+        rpcpassword: "{{ rpcpassword_stdout.stdout }}"
+
+- name: Show RPC Infos
+  ansible.builtin.debug:
+    var: rpcuser
+
+- name: Show RPC Infos
+  ansible.builtin.debug:
+    var: rpcpassword
+
+- name: Generate Daemon config
+  ansible.builtin.template:
+    src: daemonconf.j2
+    dest: "{{ daemon.path }}/{{ daemon.config }}"
+    owner: "{{ global.user }}"
+    mode: "0664"
+  register: conf_update
+
+- name: Reload and enable "{{ daemon.service_name }}"
+  ansible.builtin.systemd:
+    name: "{{ daemon.service_name }}"
+    daemon_reload: true
+    state: restarted
+    enabled: true
+  when:
+    - daemon_conf_file.stat.exists
+    - conf_update.changed

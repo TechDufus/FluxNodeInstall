@@ -6,10 +6,12 @@
       tags:
         - nvm-install
         - nvm
+        - all
       become: true
   tags:
     - nvm-install
     - nvm
+    - all
     - never
 
 - name: Purge NVM Config
