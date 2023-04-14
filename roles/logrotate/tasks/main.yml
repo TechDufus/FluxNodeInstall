@@ -1,0 +1,29 @@
+---
+# tasks file for logrotate
+- name: Setup Log Rotate
+  ansible.builtin.include_tasks:
+    file: logrotate-install.yml
+    apply:
+      tags:
+        - logrotate-install
+        - install
+        - logrotate
+      become: true
+  tags:
+    - logrotate-install
+    - install
+    - logrotate
+    - never
+
+- name: Purge Log Rotate
+  ansible.builtin.include_tasks:
+    file: logrotate-purge.yml
+    apply:
+      tags:
+        - logrotate-purge
+        - purge
+      become: true
+  tags:
+    - logrotate-purge
+    - purge
+    - never
