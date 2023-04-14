@@ -70,3 +70,6 @@
     name: "{{ item.name }}"
     selection: hold
   loop: "{{ mongo.mongo4.packages }}"
+  when:
+    - ansible_distribution_release == 'focal'
+    - avx_check.stdout == '0'

@@ -3,10 +3,10 @@ Description=Flux daemon service
 After=network.target
 [Service]
 Type=forking
-User=flux1
-Group=flux1
-ExecStart=/home/flux1/start_daemon_service.sh
-ExecStop=-/home/flux1/stop_daemon_service.sh
+User={{ global.user }}
+Group={{ global.user }}
+ExecStart=/home/{{ global.user }}/start_daemon_service.sh
+ExecStop=-/home/{{ global.user }}/stop_daemon_service.sh
 Restart=always
 RestartSec=10
 PrivateTmp=true

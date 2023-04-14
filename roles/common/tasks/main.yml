@@ -6,10 +6,12 @@
       tags:
         - common-installPackages
         - common
+        - all
       become: true
   tags:
     - common-installPackages
     - common
+    - all
     - never
 
 # - name: Purge Packages
@@ -30,10 +32,16 @@
     file: common-getIP.yml
     apply:
       tags:
+        - daemon-conf
+        - daemon
         - common-getIP
         - common
+        - all
       become: true
   tags:
+    - daemon-conf
+    - daemon
     - common-getIP
     - common
+    - all
     - never
