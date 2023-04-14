@@ -5,6 +5,7 @@
     apply:
       tags:
         - fluxos-install
+        - install
         - fluxos
       become: true
   tags:
@@ -18,9 +19,9 @@
     apply:
       tags:
         - fluxos-purge
-        - fluxos
+        - purge
       become: true
   tags:
     - fluxos-purge
-    - fluxos
+    - purge
     - never
