@@ -1,11 +1,40 @@
 global:
   user: mowat
 
+user:
+  dufus:
+    zelid: test
+    kda: kadena:test
+    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
+    eps: 90
+    t1:
+      collateral_tx: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
+      index: '0'
+  mowat:
+    zelid: test
+    kda: kadena:test
+    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
+    eps: 90
+    t1:
+      collateral_tx: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
+      index: '0'
+
+###################################################################
+#                                                                 #
+#         ╺┳╸┏━┓┏━╸┏━┓╺┳┓   ┏━╸┏━┓┏━┓┏━╸┏━╸╻ ╻╻  ╻  ╻ ╻           #
+#          ┃ ┣┳┛┣╸ ┣━┫ ┃┃   ┃  ┣━┫┣┳┛┣╸ ┣╸ ┃ ┃┃  ┃  ┗┳┛           #
+#          ╹ ╹┗╸┗━╸╹ ╹╺┻┛   ┗━╸╹ ╹╹┗╸┗━╸╹  ┗━┛┗━╸┗━╸ ╹ ╹╹╹        #
+#                                                                 #
+# -------- Edit the below if you know what you are doing -------- #
+#                                                                 #
+# ╺┳╸╻ ╻┏━╸┏━┓┏━╸   ┏┓ ┏━╸   ╺┳┓┏━┓┏━┓┏━╸┏━┓┏┓╻┏━┓   ╻ ╻┏━╸┏━┓┏━╸ #
+#  ┃ ┣━┫┣╸ ┣┳┛┣╸    ┣┻┓┣╸     ┃┃┣┳┛┣━┫┃╺┓┃ ┃┃┗┫┗━┓   ┣━┫┣╸ ┣┳┛┣╸  #
+#  ╹ ╹ ╹┗━╸╹┗╸┗━╸   ┗━┛┗━╸   ╺┻┛╹┗╸╹ ╹┗━┛┗━┛╹ ╹┗━┛   ╹ ╹┗━╸╹┗╸┗━╸ #
+#                                                                 #
+###################################################################
+#
 flux_os:
   path: "/home/{{ global.user }}/zelflux"
-  zelid: test
-  apiport: 16127
-  kadena: kadena:test
   development: "false"
   testnet: "false"
 
@@ -86,22 +115,6 @@ apt:
       - fail2ban
     yolo:
       - python-zmq
-
-nodes:
-  dufus:
-    upnp_port: '16157'
-    collid: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
-    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
-    zel_id: 'asoetuhastoeuhasotnehusatoheusnathoeusntahoesuntha'
-    outpoint: '0'
-    index: '0'
-  fluxnode1:
-    upnp_port: '16157'
-    collid: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
-    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
-    zel_id: 'asoetuhastoeuhasotnehusatoheusnathoeusntahoesuntha'
-    outpoint: '0'
-    index: '0'
 
 logrotate:
   service:

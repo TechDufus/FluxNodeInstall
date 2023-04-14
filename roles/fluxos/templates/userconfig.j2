@@ -1,10 +1,10 @@
 module.exports = {
   initial: {
   ipaddress: '',
-  zelid: '{{ flux_os.zelid }}',
-  kadena: '{{ flux_os.kadena }}',
+  zelid: '{{ user[hostvars[inventory_hostname].user]['zelid'] }}',
+  kadena: '{{ user[hostvars[inventory_hostname].user]['kda'] }}',
   development: {{ flux_os.development }},
-  apiport: '{{ flux_os.apiport }}',
+  apiport: '{{ user[hostvars[inventory_hostname].apiport }}',
   testnet: {{ flux_os.testnet }}
   }
 }
