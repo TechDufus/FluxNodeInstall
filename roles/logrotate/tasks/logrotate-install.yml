@@ -4,5 +4,6 @@
     src: logrotate.j2
     dest: "/etc/logrotate.d/{{ item.name }}"
     owner: root
+    group: root
     mode: "0644"
   loop: "{{ logrotate.service }}"

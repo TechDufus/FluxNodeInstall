@@ -15,17 +15,15 @@
     - logrotate
     - never
 
-- name: Setup Log Rotate
+- name: Purge Log Rotate
   ansible.builtin.include_tasks:
     file: logrotate-purge.yml
     apply:
       tags:
         - logrotate-purge
         - purge
-        - logrotate
       become: true
   tags:
     - logrotate-purge
     - purge
-    - logrotate
     - never
