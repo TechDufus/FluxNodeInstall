@@ -5,18 +5,18 @@ user:
   dufus:
     zelid: test
     kda: kadena:test
-    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
+    identity_key: 'ID_asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
     eps: 90
     t1:
-      collateral_tx: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
+      collateral_tx: 'TX_asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
       index: '0'
   mowat:
     zelid: test
     kda: kadena:test
-    identity_key: 'asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
+    identity_key: 'ID_asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
     eps: 90
     t1:
-      collateral_tx: 'asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
+      collateral_tx: 'TX_asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
       index: '0'
 
 ###################################################################
