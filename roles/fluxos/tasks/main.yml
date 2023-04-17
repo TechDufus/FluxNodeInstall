@@ -7,10 +7,12 @@
         - fluxos-install
         - install
         - fluxos
+        - all
       become: true
   tags:
     - fluxos-install
     - fluxos
+    - all
     - never
 
 - name: Remove Flux OS
