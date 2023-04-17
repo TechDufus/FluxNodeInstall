@@ -4,7 +4,7 @@ module.exports = {
   zelid: '{{ user[hostvars[inventory_hostname].user]['zelid'] }}',
   kadena: '{{ user[hostvars[inventory_hostname].user]['kda'] }}',
   development: {{ flux_os.development }},
-  apiport: '{{ user[hostvars[inventory_hostname].apiport }}',
+  apiport: '{{ hostvars[inventory_hostname].apiport }}',
   testnet: {{ flux_os.testnet }}
   }
 }
