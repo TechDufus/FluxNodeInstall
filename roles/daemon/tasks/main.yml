@@ -42,21 +42,6 @@
     - all
     - never
 
-- name: Install Flux Daemon and Flux Bench
-  ansible.builtin.include_tasks:
-    file: daemon-install.yml
-    apply:
-      tags:
-        - daemon-install
-        - daemon
-        - all
-      become: true
-  tags:
-    - daemon-install
-    - daemon
-    - all
-    - never
-
 - name: Download Daemon Boostrap
   ansible.builtin.include_tasks:
     file: daemon-bootstrap.yml
@@ -68,6 +53,21 @@
       become: true
   tags:
     - daemon-bootstrap
+    - daemon
+    - all
+    - never
+
+- name: Install Flux Daemon and Flux Bench
+  ansible.builtin.include_tasks:
+    file: daemon-install.yml
+    apply:
+      tags:
+        - daemon-install
+        - daemon
+        - all
+      become: true
+  tags:
+    - daemon-install
     - daemon
     - all
     - never

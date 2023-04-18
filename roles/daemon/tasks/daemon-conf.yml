@@ -67,6 +67,7 @@
     src: daemonconf.j2
     dest: "{{ daemon.path }}/{{ daemon.config }}"
     owner: "{{ global.user }}"
+    group: "{{ global.user }}"
     mode: "0664"
   register: conf_update
 
