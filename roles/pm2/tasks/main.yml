@@ -61,5 +61,4 @@
       become: true
   tags:
     - pm2-purge
-    - purge
     - never
