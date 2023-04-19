@@ -1,4 +1,19 @@
 ---
+- name: Validate Sudoers
+  ansible.builtin.include_tasks:
+    file: common-sudoers.yml
+    apply:
+      tags:
+        - common-sudoers
+        - common
+        - all
+      become: true
+  tags:
+    - common-sudoers
+    - common
+    - all
+    - never
+
 - name: Install Packages
   ansible.builtin.include_tasks:
     file: common-installPackages.yml
@@ -45,3 +60,4 @@
     - common
     - all
     - never
+
