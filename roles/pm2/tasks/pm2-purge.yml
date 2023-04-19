@@ -1,0 +1,11 @@
+---
+- name: Purge PM2
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/home/{{ global.user }}/.pm2"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2-dev"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2-docker"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2-runtime"

@@ -1,0 +1,10 @@
+---
+- name: Install PM2
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    npm install pm2@latest -g
+  args:
+    executable: /bin/bash
+    chdir: "/home/{{ global.user }}"
+    creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin"
+  become_user: "{{ global.user }}"

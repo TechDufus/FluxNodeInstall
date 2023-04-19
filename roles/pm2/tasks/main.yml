@@ -1,0 +1,28 @@
+---
+- name: Install PM2
+  ansible.builtin.include_tasks:
+    file: pm2-install.yml
+    apply:
+      tags:
+        - pm2-install
+        - pm2
+        - all
+      become: true
+  tags:
+    - pm2-install
+    - pm2
+    - all
+    - never
+
+- name: Purge PM2
+  ansible.builtin.include_tasks:
+    file: pm2-purge.yml
+    apply:
+      tags:
+        - pm2-purge
+        - pm2
+      become: true
+  tags:
+    - pm2-purge
+    - pm2
+    - never
