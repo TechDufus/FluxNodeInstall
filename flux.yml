@@ -31,3 +31,7 @@
     - name: Log Rotate Role
       ansible.builtin.import_role:
         name: logrotate
+
+    - name: Install Flux OS
+      ansible.builtin.import_role:
+        name: fluxos

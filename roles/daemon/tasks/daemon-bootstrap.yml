@@ -2,7 +2,7 @@
 - name: Create .flux dir if it doesn't exist
   ansible.builtin.file:
     path: "{{ daemon.path }}"
-    mode: "0755"
+    mode: "0775"
     state: directory
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
@@ -18,3 +18,27 @@
     src: "{{ daemon.bootstrap_url }}"
     dest: "{{ daemon.path }}"
     mode: "0644"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
+- name: User Perms
+  ansible.builtin.file:
+    dest: /home/{{ global.user }}
+    state: directory
+    recurse: true
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
+- name: Verify Executible Block Perms
+  ansible.builtin.file:
+    dest: "{{ item }}"
+    mode: "0700"
+    state: directory
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+  with_items:
+    - "{{ daemon.path }}/blocks"
+    - "{{ daemon.path }}/blocks/index"
+    - "{{ daemon.path }}/chainstate"
+    - "{{ daemon.path }}/database"
+    - "{{ daemon.path }}/determ_zelnodes"

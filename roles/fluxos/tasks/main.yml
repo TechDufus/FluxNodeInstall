@@ -1,0 +1,29 @@
+---
+- name: Install Flux OS
+  ansible.builtin.include_tasks:
+    file: fluxos-install.yml
+    apply:
+      tags:
+        - fluxos-install
+        - install
+        - fluxos
+        - all
+      become: true
+  tags:
+    - fluxos-install
+    - fluxos
+    - all
+    - never
+
+- name: Remove Flux OS
+  ansible.builtin.include_tasks:
+    file: fluxos-purge.yml
+    apply:
+      tags:
+        - fluxos-purge
+        - purge
+      become: true
+  tags:
+    - fluxos-purge
+    - purge
+    - never
