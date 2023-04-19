@@ -3,9 +3,9 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: absent
-  with_items:
+  loop:
     - "/home/{{ global.user }}/.pm2"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2-dev"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2-docker"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin/pm2-runtime"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2-dev"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2-docker"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2-runtime"
