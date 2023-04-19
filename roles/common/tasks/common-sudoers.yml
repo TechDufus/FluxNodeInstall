@@ -1,5 +1,5 @@
 ---
-- name: "Granting {{ global.user }} nopasswd sudo access"
+- name: "Granting nopasswd sudo access"
   ansible.builtin.template:
     src: user-sudo.j2
     dest: "/etc/sudoers.d/{{ global.user }}"
