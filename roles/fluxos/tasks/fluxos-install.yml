@@ -1,0 +1,17 @@
+---
+- name: Clone Github Repo
+  ansible.builtin.git:
+    repo: https://github.com/RunOnFlux/flux.git
+    dest: "{{ flux_os.path }}"
+    clone: true
+    force: true
+    version: master
+  become_user: "{{ global.user }}"
+
+- name: Push Template
+  ansible.builtin.template:
+    src: userconfig.j2
+    dest: "{{ flux_os.path }}/config/userconfig.js"
+    force: true
+    mode: "0664"
+    owner: "{{ global.user }}"

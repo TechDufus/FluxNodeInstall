@@ -1,19 +1,4 @@
 ---
-- name: Download Daemon Boostrap
-  ansible.builtin.include_tasks:
-    file: daemon-bootstrap.yml
-    apply:
-      tags:
-        - daemon-bootstrap
-        - daemon
-        - all
-      become: true
-  tags:
-    - daemon-bootstrap
-    - daemon
-    - all
-    - never
-
 - name: Remove Flux Daemon and Bench
   ansible.builtin.include_tasks:
     file: daemon-purge.yml
@@ -53,6 +38,21 @@
       become: true
   tags:
     - daemon-conf
+    - daemon
+    - all
+    - never
+
+- name: Download Daemon Boostrap
+  ansible.builtin.include_tasks:
+    file: daemon-bootstrap.yml
+    apply:
+      tags:
+        - daemon-bootstrap
+        - daemon
+        - all
+      become: true
+  tags:
+    - daemon-bootstrap
     - daemon
     - all
     - never

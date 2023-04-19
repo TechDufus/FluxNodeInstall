@@ -6,12 +6,12 @@
     apply:
       tags:
         - logrotate-install
-        - install
+        - all
         - logrotate
       become: true
   tags:
     - logrotate-install
-    - install
+    - all
     - logrotate
     - never
 

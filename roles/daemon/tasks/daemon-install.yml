@@ -2,7 +2,7 @@
 - name: Create .flux dir if it doesn't exist
   ansible.builtin.file:
     path: "{{ daemon.path }}"
-    mode: "0755"
+    mode: "0775"
     state: directory
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
@@ -48,11 +48,12 @@
 - name: Run ZKSnark Fetch
   ansible.builtin.command: bash -ilc flux-fetch-params.sh
   changed_when: true
-  become_user: "techdufus"
+  become_user: "{{ global.user }}"
 
 - name: User Perms
   ansible.builtin.file:
     dest: /home/{{ global.user }}
+    state: directory
     recurse: true
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
