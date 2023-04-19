@@ -28,6 +28,8 @@
   ansible.builtin.shell:
     cmd: NVM_DIR="/home/{{ global.user }}/.nvm" bash -i
     stdin: "{{ nvm_installer.content }}"
+  changed_when: false
+  become_user: "{{ global.user }}"
 
 - name: Install Node 16 with nvm and check version
   ansible.builtin.shell: |

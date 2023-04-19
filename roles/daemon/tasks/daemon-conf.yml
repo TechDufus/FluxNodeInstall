@@ -54,14 +54,6 @@
         rpcuser: "{{ rpcuser_stdout.stdout }}"
         rpcpassword: "{{ rpcpassword_stdout.stdout }}"
 
-- name: Show RPC Infos
-  ansible.builtin.debug:
-    var: rpcuser
-
-- name: Show RPC Infos
-  ansible.builtin.debug:
-    var: rpcpassword
-
 - name: Generate Daemon config
   ansible.builtin.template:
     src: daemonconf.j2
