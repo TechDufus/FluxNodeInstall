@@ -14,15 +14,52 @@
     - all
     - never
 
+- name: Configure PM2
+  ansible.builtin.include_tasks:
+    file: pm2-conf.yml
+    apply:
+      tags:
+        - pm2-conf
+        - pm2
+        - all
+      become: true
+  tags:
+    - pm2-conf
+    - pm2
+    - all
+    - never
+
+- name: Start PM2
+  ansible.builtin.include_tasks:
+    file: pm2-start.yml
+    apply:
+      tags:
+        - pm2-start
+      become: true
+  tags:
+    - pm2-start
+    - never
+
+- name: Stop PM2
+  ansible.builtin.include_tasks:
+    file: pm2-stop.yml
+    apply:
+      tags:
+        - pm2-stop
+      become: true
+  tags:
+    - pm2-stop
+    - never
+
 - name: Purge PM2
   ansible.builtin.include_tasks:
     file: pm2-purge.yml
     apply:
       tags:
         - pm2-purge
-        - pm2
+        - purge
       become: true
   tags:
     - pm2-purge
-    - pm2
+    - purge
     - never

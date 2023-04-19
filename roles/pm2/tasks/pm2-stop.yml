@@ -1,0 +1,11 @@
+---
+- name: "PM2 | Stop"
+  become_user: "{{ global.user }}"
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    {{ item }}
+  changed_when: false
+  args:
+    executable: /bin/bash
+  loop:
+    - "pm2 stop flux"
