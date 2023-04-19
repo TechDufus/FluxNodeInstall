@@ -1,8 +1,6 @@
 ---
-- name: Validate the sudoers file before saving
-  ansible.builtin.lineinfile:
-    path: /etc/sudoers
-    state: present
-    regexp: '^%{{ global.user }}'
-    line: '{{ global.user }} ALL=(ALL) NOPASSWD: ALL'
-    validate: /usr/sbin/visudo -cf %s
+- name: "Granting {{ global.user }} nopasswd sudo access"
+  ansible.builtin.template:
+    src: user-sudo.j2
+    dest: "/etc/sudoers.d/{{ global.user }}"
+    mode: "0644"
