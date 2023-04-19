@@ -1,4 +1,20 @@
 ---
+- name: "PM2 | Purge"
+  become_user: "{{ global.user }}"
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    {{ item }}
+  changed_when: false
+  args:
+    executable: /bin/bash
+  loop:
+    - "pm2 del flux"
+    - "pm2 save"
+    - "pm2 flush"
+    - "pm2 save"
+    - "pm2 kill"
+    - "sudo env PATH=$PATH:/home/{{ global.user }}/.nvm/versions/node/$(node -v)/bin pm2 unstartup systemd -u {{ global.user }} --hp /home/{{ global.user }}"
+
 - name: Purge PM2
   ansible.builtin.file:
     path: "{{ item }}"
