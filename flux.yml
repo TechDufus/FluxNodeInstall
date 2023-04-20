@@ -32,7 +32,7 @@
       ansible.builtin.import_role:
         name: logrotate
 
-    - name: Install Flux OS
+    - name: Flux OS Role
       ansible.builtin.import_role:
         name: fluxos
 
@@ -41,5 +41,6 @@
         name: pm2
 
     - name: Install Watchdog
+    - name: Watchdog Role
       ansible.builtin.import_role:
         name: watchdog
