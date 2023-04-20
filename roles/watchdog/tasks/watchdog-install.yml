@@ -37,12 +37,13 @@
     - npm install
 
 - name: Watchdog PM2 Start and Save
-  ansible.builtin.command: >
-    source /home/{{ global.user }}/.nvm/nvm.sh &&
-    pm2 start /home/{{ global.user }}/watchdog/watchdog.js
-      --name watchdog
-      --watch /home/{{ global.user }}/watchdog
-      --ignore-watch '"./**/*.git" "./**/*node_modules" "./**/*watchdog_error.log" "./**/*config.js"'
-      --watch-delay 20 &&
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    pm2 start /home/{{ global.user }}/watchdog/watchdog.js --name watchdog \
+    --watch /home/{{ global.user }}/watchdog --ignore-watch \
+    '"./**/*.git" "./**/*node_modules" "./**/*watchdog_error.log" "./**/*config.js"' --watch-delay 20
     pm2 save
+  args:
+    executable: /bin/bash
   changed_when: false
+  become_user: "{{ global.user }}"

@@ -8,3 +8,4 @@ warn_list:  # or 'skip_list' to silence them completely
   - ignore-errors
 exclude_paths:
   - ./vars.yml
+  - ./.github/workflows/*
