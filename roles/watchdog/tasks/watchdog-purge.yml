@@ -1,0 +1,6 @@
+---
+- name: Remove Watchdog
+  ansible.builtin.file:
+    path: "{{ watchdog.path }}"
+    state: absent
+    force: true

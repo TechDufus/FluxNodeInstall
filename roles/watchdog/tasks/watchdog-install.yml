@@ -1,0 +1,25 @@
+---
+- name: Clone Github Repo
+  ansible.builtin.git:
+    repo: "{{ watchdog.repo }}"
+    dest: "{{ watchdog.path }}"
+    clone: true
+    force: true
+    version: master
+  become_user: "{{ global.user }}"
+
+- name: Download and Install Git hooks
+  ansible.builtin.uri:
+    url: "{{ watchdog.hooks }}"
+    dest: "{{ watchdog.path }}/.git/hooks"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0775"
+
+- name: Push Template
+  ansible.builtin.template:
+    src: config.j2
+    dest: "{{ watchdog.path }}/config.js"
+    force: true
+    mode: "0664"
+    owner: "{{ global.user }}"

@@ -38,6 +38,11 @@ flux_os:
   development: "false"
   testnet: "false"
 
+watchdog:
+  path: "/home/{{ global.user }}/watchdog"
+  repo: "https://github.com/RunOnFlux/fluxnode-watchdog.git"
+  hooks: "https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/post-merge"
+
 nvm:
   repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
   node:

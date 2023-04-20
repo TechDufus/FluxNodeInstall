@@ -39,3 +39,7 @@
     - name: PM2 Role
       ansible.builtin.import_role:
         name: pm2
+
+    - name: Install Watchdog
+      ansible.builtin.import_role:
+        name: watchdog
