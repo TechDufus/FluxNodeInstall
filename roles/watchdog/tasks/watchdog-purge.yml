@@ -10,10 +10,10 @@
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh
     {{ item }}
-  changed_when: false
   args:
     executable: /bin/bash
+  changed_when: false
+  failed_when: false
   loop:
     - "pm2 del watchdog"
     - "pm2 save"
-  ignore_errors: true
