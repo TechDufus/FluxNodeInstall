@@ -61,6 +61,7 @@ daemon:
   service_name: "zelcash.service"
   rpcport: "16124"
   port: "16125"
+  fluxbench_file: "/home/{{ global.user }}/.fluxbenchmark/fluxbench.conf"
 
 docker:
   keyring: /usr/share/keyrings/docker-archive-keyring.gpg
