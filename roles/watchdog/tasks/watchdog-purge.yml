@@ -1,0 +1,19 @@
+---
+- name: Remove Watchdog
+  ansible.builtin.file:
+    path: "{{ watchdog.path }}"
+    state: absent
+    force: true
+
+- name: "Watchdog Purge"
+  become_user: "{{ global.user }}"
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    {{ item }}
+  args:
+    executable: /bin/bash
+  changed_when: false
+  failed_when: false
+  loop:
+    - "pm2 del watchdog"
+    - "pm2 save"

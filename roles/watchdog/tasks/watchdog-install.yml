@@ -1,0 +1,50 @@
+---
+- name: Clone Github Repo
+  ansible.builtin.git:
+    repo: "{{ watchdog.repo }}"
+    dest: "{{ watchdog.path }}"
+    clone: true
+    force: true
+    version: master
+  become_user: "{{ global.user }}"
+
+- name: Download and Install Git hooks
+  ansible.builtin.uri:
+    url: "{{ watchdog.hooks }}"
+    dest: "{{ watchdog.path }}/.git/hooks"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0775"
+
+- name: Push Template
+  ansible.builtin.template:
+    src: config.j2
+    dest: "{{ watchdog.path }}/config.js"
+    force: true
+    mode: "0664"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
+- name: Watchdog npm install
+  become_user: "{{ global.user }}"
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    {{ item }}
+  changed_when: false
+  args:
+    executable: /bin/bash
+    chdir: "{{ watchdog.path }}"
+  loop:
+    - npm install
+
+- name: Watchdog PM2 Start and Save
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    pm2 start /home/{{ global.user }}/watchdog/watchdog.js --name watchdog \
+    --watch /home/{{ global.user }}/watchdog --ignore-watch \
+    '"./**/*.git" "./**/*node_modules" "./**/*watchdog_error.log" "./**/*config.js"' --watch-delay 20
+    pm2 save
+  args:
+    executable: /bin/bash
+  changed_when: false
+  become_user: "{{ global.user }}"
