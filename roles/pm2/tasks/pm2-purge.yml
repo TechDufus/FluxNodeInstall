@@ -14,7 +14,7 @@
     - "pm2 save"
     - "pm2 kill"
     - "sudo env PATH=$PATH:/home/{{ global.user }}/.nvm/versions/node/$(node -v)/bin pm2 unstartup systemd -u {{ global.user }} --hp /home/{{ global.user }}"
-  ignore_errors: true
+  failed_when: false
 
 - name: Purge PM2
   ansible.builtin.file:
@@ -26,4 +26,4 @@
     - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2-dev"
     - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2-docker"
     - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2-runtime"
-  ignore_errors: true
+  failed_when: false
