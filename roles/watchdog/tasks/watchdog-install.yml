@@ -23,6 +23,7 @@
     force: true
     mode: "0664"
     owner: "{{ global.user }}"
+    group: "{{ global.user }}"
 
 - name: Watchdog npm install
   become_user: "{{ global.user }}"
