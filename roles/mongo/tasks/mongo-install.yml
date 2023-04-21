@@ -73,3 +73,9 @@
   when:
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
+
+- name: Start MongoDB
+  ansible.builtin.systemd:
+    name: mongod
+    state: started
+    enabled: true
