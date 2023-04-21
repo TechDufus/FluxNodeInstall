@@ -1,0 +1,28 @@
+---
+- name: Install Watchdog
+  ansible.builtin.include_tasks:
+    file: watchdog-install.yml
+    apply:
+      tags:
+        - watchdog-install
+        - watchdog
+        - all
+      become: true
+  tags:
+    - watchdog-install
+    - watchdog
+    - all
+    - never
+
+- name: Remove Watchdog
+  ansible.builtin.include_tasks:
+    file: watchdog-purge.yml
+    apply:
+      tags:
+        - watchdog-purge
+        - purge
+      become: true
+  tags:
+    - watchdog-purge
+    - purge
+    - never
