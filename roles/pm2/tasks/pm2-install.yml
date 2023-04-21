@@ -6,5 +6,5 @@
   args:
     executable: /bin/bash
     chdir: "/home/{{ global.user }}"
-    creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions }}/bin"
+    creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin"
   become_user: "{{ global.user }}"

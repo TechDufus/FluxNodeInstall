@@ -21,7 +21,7 @@
     state: absent
   loop:
     - "/home/{{ global.user }}/.pm2"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2-dev"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2-docker"
-    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.versions | join('') }}/bin/pm2-runtime"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2-dev"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2-docker"
+    - "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2-runtime"

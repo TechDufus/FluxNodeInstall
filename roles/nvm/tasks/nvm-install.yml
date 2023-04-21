@@ -34,11 +34,10 @@
 - name: Install Node 16 with nvm and check version
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh
-    nvm install "{{ item }}"
+    nvm install "{{ nvm.node.version }}"
     node --version
   args:
     executable: /bin/bash
     chdir: "/home/{{ global.user }}"
-    creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ item }}"
-  loop: "{{ nvm.node.versions }}"
+    creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}"
   become_user: "{{ global.user }}"
