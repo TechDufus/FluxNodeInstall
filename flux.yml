@@ -43,3 +43,7 @@
     - name: Watchdog Role
       ansible.builtin.import_role:
         name: watchdog
+
+    - name: IP Check Role
+      ansible.builtin.import_role:
+        name: ipcheck
