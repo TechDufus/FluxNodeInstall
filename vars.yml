@@ -3,12 +3,12 @@ global:
 
 user:
   dufus:
-    zelid: test
-    kda: kadena:test
-    identity_key: 'ID_asoeuhasnotehusnatoheusnahosentuhansotehusnaoensuaons'
+    zelid: '1Hbz9ssfj7rFqHo1FsZLmX5ykUv9qmr2bY'
+    kda: 'k:6177883d369db90fc760e15a9dc62a712fac8b89fa5b0240b08963f74e54b962'
+    identity_key: '5JiGSJ6JPF7M7HrGoT4ChYbH8Ja4ZnmNLom7Dmc2PfzHgrYMNSF'
     eps: 90
     t1:
-      collateral_tx: 'TX_asoetnuhasoetuhsaoehusnaotheusahoseuhasnoteuh'
+      collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
       index: '0'
   mowat:
     zelid: test
@@ -41,15 +41,14 @@ flux_os:
 nvm:
   repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
   node:
-    versions:
-      - 16.19.1
+    version: 16.19.1
 
 ip:
   url1: https://api.ipify.org
   url2: https://api4.my-ip.io/ip
 
 daemon:
-  bootstrap_url: http://cdn-8.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
+  bootstrap_url: http://cdn-9.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
   path: "/home/{{ global.user }}/.flux"
   config: "flux.conf"
   keyring: /usr/share/keyrings/flux-archive-keyring.gpg

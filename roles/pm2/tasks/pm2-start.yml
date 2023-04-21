@@ -1,0 +1,11 @@
+---
+- name: "PM2 | Start"
+  become_user: "{{ global.user }}"
+  ansible.builtin.shell: |
+    source /home/{{ global.user }}/.nvm/nvm.sh
+    {{ item }}
+  changed_when: false
+  args:
+    executable: /bin/bash
+  loop:
+    - "pm2 start {{ flux_os.path }}/start.sh --max-memory-restart 2G --restart-delay 30000 --max-restarts 40 --name flux --time"
