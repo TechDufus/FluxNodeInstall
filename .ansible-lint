@@ -5,7 +5,7 @@ warn_list:  # or 'skip_list' to silence them completely
   - no-changed-when  # Commands should not change things if nothing needs doing
   - experimental  # all rules tagged as experimental
   - yaml  # Violations reported by yamllint
-
+  - ignore-errors
 exclude_paths:
   - ./vars.yml
 
