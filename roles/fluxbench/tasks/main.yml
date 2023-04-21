@@ -1,28 +1,26 @@
 ---
-- name: Install Flux OS
+- name: Configure Fluxbench
   ansible.builtin.include_tasks:
-    file: fluxos-install.yml
+    file: fluxbench-conf.yml
     apply:
       tags:
-        - fluxos-install
-        - fluxos
+        - fluxbench-conf
+        - fluxbench
         - all
       become: true
   tags:
-    - fluxos-install
-    - fluxos
+    - fluxbench-conf
+    - fluxbench
     - all
     - never
 
-- name: Remove Flux OS
+- name: Purge Fluxbench
   ansible.builtin.include_tasks:
-    file: fluxos-purge.yml
+    file: fluxbench-purge.yml
     apply:
       tags:
-        - fluxos-purge
         - purge
       become: true
   tags:
-    - fluxos-purge
     - purge
     - never

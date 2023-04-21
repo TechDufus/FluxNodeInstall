@@ -1,5 +1,5 @@
 global:
-  user: mowat
+  user: techdufus
 
 user:
   dufus:
@@ -38,10 +38,16 @@ flux_os:
   development: "false"
   testnet: "false"
 
+<<<<<<< HEAD
 watchdog:
   path: "/home/{{ global.user }}/watchdog"
   repo: "https://github.com/RunOnFlux/fluxnode-watchdog.git"
   hooks: "https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/post-merge"
+=======
+fluxbench:
+  dir: "/home/{{ global.user }}/.fluxbenchmark"
+  conf_file: "/home/{{ global.user }}/.fluxbenchmark/fluxbench.conf"
+>>>>>>> 8c6ccf3 (bulk cuz im tired)
 
 nvm:
   repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
