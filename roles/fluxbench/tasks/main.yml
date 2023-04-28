@@ -19,8 +19,12 @@
     file: fluxbench-purge.yml
     apply:
       tags:
+        - fluxbench-conf-purge
+        - fluxbench-purge
         - purge
       become: true
   tags:
+    - fluxbench-conf-purge
+    - fluxbench-purge
     - purge
     - never
