@@ -5,7 +5,6 @@
     apply:
       tags:
         - fluxos-install
-        - install
         - fluxos
         - all
       become: true

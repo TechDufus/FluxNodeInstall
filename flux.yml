@@ -32,7 +32,11 @@
       ansible.builtin.import_role:
         name: logrotate
 
-    - name: Flux OS Role
+    - name: Fluxbench Role
+      ansible.builtin.import_role:
+        name: fluxbench
+
+    - name: FluxOS Role
       ansible.builtin.import_role:
         name: fluxos
 

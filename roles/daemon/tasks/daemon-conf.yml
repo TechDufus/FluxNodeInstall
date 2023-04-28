@@ -63,15 +63,6 @@
     mode: "0664"
   register: conf_update
 
-- name: Generate Fluxbench config
-  ansible.builtin.template:
-    src: fluxbench.j2
-    dest: "{{ daemon.fluxbench_file }}"
-    owner: "{{ global.user }}"
-    group: "{{ global.user }}"
-    mode: "0664"
-  register: fluxbench_conf_update
-
 - name: Reload and enable "{{ daemon.service_name }}"
   ansible.builtin.systemd:
     name: "{{ daemon.service_name }}"
