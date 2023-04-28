@@ -1,0 +1,20 @@
+---
+- name: Add IP Check script
+  ansible.builtin.template:
+    src: ip_check.j2
+    dest: "/home/{{ global.user }}/ip_check.sh"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0755"
+
+- name: Create cron entries for ip_check.sh
+  ansible.builtin.cron:
+    name: "{{ item.name }}"
+    user: "{{ global.user }}"
+    job: "{{ item.job }}"
+    special_time: "{{ item.specialtime | default(omit) }}"
+    minute: "{{ item.minute | default(omit) }}"
+    state: present
+  loop:
+    - {name: 'Restart on boot', job: "env USER=$LOGNAME $HOME/ip_check.sh restart", specialtime: 'reboot'}
+    - {name: 'Check IP every 15 minutes', job: "env USER=$LOGNAME $HOME/ip_check.sh ip_check", minute: "*/15"}
