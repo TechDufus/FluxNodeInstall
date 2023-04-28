@@ -1,0 +1,5 @@
+---
+- name: Remove Fluxbench dir
+  ansible.builtin.file:
+    path: "{{ fluxbench.dir }}"
+    state: absent

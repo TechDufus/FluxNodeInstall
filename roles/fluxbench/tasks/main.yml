@@ -1,0 +1,30 @@
+---
+- name: Configure Fluxbench
+  ansible.builtin.include_tasks:
+    file: fluxbench-conf.yml
+    apply:
+      tags:
+        - fluxbench-conf
+        - fluxbench
+        - all
+      become: true
+  tags:
+    - fluxbench-conf
+    - fluxbench
+    - all
+    - never
+
+- name: Purge Fluxbench
+  ansible.builtin.include_tasks:
+    file: fluxbench-purge.yml
+    apply:
+      tags:
+        - fluxbench-conf-purge
+        - fluxbench-purge
+        - purge
+      become: true
+  tags:
+    - fluxbench-conf-purge
+    - fluxbench-purge
+    - purge
+    - never

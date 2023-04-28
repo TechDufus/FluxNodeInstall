@@ -1,0 +1,16 @@
+---
+- name: Ensure Fluxbench dir exists
+  ansible.builtin.file:
+    path: "{{ fluxbench.dir }}"
+    state: directory
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0700"
+
+- name: Generate Fluxbench config
+  ansible.builtin.template:
+    src: fluxbench.j2
+    dest: "{{ fluxbench.conf_file }}"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0664"
