@@ -1,0 +1,28 @@
+---
+- name: Install IP Check Script
+  ansible.builtin.include_tasks:
+    file: ipcheck-install.yml
+    apply:
+      tags:
+        - ipcheck-install
+        - ipcheck
+        - all
+      become: true
+  tags:
+    - ipcheck-install
+    - ipcheck
+    - all
+    - never
+
+- name: Remove IP Check Script
+  ansible.builtin.include_tasks:
+    file: ipcheck-purge.yml
+    apply:
+      tags:
+        - ipcheck-purge
+        - purge
+      become: true
+  tags:
+    - ipcheck-purge
+    - purge
+    - never
