@@ -301,7 +301,7 @@ user:
       telegram_alert: '$telegram_alert'
       telegram_bot_token: '$telegram_bot_token'	      
       telegram_chat_id: '$telegram_chat_id'
-			eps: $eps_limit
+      eps: $eps_limit
     t1:
       collateral_tx: '$collateral_tx'
       index: '$index'
