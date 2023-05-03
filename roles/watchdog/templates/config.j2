@@ -1,6 +1,6 @@
 module.exports = {
   label: 'flux node',
-  tier_eps_min: '{{ user[hostvars[inventory_hostname].user]['eps'] }}',
+  tier_eps_min: '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].eps | default(user[hostvars[inventory_hostname].user].eps) }}',
   zelflux_update: '1',
   zelcash_update: '1',
   zelbench_update: '1',
