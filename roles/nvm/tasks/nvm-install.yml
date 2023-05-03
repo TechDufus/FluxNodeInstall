@@ -25,8 +25,9 @@
   register: nvm_installer
 
 - name: Run NVM Installer
-  ansible.builtin.shell:
-    cmd: NVM_DIR="/home/{{ global.user }}/.nvm" bash -i
+  ansible.builtin.shell: |
+    NVM_DIR="/home/{{ global.user }}/.nvm" bash -i
+  args:
     stdin: "{{ nvm_installer.content }}"
   changed_when: false
   become_user: "{{ global.user }}"
