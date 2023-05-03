@@ -28,8 +28,8 @@
     direction: out
     rule: allow
   when:
-    - hostvars[inventory_hostname].gateway
-    - hostvars[inventory_hostname].apiport
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Out TCP
   ansible.builtin.ufw:
@@ -39,8 +39,8 @@
     rule: allow
     direction: out
   when:
-    - hostvars[inventory_hostname].gateway
-    - hostvars[inventory_hostname].apiport
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Out UDP
   ansible.builtin.ufw:
@@ -49,8 +49,8 @@
     to_ip: any
     rule: allow
   when:
-    - hostvars[inventory_hostname].gateway
-    - hostvars[inventory_hostname].apiport
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Port 1900
   ansible.builtin.ufw:
@@ -60,8 +60,8 @@
     proto: udp
     rule: allow
   when:
-    - hostvars[inventory_hostname].gateway
-    - hostvars[inventory_hostname].apiport
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
 
 - name: UFW SSH Setup
   ansible.builtin.ufw:
