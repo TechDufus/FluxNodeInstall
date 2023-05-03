@@ -7,7 +7,21 @@ user:
     kda: 'k:6177883d369db90fc760e15a9dc62a712fac8b89fa5b0240b08963f74e54b962'
     identity_key: '5JiGSJ6JPF7M7HrGoT4ChYbH8Ja4ZnmNLom7Dmc2PfzHgrYMNSF'
     eps: 90
+    watchdog:
+      flux_update: "0"
+      daemon_update: '0'
+      bench_update: '0'
+      eps_tier: '$eps_limit'
+      discord_webhook: '$discord_webhook'
+      discord_ping: '$discord_ping'
+      telegram_alert: '$telegram_alert'
+      telegram_bot_token: '$telegram_bot_token'	      
+      telegram_chat_id: '$telegram_chat_id'
+    t0:
+      collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
+      index: '0'
     t1:
+      eps: 180
       collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
       index: '0'
   mowat:
@@ -58,7 +72,6 @@ ip:
 
 daemon:
   bootstrap_url: http://cdn-9.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
-  bootstrap_file: flux_explorer_bootstrap.tar.gz
   path: "/home/{{ global.user }}/.flux"
   config: "flux.conf"
   keyring: /usr/share/keyrings/flux-archive-keyring.gpg
