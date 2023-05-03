@@ -11,12 +11,8 @@ user:
       flux_update: "0"
       daemon_update: '0'
       bench_update: '0'
-      eps_tier: '$eps_limit'
-      discord_webhook: '$discord_webhook'
-      discord_ping: '$discord_ping'
-      telegram_alert: '$telegram_alert'
-      telegram_bot_token: '$telegram_bot_token'	      
-      telegram_chat_id: '$telegram_chat_id'
+      discord_webhook: ''
+      discord_ping: ''
     t0:
       collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
       index: '0'
