@@ -19,6 +19,50 @@
     direction: in
   loop: "{{ ufw.allow_in }}"
 
+- name: UPnP Gateway Rule
+  ansible.builtin.ufw:
+    port: 1900
+    protocol: udp
+    to_ip: 239.255.255.250
+    src: any
+    direction: out
+    rule: allow
+  when:
+    - hostvars[inventory_hostname].gateway
+    - hostvars[inventory_hostname].apiport
+
+- name: UPnP Router Out TCP
+  ansible.builtin.ufw:
+    protocol: tcp
+    from: any
+    to_ip: "{{ hostvars[inventory_hostname].gateway }}"
+    rule: allow
+    direction: out
+  when:
+    - hostvars[inventory_hostname].gateway
+    - hostvars[inventory_hostname].apiport
+
+- name: UPnP Router Out UDP
+  ansible.builtin.ufw:
+    protocol: udp
+    from_ip: "{{ hostvars[inventory_hostname].gateway }}"
+    to_ip: any
+    rule: allow
+  when:
+    - hostvars[inventory_hostname].gateway
+    - hostvars[inventory_hostname].apiport
+
+- name: UPnP Router Port 1900
+  ansible.builtin.ufw:
+    from_port: 1900
+    from_ip: "{{ hostvars[inventory_hostname].gateway }}"
+    to_ip: any
+    proto: udp
+    rule: allow
+  when:
+    - hostvars[inventory_hostname].gateway
+    - hostvars[inventory_hostname].apiport
+
 - name: UFW SSH Setup
   ansible.builtin.ufw:
     rule: limit
