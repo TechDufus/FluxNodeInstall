@@ -21,10 +21,8 @@
       tags:
         - nvm-purge
         - purge
-        - nvm
       become: true
   tags:
     - nvm-purge
     - purge
-    - nvm
     - never

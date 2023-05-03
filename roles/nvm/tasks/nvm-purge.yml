@@ -1,25 +1,47 @@
 ---
-- name: Remove and Purge nodejs and npm
-  ansible.builtin.shell: |
-    rm -rf ~/n
-    sudo apt remove nodejs npm  -y
-    sudo apt purge nodejs -y
-    rm -rf /usr/local/bin/npm
-    rm -rf /usr/local/share/man/man1/node*
-    rm -rf /usr/local/lib/dtrace/node.d
-    rm -rf /home/{{ global.user }}/.npm
-    rm -rf /home/{{ global.user }}/.nvm
-    rm -rf /home/{{ global.user }}/.pm2
-    rm -rf /home/{{ global.user }}/.node-gyp
-    rm -rf /opt/local/bin/node
-    rm -rf opt/local/include/node
-    rm -rf /opt/local/lib/node_modules
-    rm -rf /usr/local/lib/node*
-    rm -rf /usr/local/include/node*
-    rm -rf /usr/local/bin/node*
-  failed_when: false
+- name: Remove nvm and node files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /home/{{ global.user }}/n
+    - /usr/local/bin/npm
+    - /usr/local/lib/dtrace/node.d
+    - /home/{{ global.user }}/.npm
+    - /home/{{ global.user }}/.nvm
+    - /home/{{ global.user }}/.pm2
+    - /home/{{ global.user }}/.node-gyp
+    - /opt/local/bin/node
+    - /opt/local/include/node
+    - /opt/local/lib/node_modules
+  changed_when: false
 
-- name: Adding NVM config to .bashrc
+- name: Find and remove files matching a pattern
+  ansible.builtin.find:
+    paths:
+      - /usr/local/share/man/man1
+      - /usr/local/bin
+      - /usr/local/lib
+      - /usr/local/include
+    patterns:
+      - 'node*'
+  register: found_files
+
+- name: Remove files matching the pattern
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: absent
+  with_items: "{{ found_files['files'] }}"
+
+- name: Apt Remove NodeJS and NPM
+  ansible.builtin.apt:
+    name:
+      - nodejs
+      - npm
+    purge: true
+    autoremove: true
+
+- name: Remove NVM config from .bashrc
   ansible.builtin.blockinfile:
     path: "/home/{{ global.user }}/.bashrc"
     marker: "# {mark} FluxNodeInstall Ansible MANAGED BLOCK"
