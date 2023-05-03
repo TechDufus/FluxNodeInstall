@@ -1,0 +1,27 @@
+- name: Setup Firewall
+  ansible.builtin.include_tasks:
+    file: ufw-install.yml
+    apply:
+      tags:
+        - ufw-install
+        - ufw
+        - all
+      become: true
+  tags:
+    - ufw-install
+    - ufw
+    - all
+    - never
+
+- name: Flush UFW Firewall
+  ansible.builtin.include_tasks:
+    file: ufw-purge.yml
+    apply:
+      tags:
+        - ufw-purge
+        - purge
+      become: true
+  tags:
+    - ufw-purge
+    - purge
+    - never
