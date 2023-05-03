@@ -12,14 +12,25 @@
     msg: Starting bootstrap download, which will take a while.
   run_once: true
 
-- name: Download and unpack bootstrap
-  ansible.builtin.unarchive:
-    remote_src: true
-    src: "{{ daemon.bootstrap_url }}"
-    dest: "{{ daemon.path }}"
+- name: Download the bootstrap file
+  ansible.builtin.get_url:
+    url: "{{ daemon.bootstrap_url }}"
+    dest: "/tmp/{{ daemon.bootstrap_file }}"
     mode: "0644"
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
+
+- name: Starting Bootstrap Extraction
+  ansible.builtin.debug:
+    msg: Starting extraction download, which will take a while.
+  run_once: true
+
+- name: Extracting bootstrap file
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "/tmp/{{ daemon.bootstrap_file }}"
+    dest: "{{ daemon.path }}"
+    mode: "0644"
 
 - name: User Perms
   ansible.builtin.file:
