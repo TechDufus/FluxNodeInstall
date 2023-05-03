@@ -1,5 +1,5 @@
 global:
-  user: techdufus
+  user: mowat
 
 user:
   dufus:
@@ -153,3 +153,16 @@ logrotate:
       path: "/var/lib/docker/containers/*/*.log"
       rotate: "daily"
       number: "7"
+
+ufw:
+  allow_out:
+    - 123
+    - 80
+    - 8080
+    - 443
+    - 53
+    - 16125
+  allow_in:
+    - 80
+    - 443
+    - 16125

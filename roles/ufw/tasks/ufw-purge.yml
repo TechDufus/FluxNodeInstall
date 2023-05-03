@@ -1,0 +1,26 @@
+---
+- name: Disable UFW Logging
+  ansible.builtin.ufw:
+    logging: false
+
+- name: Disable UFW
+  ansible.builtin.ufw:
+    state: disabled
+
+- name: Remove UFW Allow Out Defaults
+  ansible.builtin.ufw:
+    port: "{{ item }}"
+    rule: allow
+    to: any
+    direction: out
+    delete: true
+  loop: "{{ ufw.allow_out }}"
+
+- name: Remove UFW Allow IN Defaults
+  ansible.builtin.ufw:
+    port: "{{ item }}"
+    rule: allow
+    to: any
+    direction: in
+    delete: true
+  loop: "{{ ufw.allow_in }}"

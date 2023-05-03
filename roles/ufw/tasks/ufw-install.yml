@@ -1,0 +1,41 @@
+---
+- name: UFW Logging
+  ansible.builtin.ufw:
+    logging: true
+
+- name: UFW Allow Out
+  ansible.builtin.ufw:
+    port: "{{ item }}"
+    rule: allow
+    to: any
+    direction: out
+  loop: "{{ ufw.allow_out }}"
+
+- name: UFW Allow IN
+  ansible.builtin.ufw:
+    port: "{{ item }}"
+    rule: allow
+    to: any
+    direction: in
+  loop: "{{ ufw.allow_in }}"
+
+- name: UFW SSH Setup
+  ansible.builtin.ufw:
+    rule: limit
+    name: OpenSSH
+
+- name: UFW SSH Limit
+  ansible.builtin.ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: Enable UFW
+  ansible.builtin.ufw:
+    state: enabled
+
+- name: Enable Fail2ban
+  ansible.builtin.systemd:
+    service: fail2ban
+    state: restarted
+    enabled: true
