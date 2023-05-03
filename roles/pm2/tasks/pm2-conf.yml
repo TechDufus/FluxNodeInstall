@@ -36,7 +36,7 @@
   register: pm2_start
   failed_when:
     - pm2_start.rc != 0
-    - "'already launched' not in pm2_start.stderr"
+    - "'Script already launched' not in pm2_start.stderr"
   args:
     executable: /bin/bash
   loop:
