@@ -33,6 +33,8 @@
     source /home/{{ global.user }}/.nvm/nvm.sh
     {{ item }}
   changed_when: false
+  register: pm2_start
+  failed_when: pm2_start.stderr.find('already launched') == -1
   args:
     executable: /bin/bash
   loop:
