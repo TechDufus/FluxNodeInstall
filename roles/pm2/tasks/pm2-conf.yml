@@ -34,7 +34,9 @@
     {{ item }}
   changed_when: false
   register: pm2_start
-  failed_when: pm2_start.stderr.find('already launched') == -1
+  failed_when:
+    - pm2_start.rc != 0
+    - "'Script already launched' not in pm2_start.stderr"
   args:
     executable: /bin/bash
   loop:
