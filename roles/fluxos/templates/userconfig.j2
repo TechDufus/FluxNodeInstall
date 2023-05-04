@@ -3,8 +3,8 @@ module.exports = {
   ipaddress: '',
   zelid: '{{ user[hostvars[inventory_hostname].user]['zelid'] }}',
   kadena: '{{ user[hostvars[inventory_hostname].user]['kda'] }}',
-  development: {{ flux_os.development }},
+  development: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['development'] | default(false)|string|lower }},
   apiport: '{{ hostvars[inventory_hostname].apiport | default(16127)}}',
-  testnet: {{ flux_os.testnet }}
+  testnet: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['testnet'] | default(false)|string|lower }}
   }
 }
