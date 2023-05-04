@@ -3,4 +3,3 @@
   ansible.builtin.file:
     path: "{{ flux_os.path }}"
     state: absent
-    force: true
