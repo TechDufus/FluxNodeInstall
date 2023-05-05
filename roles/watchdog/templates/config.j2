@@ -1,13 +1,13 @@
 module.exports = {
-  label: 'flux node',
-  tier_eps_min: '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].eps | default(user[hostvars[inventory_hostname].user].eps) }}',
-  zelflux_update: '1',
-  zelcash_update: '1',
-  zelbench_update: '1',
-  action: '1',
-  ping: '0',
-  web_hook_url: '0',
-  telegram_alert: '0',
-  telegram_bot_token: '0',
-  telegram_chat_id: '0'
+  label:              '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].label | default(inventory_hostname) }}',
+  tier_eps_min:       '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].eps | default(user[hostvars[inventory_hostname].user].watchdog.eps) | default(0) }}',
+  zelflux_update:     '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].flux_update | default(user[hostvars[inventory_hostname].user].watchdog.flux_update) | default(0) }}',
+  zelcash_update:     '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].daemon_update | default(user[hostvars[inventory_hostname].user].watchdog.daemon_update) | default(0) }}',
+  zelbench_update:    '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].bench_update | default(user[hostvars[inventory_hostname].user].watchdog.bench_update) | default(0) }}',
+  action:             '{{ user[hostvars[inventory_hostname].user].watchdog.action | default(1) }}',
+  ping:               '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].discord_ping | default(user[hostvars[inventory_hostname].user].watchdog.discord_ping) | default(0) }}',
+  web_hook_url:       '{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].discord_webhook | default(user[hostvars[inventory_hostname].user].watchdog.discord_webhook) | default(0) }}',
+  telegram_alert:     '{{ user[hostvars[inventory_hostname].user].watchdog.telegram_alert | default(0) }}',
+  telegram_bot_token: '{{ user[hostvars[inventory_hostname].user].watchdog.telegram_bot_token | default(0) }}',
+  telegram_chat_id:   '{{ user[hostvars[inventory_hostname].user].watchdog.telegram_chat_id | default(0) }}'
 }

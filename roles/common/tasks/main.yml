@@ -49,6 +49,8 @@
       tags:
         - daemon-conf
         - daemon
+        - fluxos-install
+        - fluxos
         - common-getIP
         - common
         - all
@@ -56,6 +58,8 @@
   tags:
     - daemon-conf
     - daemon
+    - fluxos-install
+    - fluxos
     - common-getIP
     - common
     - all

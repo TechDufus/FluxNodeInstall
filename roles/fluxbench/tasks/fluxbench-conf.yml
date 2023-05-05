@@ -6,6 +6,10 @@
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
     mode: "0700"
+  when:
+    - (hostvars[inventory_hostname].gateway is defined and hostvars[inventory_hostname].apiport is defined) or
+      user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['thunder'] is defined or
+      user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['speed_test_id'] is defined
 
 - name: Generate Fluxbench config
   ansible.builtin.template:
@@ -14,3 +18,16 @@
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
     mode: "0664"
+  when:
+    - (hostvars[inventory_hostname].gateway is defined and hostvars[inventory_hostname].apiport is defined) or
+      user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['thunder'] is defined or
+      user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['speed_test_id'] is defined
+
+- name: Verify fluxbench Conf
+  ansible.builtin.file:
+    dest: "{{ fluxbench.conf_file }}"
+    state: absent
+  when:
+    - (hostvars[inventory_hostname].gateway is not defined or hostvars[inventory_hostname].apiport is not defined)
+    - user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['thunder'] is not defined
+    - user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['speed_test_id'] is not defined
