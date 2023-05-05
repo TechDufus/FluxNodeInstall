@@ -291,7 +291,6 @@ user:
     zelid: $zelid
     kda: $kadena
     identity_key: '$identity_key'
-    eps: $eps_limit
     watchdog:
       flux_update: '$flux_update'
       daemon_update: '$daemon_update'
@@ -302,6 +301,7 @@ user:
       telegram_alert: '$telegram_alert'
       telegram_bot_token: '$telegram_bot_token'	      
       telegram_chat_id: '$telegram_chat_id'
+      eps: $eps_limit
     t1:
       collateral_tx: '$collateral_tx'
       index: '$index'
