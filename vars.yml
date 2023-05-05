@@ -9,11 +9,15 @@ user:
     watchdog:
       eps: 90
       flux_update: '1'
-      daemon_update: '0'
-      bench_update: '0'
-      discord_webhook: '0'
-      discord_ping: '1'
+      daemon_update: '1'
+      bench_update: '1'
+      discord_webhook: 'test_webhook'
+      discord_ping: 'i_am_the_alpha'
+      telegram_alert: "test_alert"
+      telegram_bot_token: "test_token"
+      telegram_chat_id: "test_chat_id"
     t0:
+      label: 'test_node_label_for_watchdog'
       collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
       index: '0'
     t1:
