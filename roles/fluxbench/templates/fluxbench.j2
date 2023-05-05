@@ -1,2 +1,9 @@
-fluxport={{ hostvars[inventory_hostname].apiport | default(16127)}}
-
+{% if hostvars[inventory_hostname].apiport is defined and hostvars[inventory_hostname].gateway is defined %}
+fluxport={{ hostvars[inventory_hostname].apiport }}
+{% endif %}
+{% if user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['thunder'] is defined %}
+thunder={{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['thunder'] }}
+{% endif %}
+{% if user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['speed_test_id'] is defined %}
+speedtestserverid={{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['speed_test_id'] }}
+{% endif %}
