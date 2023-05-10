@@ -3,7 +3,7 @@
 # This is the primary playbook
 
 - name: Flux Node Install
-  hosts: all
+  hosts: dufus
   vars_files:
     - vars.yml
     - user.yml

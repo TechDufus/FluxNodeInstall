@@ -42,7 +42,7 @@ mv ./scripts/user.yml user.yml -f
 3. Run the ansible-playbook command passing in the inventory file and the playbook file.
 
 ```bash
-ansible-playbook -i inventory.ini playbook.yml
+ansible-playbook flux.yml
 ```
 
 ### Playbook Contents
@@ -54,7 +54,12 @@ ansible-playbook -i inventory.ini playbook.yml
 
 ### Contributing
 
-Please feel free to contribute to this project by submitting issues and/or pull requests.
+Please read [CONTRIBUTING.md](./.github/CONTRIBUTING.md) for details and the processes for submitting pull requests to us.
+
+### Code of Conduct
+
+Please read [CODE_OF_CONDUCT.md](./.github/CODE_OF_CONDUCT.md) for details on our code of conduct.
+By participating in this GitHub repository, you are agreeing to abide by this code of conduct.
 
 ### Authors
 
