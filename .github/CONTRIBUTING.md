@@ -26,7 +26,7 @@ To contribute to the Ansible Playbook Repository, follow these steps:
 
 1. **Fork the repository:** Fork the repository to your GitHub account by clicking on the "Fork" button at the top of the repository page.
 2. **Clone the repository:** Clone the forked repository to your local machine using the git clone command.
-3. **Create a branch:** Create a new branch for your changes using a descriptive name. Branch names should be concise and include a relevant prefix (e.g., feature/new-feature, bugfix/issue-123).
+3. **Create a branch:** Create a new branch for your changes using a descriptive name. Branch names should be concise and include a relevant prefix (e.g., `feature/new-feature`, `bugfix/issue-123`).
 4. **Make changes:** Make the necessary changes to the playbook files and any associated documentation.
 5. **Commit your changes:** Commit your changes with a clear and concise commit message, following the style guidelines below.
 6. **Push changes:** Push your branch to your forked repository on GitHub.
