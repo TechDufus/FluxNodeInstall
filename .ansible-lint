@@ -1,4 +1,5 @@
 warn_list:  # or 'skip_list' to silence them completely
+  - no-handler
   - risky-shell-pipe
   - command-instead-of-shell  # Use shell only when shell functionality is required
   - deprecated-command-syntax  # Using command rather than an argument to e.g. file
