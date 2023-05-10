@@ -8,7 +8,6 @@
   args:
     executable: /bin/bash
   loop:
-    - "sudo env PATH=$PATH:/home/{{ global.user }}/.nvm/versions/node/$(node -v)/bin pm2 startup systemd -u {{ global.user }}"
     - "sudo env PATH=$PATH:/home/{{ global.user }}/.nvm/versions/node/$(node -v)/bin pm2 startup systemd -u {{ global.user }} --hp /home/{{ global.user }}"
 
 - name: "PM2 | LogRotate"
