@@ -70,5 +70,5 @@
     state: restarted
     enabled: true
   when:
-    - daemon_conf_file.stat.exists
     - conf_update.changed
+    - daemon_conf_file.stat.exists
