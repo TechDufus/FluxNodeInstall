@@ -1,0 +1,74 @@
+---
+- name: Disable UFW Logging
+  community.general.ufw:
+    logging: false
+
+- name: Disable UFW
+  community.general.ufw:
+    state: disabled
+
+- name: Remove UFW Allow Out Defaults
+  community.general.ufw:
+    port: "{{ item }}"
+    rule: allow
+    to: any
+    direction: out
+    delete: true
+  loop: "{{ ufw.allow_out }}"
+
+- name: Remove UFW Allow IN Defaults
+  community.general.ufw:
+    port: "{{ item }}"
+    rule: allow
+    to: any
+    direction: in
+    delete: true
+  loop: "{{ ufw.allow_in }}"
+
+- name: UPnP Gateway Rule
+  community.general.ufw:
+    port: 1900
+    protocol: udp
+    to_ip: 239.255.255.250
+    src: any
+    direction: out
+    rule: allow
+    delete: true
+  when:
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
+
+- name: UPnP Router Out TCP
+  community.general.ufw:
+    protocol: tcp
+    from: any
+    to_ip: "{{ hostvars[inventory_hostname].gateway }}"
+    rule: allow
+    direction: out
+    delete: true
+  when:
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
+
+- name: UPnP Router Out UDP
+  community.general.ufw:
+    protocol: udp
+    from_ip: "{{ hostvars[inventory_hostname].gateway }}"
+    to_ip: any
+    rule: allow
+    delete: true
+  when:
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
+
+- name: UPnP Router Port 1900
+  community.general.ufw:
+    from_port: 1900
+    from_ip: "{{ hostvars[inventory_hostname].gateway }}"
+    to_ip: any
+    proto: udp
+    rule: allow
+    delete: true
+  when:
+    - hostvars[inventory_hostname].gateway is defined
+    - hostvars[inventory_hostname].apiport is defined
