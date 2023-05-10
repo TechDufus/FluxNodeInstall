@@ -14,14 +14,14 @@ This Ansible project aims to replace the current Bash script used for installing
 
 ### Prerequisites
 
-1. Ansible Galaxy Modules
-    - You will need to run the following command to install the Ansible Galaxy modules used in this project:
+#### 1. Ansible Galaxy Modules
+You will need to run the following command to install the Ansible Galaxy modules used in this project:
 
 ```bash
 ansible-galaxy install -r requirements.yml
 ```
 
-2. `user.yml` file with filled in variables
+#### 2. `user.yml` file with filled in variables
 You will need to create a user.yml file with the variables filled in. You can use the user.yml file as a template.
 
 If you want to use the script to generate a user.yml file for you, you can run the following command:
