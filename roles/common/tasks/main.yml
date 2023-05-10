@@ -29,22 +29,6 @@
     - all
     - never
 
-- name: Update System
-  ansible.builtin.include_tasks:
-    file: common-updateSystem.yml
-    apply:
-      tags:
-        - common-updateSystem
-        - updateOS
-        - update
-      become: true
-  tags:
-    - common-updateSystem
-    - updateOS
-    - update
-    - never
-
-
 # - name: Purge Packages
 #   ansible.builtin.include_tasks:
 #     file: common-purgePackages.yml

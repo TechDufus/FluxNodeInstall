@@ -1,5 +1,0 @@
----
-- name: Update System APT
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: "yes"
