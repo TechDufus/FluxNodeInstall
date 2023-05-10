@@ -1,14 +1,14 @@
 ---
 - name: Disable UFW Logging
-  ansible.builtin.ufw:
+  community.general.ufw:
     logging: false
 
 - name: Disable UFW
-  ansible.builtin.ufw:
+  community.general.ufw:
     state: disabled
 
 - name: Remove UFW Allow Out Defaults
-  ansible.builtin.ufw:
+  community.general.ufw:
     port: "{{ item }}"
     rule: allow
     to: any
@@ -17,7 +17,7 @@
   loop: "{{ ufw.allow_out }}"
 
 - name: Remove UFW Allow IN Defaults
-  ansible.builtin.ufw:
+  community.general.ufw:
     port: "{{ item }}"
     rule: allow
     to: any
@@ -26,7 +26,7 @@
   loop: "{{ ufw.allow_in }}"
 
 - name: UPnP Gateway Rule
-  ansible.builtin.ufw:
+  community.general.ufw:
     port: 1900
     protocol: udp
     to_ip: 239.255.255.250
@@ -39,7 +39,7 @@
     - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Out TCP
-  ansible.builtin.ufw:
+  community.general.ufw:
     protocol: tcp
     from: any
     to_ip: "{{ hostvars[inventory_hostname].gateway }}"
@@ -51,7 +51,7 @@
     - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Out UDP
-  ansible.builtin.ufw:
+  community.general.ufw:
     protocol: udp
     from_ip: "{{ hostvars[inventory_hostname].gateway }}"
     to_ip: any
@@ -62,7 +62,7 @@
     - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Port 1900
-  ansible.builtin.ufw:
+  community.general.ufw:
     from_port: 1900
     from_ip: "{{ hostvars[inventory_hostname].gateway }}"
     to_ip: any
