@@ -6,6 +6,7 @@
   hosts: all
   vars_files:
     - vars.yml
+    - user.yml
 
   tasks:
     - name: Common Role
