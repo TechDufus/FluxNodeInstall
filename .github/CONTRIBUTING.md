@@ -54,9 +54,9 @@ Example:
 
 ```text
 Fix typo in README.md
-```
 
 The word "committer" was misspelled as "committor" in line 42 of the README file. This commit corrects the typo.
+```
 **Use bullet points and lists:** If necessary, use bullet points or lists to provide clear and organized information about the changes made.
 
 Example:
