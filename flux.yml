@@ -6,11 +6,16 @@
   hosts: all
   vars_files:
     - vars.yml
+    - user.yml
 
   tasks:
     - name: Common Role
       ansible.builtin.import_role:
         name: common
+
+    - name: UFW Role
+      ansible.builtin.import_role:
+        name: ufw
 
     - name: Docker Role
       ansible.builtin.import_role:
