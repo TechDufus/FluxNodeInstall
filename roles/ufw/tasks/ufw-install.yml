@@ -1,10 +1,10 @@
 ---
 - name: UFW Logging
-  ansible.builtin.ufw:
+  community.general.ufw:
     logging: true
 
 - name: UFW Allow Out
-  ansible.builtin.ufw:
+  community.general.ufw:
     port: "{{ item }}"
     rule: allow
     to: any
@@ -12,7 +12,7 @@
   loop: "{{ ufw.allow_out }}"
 
 - name: UFW Allow IN
-  ansible.builtin.ufw:
+  community.general.ufw:
     port: "{{ item }}"
     rule: allow
     to: any
@@ -20,7 +20,7 @@
   loop: "{{ ufw.allow_in }}"
 
 - name: UPnP Gateway Rule
-  ansible.builtin.ufw:
+  community.general.ufw:
     port: 1900
     protocol: udp
     to_ip: 239.255.255.250
@@ -32,7 +32,7 @@
     - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Out TCP
-  ansible.builtin.ufw:
+  community.general.ufw:
     protocol: tcp
     from: any
     to_ip: "{{ hostvars[inventory_hostname].gateway }}"
@@ -43,7 +43,7 @@
     - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Out UDP
-  ansible.builtin.ufw:
+  community.general.ufw:
     protocol: udp
     from_ip: "{{ hostvars[inventory_hostname].gateway }}"
     to_ip: any
@@ -53,7 +53,7 @@
     - hostvars[inventory_hostname].apiport is defined
 
 - name: UPnP Router Port 1900
-  ansible.builtin.ufw:
+  community.general.ufw:
     from_port: 1900
     from_ip: "{{ hostvars[inventory_hostname].gateway }}"
     to_ip: any
@@ -64,18 +64,18 @@
     - hostvars[inventory_hostname].apiport is defined
 
 - name: UFW SSH Setup
-  ansible.builtin.ufw:
+  community.general.ufw:
     rule: limit
     name: OpenSSH
 
 - name: UFW SSH Limit
-  ansible.builtin.ufw:
+  community.general.ufw:
     rule: allow
     port: 22
     proto: tcp
 
 - name: Enable UFW
-  ansible.builtin.ufw:
+  community.general.ufw:
     state: enabled
 
 - name: Enable Fail2ban
