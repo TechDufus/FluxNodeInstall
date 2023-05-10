@@ -9,7 +9,7 @@ skip_list:
   - no-handler
   - risky-shell-pipe
 exclude_paths:
-	- ./scripts/user.yml
+  - ./scripts/user.yml
   - ./user.yml
   - ./vars.yml
   - ./.github/workflows/*
