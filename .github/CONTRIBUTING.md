@@ -2,12 +2,12 @@
 Welcome to the Ansible Playbook Repository! We appreciate your interest in contributing to this project. This document outlines the guidelines and best practices for contributing. By following these guidelines, you can help ensure a smooth and collaborative development process.
 
 ## Table of Contents
-[Getting Started](#getting-started)
-[Creating Issues](#creating-issues)
-[Making Changes](#making-changes)
-[Pull Requests](#pull-requests)
-[Style Guidelines](#style-guidelines)
-[Code of Conduct](./CODE_OF_CONDUCT.md)
+- [Getting Started](#getting-started)
+- [Creating Issues](#creating-issues)
+- [Making Changes](#making-changes)
+- [Pull Requests](#pull-requests)
+- [Style Guidelines](#style-guidelines)
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
 ## Getting Started
 Before contributing to the project, please make sure you have the following:
 
