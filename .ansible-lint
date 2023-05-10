@@ -1,13 +1,16 @@
 warn_list:  # or 'skip_list' to silence them completely
-  - no-handler
-  - risky-shell-pipe
   - command-instead-of-shell  # Use shell only when shell functionality is required
   - deprecated-command-syntax  # Using command rather than an argument to e.g. file
   - no-changed-when  # Commands should not change things if nothing needs doing
   - experimental  # all rules tagged as experimental
   - yaml  # Violations reported by yamllint
   - ignore-errors
+skip_list:
+  - no-handler
+  - risky-shell-pipe
 exclude_paths:
+	- ./scripts/user.yml
+  - ./user.yml
   - ./vars.yml
   - ./.github/workflows/*
   - ./scripts/default*
