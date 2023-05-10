@@ -8,6 +8,32 @@ This Ansible project aims to replace the current Bash script used for installing
 
 - Ansible (version >= v2.14.3)
 - Python (version >= v3.10.6)
+- Ubuntu (version >= v22.04)
+  - You may need Ubuntu 22.04 or later to install Ansible v2.14.3 or later.
+
+
+### Prerequisites
+
+1. Ansible Galaxy Modules
+    - You will need to run the following command to install the Ansible Galaxy modules used in this project:
+
+```bash
+ansible-galaxy install -r requirements.yml
+```
+
+2. `user.yml` file with filled in variables
+You will need to create a user.yml file with the variables filled in. You can use the user.yml file as a template.
+
+If you want to use the script to generate a user.yml file for you, you can run the following command:
+```bash
+./scripts/setup.sh
+```
+This will generate a user.yml file that you will need to move to the root of the project.
+
+```bash
+mv ./scripts/user.yml user.yml -f
+```
+
 
 ### Usage
 
