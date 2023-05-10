@@ -62,7 +62,6 @@ The word "committer" was misspelled as "committor" in line 42 of the README file
 Example:
 
 ```text
-Copy code
 Add new feature to user interface
 
 - Introduce a settings panel with customizable options
