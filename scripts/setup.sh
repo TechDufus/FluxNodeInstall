@@ -66,7 +66,7 @@ fi
 
 function generate_host(){
   host_entry=""
-  host_entry="$USER ansible_host=$host_ip user=$host_user n=t1"
+  host_entry="$USER ansible_host=$host_ip user=$host_user n=t$1"
 
   if [[ "$host_ansible" != "" ]]; then
     host_entry="$host_entry ansible_user=$host_ansible"
@@ -137,10 +137,10 @@ function gather_host_details(){
   attempt=0
   while true
   do
-    host_ip=$(whiptail --inputbox "Enter your Host IP Address" 8 65 3>&1 1>&2 2>&3)
-    host_user=$(whiptail --inputbox "Enter your Host username" 8 72 3>&1 1>&2 2>&3)
-    host_ansible=$(whiptail --inputbox "Enter your Ansible username" 8 72 3>&1 1>&2 2>&3)
-    host_port=$(whiptail --inputbox "Enter your Host port" 8 65 3>&1 1>&2 2>&3)
+    host_ip=$(whiptail --inputbox "Enter your Flux Node IP Address - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
+    host_user=$(whiptail --inputbox "Enter your Flux Node username - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
+    host_ansible=$(whiptail --inputbox "Enter your Ansible username - optional! - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
+    host_port=$(whiptail --inputbox "Enter your Ansible port (Default is 22) - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
 
     if whiptail --yesno "Are these details correct?\n
     Host IP: $host_ip\n
@@ -171,9 +171,9 @@ function gather_flux_details(){
   attempt=0
   while true
   do
-    identity_key=$(whiptail --inputbox "Enter your FluxNode Identity Key from Zelcore" 8 65 3>&1 1>&2 2>&3)
-    collateral_tx=$(whiptail --inputbox "Enter your FluxNode Collateral TX ID from Zelcore" 8 72 3>&1 1>&2 2>&3)
-    index=$(whiptail --inputbox "Enter your FluxNode Output Index from Zelcore" 8 65 3>&1 1>&2 2>&3)
+    identity_key=$(whiptail --inputbox "Enter your FluxNode Identity Key from Zelcore - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
+    collateral_tx=$(whiptail --inputbox "Enter your FluxNode Collateral TX ID from Zelcore - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
+    index=$(whiptail --inputbox "Enter your FluxNode Output Index from Zelcore - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
 
     if whiptail --yesno "Are these details correct?\n
     Identity Key: $identity_key\n
@@ -201,7 +201,7 @@ function gather_upnp_details(){
     attempt=0
     while true
     do
-      api_port=$(whiptail --title "Enter your FluxOS UPnP Port" --radiolist \
+      api_port=$(whiptail --title "Enter your FluxOS UPnP Port - node $(($1+1))" --radiolist \
         "Use the UP/DOWN arrows to highlight the port you want. Press Spacebar on the port you want to select, THEN press ENTER." 17 50 8 \
         "16127" "" ON \
         "16137" "" OFF \
@@ -211,7 +211,7 @@ function gather_upnp_details(){
         "16177" "" OFF \
         "16187" "" OFF \
         "16197" "" OFF 3>&1 1>&2 2>&3)
-      gateway=$(whiptail --inputbox "Enter your FluxNode Network Gateway IP" 8 72 3>&1 1>&2 2>&3)
+      gateway=$(whiptail --inputbox "Enter your FluxNode Network Gateway IP - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
 
       if whiptail --yesno "Are these details correct?\n
       Node UPnP API Port: $api_port\n
@@ -238,7 +238,7 @@ function gather_upnp_details(){
 function gather_node_type(){
   echo -e "${ARROW} ${YELLOW}Gathering Watchdog Node Type for node $(($1+1))${NC}"
   sleep 3
-  eps_limit=$(whiptail --title "Select Node Type" --radiolist \
+  eps_limit=$(whiptail --title "Select Node Type - node $(($1+1))" --radiolist \
   "Use the UP/DOWN arrows to highlight the port you want. Press Spacebar on the port you want to select, THEN press ENTER." 17 50 4 \
   "90" "CUMULUS" ON \
   "180" "NIMBUS" OFF \
@@ -271,7 +271,7 @@ fi
 echo -e "${ARROW} ${YELLOW}Gathering Setup Details${NC}"
 
 num_nodes=$(whiptail --title "Number of Nodes for host" --radiolist \
-      "Use the UP/DOWN arrows to highlight the port you want. Press Spacebar on the port you want to select, THEN press ENTER." 17 50 8 \
+      "Use the UP/DOWN arrows to highlight the number of nodes you wish to setup. Press Spacebar on the port you want to select, THEN press ENTER." 17 50 8 \
       "1" "" ON \
       "2" "" OFF \
       "3" "" OFF \
@@ -294,7 +294,7 @@ for ((i=0; i<"$num_nodes"; i++)); do
   gather_node_type $i
   gather_upnp_details $i
 
-  generate_host
+  generate_host $i
   generate_node_details $i
 done
 
