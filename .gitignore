@@ -1,1 +1,4 @@
 .vscode/*
+scripts/hosts.ini
+scripts/default*
+scripts/*yml
