@@ -31,6 +31,7 @@ host_ansible=""
 host_n=""
 
 ## NODE DETAILS
+node_whiptail_title="Flux Node - "
 node_entries=()
 identity_key=""
 collateral_tx=""
@@ -137,20 +138,23 @@ function gather_host_details(){
   attempt=0
   while true
   do
-    host_ip=$(whiptail --inputbox "Enter your Flux Node IP Address - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
-    host_user=$(whiptail --inputbox "Enter your Flux Node username - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
-    host_ansible=$(whiptail --inputbox "Enter your Ansible username - optional! - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
-    host_port=$(whiptail --inputbox "Enter your Ansible port (Default is 22) - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
+    host_ip=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "Enter your Flux Node's IP Address" 8 65 3>&1 1>&2 2>&3)
+    host_user=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "Enter your Flux Node username" 8 72 3>&1 1>&2 2>&3)
+    host_ansible=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "(Optional) Enter your Ansible SSH username (Default is ${USER}). This is the user that Ansible will SSH into the node with." 8 72 3>&1 1>&2 2>&3)
+    host_port=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "(Optional) Enter your Ansible SSH port (Default is 22)" 8 65 3>&1 1>&2 2>&3)
+    # This is just to display the default values but the vars themselves are not changed
+    if [[ "$host_port"    == "" ]]; then display_host_port="22"; fi
+    if [[ "$host_ansible" == "" ]]; then display_host_ansible="$USER"; fi
 
     if whiptail --yesno "Are these details correct?\n
     Host IP: $host_ip\n
     Host User: $host_user\n
-    Ansible User: $host_ansible\n
-    Host Port: $host_port" 15 100; then
-      echo -e "${ARROW} ${CYAN}Host IP:  ${GREEN}$host_ip${CYAN} ...... [${CHECK_MARK}${CYAN}]${NC}"
-      echo -e "${ARROW} ${CYAN}Host User:  ${GREEN}$host_user${CYAN} ...... [${CHECK_MARK}${CYAN}]${NC}"
-      echo -e "${ARROW} ${CYAN}Ansible User:  ${GREEN}$host_ansible${CYAN} ...... [${CHECK_MARK}${CYAN}]${NC}"
-      echo -e "${ARROW} ${CYAN}Host Port: ${GREEN}$host_port${CYAN} ...... [${CHECK_MARK}${CYAN}]${NC}"
+    Ansible User: $display_host_ansible\n
+    Host Port: $display_host_port" 15 100; then
+      echo -e "${ARROW} ${CYAN}Host IP:      ${GREEN}$host_ip${CYAN}\t ...... [${CHECK_MARK}${CYAN}]${NC}"
+      echo -e "${ARROW} ${CYAN}Host User:    ${GREEN}$host_user${CYAN}\t ...... [${CHECK_MARK}${CYAN}]${NC}"
+      echo -e "${ARROW} ${CYAN}Ansible User: ${GREEN}$display_host_ansible${CYAN}\t ...... [${CHECK_MARK}${CYAN}]${NC}"
+      echo -e "${ARROW} ${CYAN}Host Port:    ${GREEN}$display_host_port${CYAN}\t ...... [${CHECK_MARK}${CYAN}]${NC}"
       sleep 1
       break
     else
@@ -171,9 +175,9 @@ function gather_flux_details(){
   attempt=0
   while true
   do
-    identity_key=$(whiptail --inputbox "Enter your FluxNode Identity Key from Zelcore - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
-    collateral_tx=$(whiptail --inputbox "Enter your FluxNode Collateral TX ID from Zelcore - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
-    index=$(whiptail --inputbox "Enter your FluxNode Output Index from Zelcore - node $(($1+1))" 8 65 3>&1 1>&2 2>&3)
+    identity_key=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "Enter your FluxNode Identity Key from Zelcore" 8 65 3>&1 1>&2 2>&3)
+    collateral_tx=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "Enter your FluxNode Collateral TX ID from Zelcore" 8 72 3>&1 1>&2 2>&3)
+    index=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "Enter your FluxNode Output Index from Zelcore" 8 65 3>&1 1>&2 2>&3)
 
     if whiptail --yesno "Are these details correct?\n
     Identity Key: $identity_key\n
@@ -197,11 +201,11 @@ function gather_flux_details(){
 }
 
 function gather_upnp_details(){
-  if whiptail --yesno "Would you like to enable upnp for node $(($1+1))?" 8 72; then
+  if whiptail --yesno "Would you like to enable upnp for ${node_whiptail_title}$(($1+1))?" 8 72; then
     attempt=0
     while true
     do
-      api_port=$(whiptail --title "Enter your FluxOS UPnP Port - node $(($1+1))" --radiolist \
+      api_port=$(whiptail --title "Enter your FluxOS UPnP Port - ${node_whiptail_title}$(($1+1))" --radiolist \
         "Use the UP/DOWN arrows to highlight the port you want. Press Spacebar on the port you want to select, THEN press ENTER." 17 50 8 \
         "16127" "" ON \
         "16137" "" OFF \
@@ -211,7 +215,7 @@ function gather_upnp_details(){
         "16177" "" OFF \
         "16187" "" OFF \
         "16197" "" OFF 3>&1 1>&2 2>&3)
-      gateway=$(whiptail --inputbox "Enter your FluxNode Network Gateway IP - node $(($1+1))" 8 72 3>&1 1>&2 2>&3)
+      gateway=$(whiptail --inputbox "Enter your FluxNode Network Gateway IP - ${node_whiptail_title}$(($1+1))" 8 72 3>&1 1>&2 2>&3)
 
       if whiptail --yesno "Are these details correct?\n
       Node UPnP API Port: $api_port\n
@@ -248,20 +252,6 @@ function gather_node_type(){
     echo -e "${ARROW} ${CYAN}EPS Limit Not Set ...... [${X_MARK}${CYAN}]${NC}"
 }
 
-if jq --version > /dev/null 2>&1; then
-  sleep 0.2
-else
-  echo -e "${ARROW} ${YELLOW}Installing JQ....${NC}"
-  sudo apt  install jq -y > /dev/null 2>&1
-  if jq --version > /dev/null 2>&1; then
-    string_limit_check_mark "JQ $(jq --version) installed................................." "JQ ${GREEN}$(jq --version)${CYAN} installed................................."
-  else
-    string_limit_x_mark "JQ was not installed - exiting setup script"
-    echo
-    exit
-  fi
-fi
-
 if ! bc -v > /dev/null 2>&1 ; then
   echo -e "${ARROW} ${YELLOW}Installing BC ....${NC}"
   sudo apt install -y bc > /dev/null 2>&1 && sleep 1
@@ -282,7 +272,7 @@ num_nodes=$(whiptail --title "Number of Nodes for host" --radiolist \
       "8" "" OFF 3>&1 1>&2 2>&3)
 
 if [[ "$num_nodes" = "0" || "$num_nodes" = "" ]]; then
-  echo -e "${ARROW} ${RED}Number of nodes not valid ...... exiting script[${X_MARK}${CYAN}]${NC}"
+  echo -e "${ARROW} ${RED}Number of nodes not valid ...... exiting script${CYAN}[${X_MARK}${CYAN}]${NC}"
   exit
 fi
 
@@ -316,7 +306,7 @@ do
   fi
 done
 
-if whiptail --yesno "Would you like to use a custom daemon bootstrap URL" 8 72; then
+if whiptail --yesno "Would you like to use a custom daemon bootstrap URL (Recommended: No)" 8 72; then
   bootstrap_url=$(whiptail --inputbox "Enter your preferred daemon bootstrap URL" 8 85 3>&1 1>&2 2>&3)
 else
   bootstrap_url=""
@@ -345,10 +335,10 @@ do
   else
     attempt=$((attempt+1))
     if [ $attempt -gt 2 ]; then
-      echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script[${X_MARK}${CYAN}]${NC}"
+      echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script${CYAN}[${X_MARK}${CYAN}]${NC}"
       exit
     fi
-    echo -e "${ARROW} ${CYAN}User failed to confirm details ...... attempt $attempt/3[${X_MARK}${CYAN}]${NC}"
+    echo -e "${ARROW} ${CYAN}User failed to confirm details ...... attempt $attempt/3${CYAN}[${X_MARK}${CYAN}]${NC}"
     sleep 3
   fi
 done
