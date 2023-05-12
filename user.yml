@@ -13,16 +13,12 @@ user:
       bench_update: '1'
       discord_webhook: 'test_webhook'
       discord_ping: 'i_am_the_alpha'
-      telegram_alert: "test_alert"
-      telegram_bot_token: "test_token"
-      telegram_chat_id: "test_chat_id"
     t0:
       label: 'test_node_label_for_watchdog'
       collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
       index: '0'
     t1:
-      eps: 180
-      collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
+      collateral_tx: 'e60a9d29294ca18e6dcfda01a98612d2b7e673112430fb6889ee9f923e2a900a'
       index: '0'
   mowat:
     zelid: test
