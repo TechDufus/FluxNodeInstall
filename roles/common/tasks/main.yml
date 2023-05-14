@@ -64,3 +64,31 @@
     - common
     - all
     - never
+
+- name: Add Tool Alias
+  ansible.builtin.include_tasks:
+    file: common-addAlias.yml
+    apply:
+      tags:
+        - common-addAlias
+        - common
+        - all
+      become: true
+  tags:
+    - common-addAlias
+    - common
+    - all
+    - never
+
+- name: Purge Node Tool Alias
+  ansible.builtin.include_tasks:
+    file: common-purgeAlias.yml
+    apply:
+      tags:
+        - common-purgeAlias
+        - purge
+      become: true
+  tags:
+    - common-purgeAlias
+    - purge
+    - never

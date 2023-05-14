@@ -1,0 +1,15 @@
+- name: Confirm .bash_aliases exists
+  ansible.builtin.file:
+    path: "/home/{{ global.user }}/.bash_aliases"
+    state: touch
+    mode: "0644"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+
+- name: Adding FluxNode Tools Alias
+  ansible.builtin.blockinfile:
+    path: "/home/{{ global.user }}/.bash_aliases"
+    marker: "# {mark} FluxNodeView and Multitoolbox Alias Ansible MANAGED BLOCK"
+    block: |
+      alias multitoolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)'
+      alias fluxnodeview='bash -i <(curl -s https://raw.githubusercontent.com/JKTUNING/Flux-Node-Tools/main/flux_node_viewer.sh)'
