@@ -78,7 +78,7 @@ function generate_host(){
   fi
 
   if [[ "$api_port" != "" ]]; then
-    host_entry="$host_entry api_port=$api_port gateway=$gateway"
+    host_entry="$host_entry apiport=$api_port gateway=$gateway"
   fi
   host_entries+=("$host_entry")
 }
