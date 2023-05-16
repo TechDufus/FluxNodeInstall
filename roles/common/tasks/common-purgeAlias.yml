@@ -1,4 +1,4 @@
-- name: Adding FluxNode Tools Alias
+- name: Removing FluxNode Tools Alias
   ansible.builtin.blockinfile:
     path: "/home/{{ global.user }}/.bash_aliases"
     marker: "# {mark} FluxNodeView and Multitoolbox Alias Ansible MANAGED BLOCK"
