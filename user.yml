@@ -6,20 +6,22 @@ user:
     zelid: '1Hbz9ssfj7rFqHo1FsZLmX5ykUv9qmr2bY'
     kda: 'k:6177883d369db90fc760e15a9dc62a712fac8b89fa5b0240b08963f74e54b962'
     identity_key: '5JiGSJ6JPF7M7HrGoT4ChYbH8Ja4ZnmNLom7Dmc2PfzHgrYMNSF'
+    index: 0
     watchdog:
       eps: 90
       flux_update: '1'
       daemon_update: '1'
       bench_update: '1'
-      discord_webhook: 'test_webhook'
-      discord_ping: 'i_am_the_alpha'
     t0:
-      label: 'test_node_label_for_watchdog'
       collateral_tx: 'edd58a61749c1fa748e08eced0897d049a3b5d7b334cffd7c853d7bf56d51174'
-      index: '0'
     t1:
       collateral_tx: 'e60a9d29294ca18e6dcfda01a98612d2b7e673112430fb6889ee9f923e2a900a'
-      index: '0'
+    t2:
+      eps: 180
+      collateral_tx: 'b94a97ffb5d030a1c8cd66b9f43c7d17911fe7ad435b85657d61894dba8ddf32'
+    t3:
+      eps: 180
+      collateral_tx: 'f7f0b1b70a75760b2977d6ed74b48576a50d58c2c29f98ab35ee5949ff33ca0a'
   mowat:
     zelid: test
     kda: kadena:test
