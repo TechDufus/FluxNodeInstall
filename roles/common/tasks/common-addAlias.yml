@@ -13,3 +13,4 @@
     block: |
       alias multitoolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)'
       alias fluxnodeview='bash -i <(curl -s https://raw.githubusercontent.com/JKTUNING/Flux-Node-Tools/main/flux_node_viewer.sh)'
+      alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'

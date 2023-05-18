@@ -6,6 +6,7 @@ warn_list:  # or 'skip_list' to silence them completely
   - yaml  # Violations reported by yamllint
   - ignore-errors
 skip_list:
+  - var-naming
   - no-handler
   - risky-shell-pipe
 exclude_paths:

@@ -7,6 +7,7 @@ user:
     kda: 'k:6177883d369db90fc760e15a9dc62a712fac8b89fa5b0240b08963f74e54b962'
     identity_key: '5JiGSJ6JPF7M7HrGoT4ChYbH8Ja4ZnmNLom7Dmc2PfzHgrYMNSF'
     index: 0
+    force_new_chain: false
     watchdog:
       eps: 90
       flux_update: '1'
