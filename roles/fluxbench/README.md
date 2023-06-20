@@ -20,7 +20,7 @@ This role depends on the [daemon](../daemon/README.md) has installed fluxbench
 
 ```yaml
 fluxbench:
-  dir: # The directory to deploy fluxbench config files to
+  dir:       # The directory to deploy fluxbench config files to
   conf_file: # The path to the fluxbench config file
 ```
 

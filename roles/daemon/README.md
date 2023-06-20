@@ -22,14 +22,14 @@ Dependencies
 ```yaml
 # These are from the vars.yml file and come with defaults
 daemon:
-  bootstrap_url: # The URL to the bootstrap file
-  path: # The path to download the bootstrap file to
-  config: # The path to the config file for the daemon
-  keyring: # The full path to the keyring file for apt
-  list_file: # The full path to the list file for apt
-  service_name: # The name of the service for the daemon
-  rpcport: # The port for the daemon to listen on
-  port: # The port for the  to listen on
+  bootstrap_url:  # The URL to the bootstrap file
+  path:           # The path to download the bootstrap file to
+  config:         # The path to the config file for the daemon
+  keyring:        # The full path to the keyring file for apt
+  list_file:      # The full path to the list file for apt
+  service_name:   # The name of the service for the daemon
+  rpcport:        # The port for the daemon to listen on
+  port:           # The port for the  to listen on
   fluxbench_file: # The path to the fluxbench config file
 
 global:

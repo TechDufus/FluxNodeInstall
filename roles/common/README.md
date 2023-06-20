@@ -15,8 +15,8 @@ Role Variables
 ```yaml
 # These are from the vars.yml file and come with defaults
 ip:
-  url1:
-  url2:
+  url1: # Main url to detect public IP
+  url2: # Fallback url in case of primary failure
 ```
 
 Dependencies

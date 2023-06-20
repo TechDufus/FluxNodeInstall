@@ -27,7 +27,7 @@ Dependencies
 
 ```yaml
 docker:
-  keyring: # The full path to the keyring file for apt
+  keyring:   # The full path to the keyring file for apt
   list_file: # The full path to the list file for apt
 ```
 

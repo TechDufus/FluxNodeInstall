@@ -31,9 +31,9 @@ Dependencies
 ```yaml
 # These vars live in the main vars.yml
 flux_os:
-  path: # Path to install FluxOS to
+  path:        # Path to install FluxOS to
   development: # Whether to install the development version of FluxOS
-  testnet: # Whether to install the testnet version of FluxOS
+  testnet:     # Whether to install the testnet version of FluxOS
 ```
 
 Example Playbook
