@@ -34,7 +34,7 @@ docker:
 Example Playbook
 ----------------
 
-See [main.yml](../../main.yml).
+See [flux.yml](../../flux.yml).
 
 License
 -------
