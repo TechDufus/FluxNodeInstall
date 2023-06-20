@@ -39,7 +39,7 @@ global:
 Example Playbook
 ----------------
 
-See [main.yml](./main.yml).
+See [main.yml](../../main.yml).
 
 License
 -------
