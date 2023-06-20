@@ -1,24 +1,12 @@
-fluxos (Flux OS)
+fluxbench
 =========
 
-Install FluxOS codebase and configure
+This role `only` configures fluxbench and performs no installation actions.
 
 Requirements
 ------------
 
-
-Requirements
-------------
-
-This role requires the following packages to be installed on the Flux Node:
-- NodeJS
-- NPM
-- NVM
-- PM2
-
-These packages are installed by the [common](../common) role.
-
-See [README.md Requirements](../../README.md#requirements).j
+See [README.md Requirements](../../README.md#requirements).
 
 Role Variables
 --------------
@@ -28,12 +16,12 @@ None. See Dependencies for information on the variables that are used.
 Dependencies
 ------------
 
+This role depends on the [daemon](../daemon/README.md) has installed fluxbench
+
 ```yaml
-# These vars live in the main vars.yml
-flux_os:
-  path: # Path to install FluxOS to
-  development: # Whether to install the development version of FluxOS
-  testnet: # Whether to install the testnet version of FluxOS
+fluxbench:
+  dir: # The directory to deploy fluxbench config files to
+  conf_file: # The path to the fluxbench config file
 ```
 
 Example Playbook

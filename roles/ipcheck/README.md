@@ -1,24 +1,13 @@
-fluxos (Flux OS)
+ipcheck
 =========
 
-Install FluxOS codebase and configure
-
-Requirements
-------------
+This role installs the ipcheck script on a node. The ipcheck script is used to check the IP address (public address) of a has changed and updates services accordingly.
 
 
 Requirements
 ------------
 
-This role requires the following packages to be installed on the Flux Node:
-- NodeJS
-- NPM
-- NVM
-- PM2
-
-These packages are installed by the [common](../common) role.
-
-See [README.md Requirements](../../README.md#requirements).j
+See [README.md Requirements](../../README.md#requirements).
 
 Role Variables
 --------------
@@ -29,11 +18,8 @@ Dependencies
 ------------
 
 ```yaml
-# These vars live in the main vars.yml
-flux_os:
-  path: # Path to install FluxOS to
-  development: # Whether to install the development version of FluxOS
-  testnet: # Whether to install the testnet version of FluxOS
+global:
+  user: # Flux user for the node.
 ```
 
 Example Playbook
