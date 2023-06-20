@@ -52,3 +52,5 @@ Author Information
 This role was created in 2023 by [TechDufus](https://github.com/techdufus).
 
 Please feel free to create a pull request or open an issue if you find any problems.
+
+See [CONTRIBUTING.md](../../.github/CONTRIBUTING.md) for information on contributing.
