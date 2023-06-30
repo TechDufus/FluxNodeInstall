@@ -1,5 +1,7 @@
 ## Ansible project for installing RunOnFlux nodes
 
+![Ansible Linting](https://github.com/techdufus/FluxNodeInstall/actions/workflows/ansible-lint.yml/badge.svg)
+
 This Ansible project aims to replace the current Bash script used for installing RunOnFlux nodes with a more efficient and effective method using Ansible.
 
 ### Requirements
