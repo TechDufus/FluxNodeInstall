@@ -36,4 +36,3 @@ body:
           required: true
         - label: You agree to the [code of conduct](https://github.com/techdufus/FluxNodeInstall/blob/main/.github/CODE_OF_CONDUCT.md)
           required: true
-
