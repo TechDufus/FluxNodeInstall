@@ -19,6 +19,9 @@ HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
 WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
 RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
+## Current directory of this script
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 ## HOST DETAILS
 host_ip=""
 host_port=""
@@ -48,14 +51,14 @@ telegram_chat_id="0"
 api_port=""
 gateway=""
 
-if [[ -f "./scripts/default_host.ini" ]]; then
+if [[ -f "$CURRENT_DIR/default_host.ini" ]]; then
 	echo -e "Removing previous default host file ... "
-	rm ./scripts/default_host.ini
+	rm $CURRENT_DIR/default_host.ini
 fi
 
-if [[ -f "./scripts/default_vars_new.yml" ]]; then
+if [[ -f "$CURRENT_DIR/default_vars_new.yml" ]]; then
 	echo -e "Removing previous default vars file ... "
-	rm ./scripts/default_vars_new.yml
+	rm $CURRENT_DIR/default_vars_new.yml
 fi
 
 function generate_host(){
@@ -282,7 +285,8 @@ eps_limit=$(whiptail --title "Select Node Type" --radiolist \
 [ $eps_limit ] && echo -e "${ARROW} ${CYAN}EPS Limit:  ${GREEN}$eps_limit${CYAN} ...... [${CHECK_MARK}${CYAN}]${NC}" || \
 	echo -e "${ARROW} ${CYAN}EPS Limit Not Set ...... [${X_MARK}${CYAN}]${NC}"
 
-cat - ./scripts/default_vars.yml <<EOF > tmpfile && mv tmpfile ./scripts/default_vars_new.yml
+# cat - $CURRENT_DIR/default_vars.yml <<EOF > tmpfile && mv tmpfile $CURRENT_DIR/default_vars_new.yml
+cat <<- EOF > $CURRENT_DIR/../user.yml
 global:
   user: $USER
 
@@ -310,7 +314,7 @@ EOF
 
 generate_host
 
-cat <<- EOF > ./scripts/default_host.ini
+cat <<- EOF > $CURRENT_DIR/../hosts.ini
 [ALL]
 $host_entry
 EOF
