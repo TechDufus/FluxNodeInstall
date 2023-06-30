@@ -1,36 +1,48 @@
 ---
+- name: Checking for existance of .flux dir
+  ansible.builtin.stat:
+    path: "{{ daemon.path }}/blocks"
+  register: chain_blocks_dir
+
 - name: Create .flux dir if it doesn't exist
   ansible.builtin.file:
     path: "{{ daemon.path }}"
-    mode: "0775"
     state: directory
     owner: "{{ global.user }}"
     group: "{{ global.user }}"
 
-- name: Starting Bootstrap Download
-  ansible.builtin.debug:
-    msg: Starting bootstrap download, which will take a while.
-  run_once: true
 
-- name: Download the bootstrap file
-  ansible.builtin.get_url:
-    url: "{{ daemon.bootstrap_url }}"
-    dest: "/tmp/{{ daemon.bootstrap_file }}"
-    mode: "0644"
-    owner: "{{ global.user }}"
-    group: "{{ global.user }}"
+- name: Download & Extract Bootstrap
+  when:
+    - not chain_blocks_dir.stat.exists or
+      user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].force_new_chain |
+          default(user[hostvars[inventory_hostname].user]['force_new_chain']) |
+          default(true)
+  block:
+    - name: Starting Bootstrap Download
+      ansible.builtin.debug:
+        msg: Starting bootstrap download, which will take a while.
+      run_once: true
 
-- name: Starting Bootstrap Extraction
-  ansible.builtin.debug:
-    msg: Starting extraction download, which will take a while.
-  run_once: true
+    - name: Download the bootstrap file
+      ansible.builtin.get_url:
+        url: "{{ daemon.bootstrap_url }}"
+        dest: "/tmp/{{ daemon.bootstrap_file }}"
+        mode: "0644"
+        owner: "{{ global.user }}"
+        group: "{{ global.user }}"
 
-- name: Extracting bootstrap file
-  ansible.builtin.unarchive:
-    remote_src: true
-    src: "/tmp/{{ daemon.bootstrap_file }}"
-    dest: "{{ daemon.path }}"
-    mode: "0644"
+    - name: Starting Bootstrap Extraction
+      ansible.builtin.debug:
+        msg: Starting extraction download, which will take a while.
+      run_once: true
+
+    - name: Extracting bootstrap file
+      ansible.builtin.unarchive:
+        remote_src: true
+        src: "/tmp/{{ daemon.bootstrap_file }}"
+        dest: "{{ daemon.path }}"
+        mode: "0644"
 
 - name: User Perms
   ansible.builtin.file:

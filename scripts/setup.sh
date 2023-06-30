@@ -32,16 +32,16 @@ index=""
 zelid=""
 kadena=""
 bootstrap_url=""
-node_label="0" 
+node_label="0"
 
 ## WATCHDOG DETAILS
 watchdog_updates="0"
-fix_action="0"      
+fix_action="0"
 eps_limit="0"
 discord_webhook="0"
 discord_ping="0"
-telegram_alert="0"    
-telegram_bot_token="0"	      	      
+telegram_alert="0"
+telegram_bot_token="0"
 telegram_chat_id="0"
 
 ## NETWORK DETAILS
@@ -67,7 +67,7 @@ function generate_host(){
 	fi
 
 	if [[ "$api_port" != "" ]]; then
-		host_entry="$host_entry api_port=$api_port gateway=$gateway"
+		host_entry="$host_entry apiport=$api_port gateway=$gateway"
 	fi
 }
 
@@ -110,7 +110,7 @@ do
 		sleep 1
 		break
 	else
-		attempt=$((attempt+1))	
+		attempt=$((attempt+1))
 		if [ $attempt -gt 2 ]; then
 			echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script[${X_MARK}${CYAN}]${NC}"
 			exit
@@ -139,7 +139,7 @@ do
 		sleep 1
 		break
 	else
-		attempt=$((attempt+1))	
+		attempt=$((attempt+1))
 		if [ $attempt -gt 2 ]; then
 			echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script[${X_MARK}${CYAN}]${NC}"
 			exit
@@ -157,7 +157,7 @@ do
 			echo -e "${ARROW} ${CYAN}Zel ID: ${GREEN}$zelid${CYAN} is valid ...... [${CHECK_MARK}${CYAN}]${NC}"
 			break
 	else
-		attempt=$((attempt+1))		
+		attempt=$((attempt+1))
 		if [ $attempt -gt 2 ]; then
 			echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script[${X_MARK}${CYAN}]${NC}"
 			exit
@@ -199,7 +199,7 @@ if whiptail --yesno "Would you like to enable upnp?" 8 72; then
 			sleep 1
 			break
 		else
-			attempt=$((attempt+1))	
+			attempt=$((attempt+1))
 			if [ $attempt -gt 2 ]; then
 				echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script[${X_MARK}${CYAN}]${NC}"
 				exit
@@ -231,13 +231,13 @@ do
 		sleep 1
 		break
 	else
-		attempt=$((attempt+1))	
+		attempt=$((attempt+1))
 		if [ $attempt -gt 2 ]; then
 			echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script[${X_MARK}${CYAN}]${NC}"
 			exit
 		fi
 		echo -e "${ARROW} ${CYAN}User failed to confirm details ...... attempt $attempt/3[${X_MARK}${CYAN}]${NC}"
-		sleep 3	
+		sleep 3
 	fi
 done
 
@@ -257,13 +257,13 @@ if whiptail --yesno "Would you like to enable Discord pings?" 8 65 3>&1 1>&2 2>&
 			echo -e "${ARROW} ${CYAN}Discord Webhook URL:  ${GREEN}$discord_webhook${CYAN} ...... [${CHECK_MARK}${CYAN}]${NC}"
 			break
 		else
-			attempt=$((attempt+1))	
+			attempt=$((attempt+1))
 			if [ $attempt -gt 2 ]; then
 				echo -e "${ARROW} ${CYAN}Maximum attempts exceeded ...... exiting script[${X_MARK}${CYAN}]${NC}"
 				exit
 			fi
 			echo -e "${ARROW} ${CYAN}User failed to confirm details ...... attempt $attempt/3[${X_MARK}${CYAN}]${NC}"
-			sleep 3	
+			sleep 3
 		fi
 	done
 else
@@ -299,7 +299,7 @@ user:
       discord_webhook: '$discord_webhook'
       discord_ping: '$discord_ping'
       telegram_alert: '$telegram_alert'
-      telegram_bot_token: '$telegram_bot_token'	      
+      telegram_bot_token: '$telegram_bot_token'
       telegram_chat_id: '$telegram_chat_id'
       eps: $eps_limit
     t1:

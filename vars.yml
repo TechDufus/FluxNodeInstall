@@ -37,6 +37,7 @@ ip:
 
 daemon:
   bootstrap_url: http://cdn-9.runonflux.io/apps/fluxshare/getfile/flux_explorer_bootstrap.tar.gz
+  bootstrap_file: flux_explorer_bootstrap.tar.gz
   path: "/home/{{ global.user }}/.flux"
   config: "flux.conf"
   keyring: /usr/share/keyrings/flux-archive-keyring.gpg
