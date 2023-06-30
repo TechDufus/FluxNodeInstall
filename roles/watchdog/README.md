@@ -1,7 +1,7 @@
-nvm
+watchdog
 =========
 
-Role to install nvm and nodejs.
+Install and configure watchdog.
 
 Requirements
 ------------
@@ -20,10 +20,10 @@ Dependencies
 global:
   user: # Flux user for the node.
 
-nvm:
-  repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
-  node:
-    version: # Node version to install
+watchdog:
+  path:  # Path to watchdog directory
+  repo:  # Repo to clone
+  hooks: # GitHub hooks file
 ```
 
 Example Playbook
@@ -44,3 +44,4 @@ This role was created in 2023 by [TechDufus](https://github.com/techdufus).
 Please feel free to create a pull request or open an issue if you find any problems.
 
 See [CONTRIBUTING.md](../../.github/CONTRIBUTING.md) for information on contributing.
+

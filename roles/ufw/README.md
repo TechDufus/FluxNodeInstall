@@ -1,7 +1,7 @@
-nvm
+ufw
 =========
 
-Role to install nvm and nodejs.
+Installs and configures ufw.
 
 Requirements
 ------------
@@ -20,10 +20,23 @@ Dependencies
 global:
   user: # Flux user for the node.
 
-nvm:
-  repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
-  node:
-    version: # Node version to install
+ufw:
+  allow_out:
+    - # List of ports to allow out
+    - # Example: 80
+  allow_in:
+    - # List of ports to allow in
+    - # Example: 80
+
+# OPTIONAL
+# The following HOST VARS are optionally used by the `ufw` role.
+gateway
+apiport
+
+# Example
+
+# file: hosts.ini
+some_host ansible_host=10.0.0.10 gateway=10.0.0.1 apiport=16127 user=some_user n=t1 ansible_user=techdufus
 ```
 
 Example Playbook

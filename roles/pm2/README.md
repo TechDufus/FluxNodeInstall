@@ -1,7 +1,7 @@
-nvm
+pm2
 =========
 
-Role to install nvm and nodejs.
+Installs [pm2](https://pm2.keymetrics.io/) and configuration on a node.
 
 Requirements
 ------------
@@ -20,10 +20,12 @@ Dependencies
 global:
   user: # Flux user for the node.
 
+flux_os:
+  path: # Path to flux_os directory
+
 nvm:
-  repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
   node:
-    version: # Node version to install
+    version: # Node version to install (by `mongo` role)
 ```
 
 Example Playbook
