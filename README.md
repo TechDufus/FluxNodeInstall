@@ -4,7 +4,12 @@
 
 # Ansible project for installing RunOnFlux nodes
 
-[![Ansible Linting](https://github.com/techdufus/FluxNodeInstall/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/TechDufus/FluxNodeInstall/actions/workflows/ansible-lint.yml) [![GitHub issues](https://img.shields.io/github/issues/techdufus/FluxNodeInstall)](https://github.com/TechDufus/FluxNodeInstall/issues) [![GitHub Sponsors](https://img.shields.io/github/sponsors/techdufus)](https://github.com/sponsors)
+<p align="center">
+    <a href="https://github.com/TechDufus/FluxNodeInstall/actions/workflows/ansible-lint.yml"><img align="center" src="https://github.com/TechDufus/FluxNodeInstall/actions/workflows/ansible-lint.yml/badge.svg"/></a>
+    <a href="https://github.com/TechDufus/FluxNodeInstall/issues"><img align="center" src="https://img.shields.io/github/issues/techdufus/FluxNodeInstall"/></a>
+    <a href="https://github.com/sponsors/TechDufus"><img align="center" src="https://img.shields.io/github/sponsors/techdufus"/></a>
+    <a href="https://discord.io/techdufus"><img align="center" src="https://img.shields.io/discord/905178979844116520.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/></a>
+</p>
 
 This Ansible project aims to replace the current Bash script used for installing RunOnFlux nodes with a more efficient and effective method using Ansible.
 
