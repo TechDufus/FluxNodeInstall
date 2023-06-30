@@ -3,6 +3,8 @@ Getting Started
 
 This is a quick guide to get you started with the `FluxNodeInstall` Ansible playbook.
 
+This project is meant to be [FORKED](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and customized to your needs. It is not meant to be run as is.
+
 ## Requirements
 
 See the [Requirements](../README.md#requirements) section in the main README.
