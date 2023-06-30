@@ -21,8 +21,10 @@ For beginners, we recommend you read the [Ansible documentation](https://docs.an
 
 Clone the repository to your local machine:
 
+NOTE: You will need to [FORK](https://docs.github.com/en/get-started/quickstart/fork-a-repo) this repository before you can clone it.
+
 ```bash
-git clone https://github.com/techdufus/FluxNodeInstall.git
+git clone https://github.com/<your_github_username>/FluxNodeInstall.git
 ```
 
 ### Bootstrap Script
