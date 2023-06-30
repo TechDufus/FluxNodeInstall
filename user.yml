@@ -1,0 +1,24 @@
+# This file is used to store variables that are used in the flux.yml playbook.
+global:
+  user: # FluxNode User Account
+
+user:
+  dufus: # This can be named anything.. just needs to match the user var on the host vars
+    zelid:           # String:  ZelID for this user's flux nodes
+    kda:             # String:  KDA Wallet to be configured on Flux Nodes
+    identity_key:    # String:  Collateral Identity Key. This will be the same for all collateral in the same ZelID
+    index:           # Int:     Index for your collateral. If a specific collateral is different, you can specify it specifically on the t# vars below
+    force_new_chain: # Boolean: Specify whether you want a new bootstrap to be downloaded & extracted each time
+    discord_webhook: # String:  Webhook for Discord notifications
+    watchdog:
+      eps:             # Int:    Specify the default EPS that all your calletoral's represent. If a specific collateral is different, you can specify that on the t# vars below
+      flux_update:     # Int:    1 - Enable auto-update / 0 - Disable auto-update
+      daemon_update:   # Int:    1 - Enable auto-update / 0 - Disable auto-update
+      bench_update:    # Int:    1 - Enable auto-update / 0 - Disable auto-update
+      discord_webhook: # String: You can configure this value here OR in the duplicate `discord_webhook` var above
+      discord_ping:    # String: Nick Ping using your Discord ID
+    t0: # This label can also be anything, t# to us stood for `Transaction#` but can be anything, as long as it matches the `n=` value on each Host.
+      label:         # String: Specify the 'node name' that the watchdog discord ping will use when alerting on the node with this collateral
+      eps:           # Int:    Specify the eps for this collateral. This value is optional if this collateral's eps matches the default eps value in the watchdog var. If this needs to be unique, specify it here.
+      collateral_tx: # String: Collateral Transaction ID
+      index:         # Int:    Specify the index for this collateral. This value in optional if differs from the default index value provided above.
