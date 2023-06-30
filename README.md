@@ -1,5 +1,3 @@
-# WARNING: This project is still in development and is not yet ready for live or production use. (POWERED BY DUFUS!!!)
-
 ## Ansible project for installing RunOnFlux nodes
 
 This Ansible project aims to replace the current Bash script used for installing RunOnFlux nodes with a more efficient and effective method using Ansible.
