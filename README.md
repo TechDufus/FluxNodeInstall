@@ -1,4 +1,8 @@
-## Ansible project for installing RunOnFlux nodes
+<p align="center">
+  <img src="https://github.com/TechDufus/FluxNodeInstall/assets/46715299/214f5549-d8ff-425f-8039-ebdd210d9061" />
+</p>
+
+# Ansible project for installing RunOnFlux nodes
 
 [![Ansible Linting](https://github.com/techdufus/FluxNodeInstall/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/TechDufus/FluxNodeInstall/actions/workflows/ansible-lint.yml) [![GitHub issues](https://img.shields.io/github/issues/techdufus/FluxNodeInstall)](https://github.com/TechDufus/FluxNodeInstall/issues) [![GitHub Sponsors](https://img.shields.io/github/sponsors/techdufus)](https://github.com/sponsors)
 
