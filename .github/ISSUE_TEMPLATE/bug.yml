@@ -1,0 +1,77 @@
+name: Bug Report 🐛
+description: Report something that's not working the way it's (probably) intended to
+title: '[BUG] <title>'
+labels: ['🐛 Bug']
+assignees:
+  - techdufus
+body:
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Where are you running FluxNodeInstall?
+      options:
+        - Self-Hosted
+        - VPS
+        - Other (Specify below)
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: System
+      description: >-
+        For deployment issues, specify your [distro or OS](https://whatsmyos.com/).
+      placeholder: e.g. Ubuntu 20.04 LTS
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of FluxNodeInstall are you running?
+      placeholder: Is there a specific commit or tag?
+    validations:
+      required: false
+  - type: textarea
+    id: repro
+    attributes:
+      label: Describe the problem
+      description: Please describe exactly what is not working, include the steps to reproduce, actual result and expected result
+      placeholder: |
+        When doing ABC then DEF, I expect to see XYZ, but I actually see ZYX
+
+        My repo is at https://github.com/--someUser/FluxNodeInstall
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Additional info
+      description: Logs? Screenshots? Yes, please.
+      placeholder: Take care to blank out any personal info.
+    validations:
+      required: false
+  - type: checkboxes
+    id: idiot-check
+    attributes:
+      label: Please tick the boxes
+      description: Before submitting, please ensure that
+      options:
+        - label: You have explained the issue clearly, and included all relevant info
+          required: true
+        - label: You are using the latest version of FluxNodeInstall
+          required: true
+        - label: You've checked that this [issue hasn't already been raised](https://github.com/techdufus/FluxNodeInstall/issues?q=is%3Aissue)
+          required: true
+        - label: You agree to the [code of conduct](https://github.com/techdufus/FluxNodeInstall/blob/main/.github/CODE_OF_CONDUCT.md)
+          required: true
+  - type: markdown
+    attributes:
+      value: |-
+        ## Thanks 🙏
+        <img align="left" width="160" src="https://i.ibb.co/S5vCnhL/gh-thanks.gif" alt="🐙" />
+        Thank you for raising this ticket - in doing so you are helping to make the app better for everyone 💪<br>
+        ⭐️ Consider dropping the repo a star if you're enjoying FluxNodeInstall!<br>
+    validations:
+      required: false
