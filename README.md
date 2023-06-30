@@ -52,6 +52,10 @@ ansible-playbook flux.yml
 - **handlers**: contains handlers for when certain tasks are executed.
 - **templates**: contains configuration files necessary for RunOnFlux.
 
+### Getting Started
+
+See the [Getting Started](./docs/Getting_Started.md) guide for more information on how to get started with this project.
+
 ### Contributing
 
 Please read [CONTRIBUTING.md](./.github/CONTRIBUTING.md) for details and the processes for submitting pull requests to us.
