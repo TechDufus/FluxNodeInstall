@@ -5,14 +5,12 @@ warn_list:  # or 'skip_list' to silence them completely
   - yaml  # Violations reported by yamllint
   - ignore-errors
 skip_list:
-  - line-length
+  - yaml[line-length]
   - risky-shell-pipe
   - no-handler
   - command-instead-of-shell  # Use shell only when shell functionality is required
 exclude_paths:
-  - ./vars.yml
-  - ./user.yml
-  - ./scripts/default_vars.yml
-  - ./.github/ISSUE_TEMPLATE/*
-  - ./.github/workflows/*
-  - ./.github/funding.yml
+  - vars.yml
+  - user.yml
+  - scripts/*
+  - .github/*
