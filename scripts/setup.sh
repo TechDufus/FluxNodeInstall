@@ -19,6 +19,9 @@ HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
 WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
 RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
+## Current directory of this script
+CURRENT_DIR="$( cd "$(dirname "$0")"  && pwd )"
+
 # GLOBAL DETAILS
 global_user=""
 
@@ -37,7 +40,7 @@ identity_key=""
 collateral_tx=""
 index=""
 zelid=""
-kadena=""
+kadena="k:"
 bootstrap_url=""
 node_label="0"
 
@@ -55,9 +58,16 @@ telegram_chat_id="0"
 api_port=""
 gateway=""
 
-if [[ -f "./scripts/hosts.ini" ]]; then
-  echo -e "Removing previous default host file ... "
-  rm ./scripts/hosts.ini
+if [[ -f "$CURRENT_DIR/../hosts.ini" ]]; then
+  echo -e "${ARROW} ${YELLOW}Moving current hosts.ini file to .backup folder"
+  mkdir -p $CURRENT_DIR/../.backup && mv $CURRENT_DIR/../hosts.ini $CURRENT_DIR/../.backup/hosts.ini
+  sleep 2
+fi
+
+if [[ -f "$CURRENT_DIR/../user.yml" ]]; then
+  echo -e "${ARROW} ${YELLOW}Moving current user.yml file to .backup folder"
+  mkdir -p $CURRENT_DIR/../.backup && mv $CURRENT_DIR/../user.yml $CURRENT_DIR/../.backup/user.yml
+  sleep 2
 fi
 
 function generate_host(){
@@ -90,9 +100,9 @@ EOF
 }
 
 function generate_host_file(){
-  echo "[ALL]" > ./scripts/hosts.ini
+  echo "[ALL]" > $CURRENT_DIR/../hosts.ini
   for host_entry in "${host_entries[@]}"; do
-    echo "$host_entry" >> ./scripts/hosts.ini
+    echo "$host_entry" >> $CURRENT_DIR/../hosts.ini
   done
 }
 
@@ -120,10 +130,10 @@ user:
       discord_ping: '$discord_ping'
       telegram_alert: '$telegram_alert'
       telegram_bot_token: '$telegram_bot_token'
-      telegram_chat_id: '$telegram_chat_id'" > ./scripts/user.yml
+      telegram_chat_id: '$telegram_chat_id'" > $CURRENT_DIR/../user.yml
 
   for node_entry in "${node_entries[@]}"; do
-    echo "$node_entry" >> ./scripts/user.yml
+    echo "$node_entry" >> $CURRENT_DIR/../user.yml
   done
 }
 
@@ -139,7 +149,7 @@ function gather_host_details(){
     host_port=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "(Optional) Enter your Ansible SSH port (Default is 22)" 8 65 3>&1 1>&2 2>&3)
     # This is just to display the default values but the vars themselves are not changed
     if [[ "$host_port"    == "" ]]; then display_host_port="22"; fi
-    if [[ "$host_ansible" == "" ]]; then display_host_ansible="$USER"; fi
+    if [[ "$host_ansible" == "" ]]; then display_host_ansible="$USER"; else display_host_ansible="$host_ansible"; fi
 
     if whiptail --yesno "Are these details correct?\n
     Host IP: $host_ip\n
@@ -373,3 +383,8 @@ generate_host_file
 
 echo -e "${ARROW} ${GREEN}Generating user var file .................. [${CHECK_MARK}${CYAN}]${NC}"
 generate_var_file
+
+echo -e "${CYAN}#########################         SETUP SCRIPT FINISHED         #########################${NC}"
+echo -e "${YELLOW}Host.ini and User.yml file auto generated and added to the root directory of this project${NC}"
+echo -e "${YELLOW}Please see thd docs folder for further details on how to use this Ansible Playbook${NC}"
+echo -e "${CYAN}#########################################################################################${NC}"
