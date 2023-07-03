@@ -78,7 +78,7 @@ function generate_host(){
     host_entry="$host_entry ansible_user=$host_ansible"
   fi
 
-  if [[ "$ansible_port" != "" ]]; then
+  if [[ "$host_port" != "" ]]; then
     host_entry="$host_entry ansible_port=$host_port"
   fi
 
@@ -119,7 +119,7 @@ function generate_var_file(){
 user:
   $host_user:
     zelid: $zelid
-    kda: $kadena
+    kda: '$kadena'
     identity_key: '$identity_key'
     watchdog:
       flux_update: '$flux_update'
@@ -148,7 +148,7 @@ function gather_host_details(){
     host_ansible=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "(Optional) Enter your Ansible SSH username (Default is ${USER}). This is the user that Ansible will SSH into the node with." 8 72 3>&1 1>&2 2>&3)
     host_port=$(whiptail --title "${node_whiptail_title}$(($1+1))" --inputbox "(Optional) Enter your Ansible SSH port (Default is 22)" 8 65 3>&1 1>&2 2>&3)
     # This is just to display the default values but the vars themselves are not changed
-    if [[ "$host_port"    == "" ]]; then display_host_port="22"; fi
+    if [[ "$host_port"    == "" ]]; then display_host_port="22"; else display_host_port="$host_port"; fi
     if [[ "$host_ansible" == "" ]]; then display_host_ansible="$USER"; else display_host_ansible="$host_ansible"; fi
 
     if whiptail --yesno "Are these details correct?\n
