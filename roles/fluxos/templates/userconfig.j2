@@ -1,6 +1,6 @@
 module.exports = {
   initial: {
-  ipaddress: ''{{ wanip }}'',
+  ipaddress: '{{ wanip }}',
   zelid: '{{ user[hostvars[inventory_hostname].user]['zelid'] }}',
   kadena: '{{ user[hostvars[inventory_hostname].user]['kda'] | default() }}',
   development: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['development'] | default(false)|string|lower }},
