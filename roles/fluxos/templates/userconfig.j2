@@ -5,6 +5,9 @@ module.exports = {
   kadena: '{{ user[hostvars[inventory_hostname].user]['kda'] | default() }}',
   development: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['development'] | default(false)|string|lower }},
   apiport: '{{ hostvars[inventory_hostname].apiport | default(16127)}}',
+  {% if hostvars[inventory_hostname].gateway is defined %}
+  routerIP: '{{ hostvars[inventory_hostname].gateway}}',
+  {% endif %}
   testnet: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['testnet'] | default(false)|string|lower }},
   blockedPorts: {{ user[hostvars[inventory_hostname].user]['blocked_ports'] | default([]) }},
   }
