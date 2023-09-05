@@ -21,5 +21,5 @@ user:
       label:         # String: Specify the 'node name' that the watchdog discord ping will use when alerting on the node with this collateral
       eps:           # Int:    Specify the eps for this collateral. This value is optional if this collateral's eps matches the default eps value in the watchdog var. If this needs to be unique, specify it here.
       collateral_tx: # String: Collateral Transaction ID
-      index:         # Int:    Specify the index for this collateral. This value in optional if differs from the default index value provided above.
-    blocked_ports: # Array: Array of blocked ports that FluxOS can't use. [2222, 2224, 900, 35000] This value is optional
+      index:         # Int:    Specify the index for this collateral. This value in optional if differs from the default index value provided above. Line should be removed if using default index above.
+    blocked_ports: # Array: Array of blocked ports that FluxOS can't use. [2222, 2224, 900, 35000]. Set to [] or remove entire line if blocked ports are not desired.

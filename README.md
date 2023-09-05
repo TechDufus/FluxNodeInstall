@@ -33,6 +33,8 @@ ansible-galaxy install -r requirements.yml
 #### 2. `user.yml` file with filled in variables
 You will need to create a user.yml file with the variables filled in. You can use the user.yml file as a template.
 
+If you are not using an optional variable, please remove the line from the user.yml file. Do not leave a blank variable definition.
+
 If you want to use the script to generate a user.yml file for you, you can run the following command:
 ```bash
 ./scripts/setup.sh
