@@ -4,7 +4,10 @@ module.exports = {
   zelid: '{{ user[hostvars[inventory_hostname].user]['zelid'] }}',
   kadena: '{{ user[hostvars[inventory_hostname].user]['kda'] | default() }}',
   development: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['development'] | default(false)|string|lower }},
+  {% if hostvars[inventory_hostname].apiport is defined and hostvars[inventory_hostname].gateway is defined %}
   apiport: '{{ hostvars[inventory_hostname].apiport | default(16127)}}',
+  routerIP: '{{ hostvars[inventory_hostname].gateway}}',
+  {% endif %}
   testnet: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['testnet'] | default(false)|string|lower }},
   blockedPorts: {{ user[hostvars[inventory_hostname].user]['blocked_ports'] | default([]) }},
   }
