@@ -1,5 +1,6 @@
 ---
 - name: "PM2 | Startup"
+  become: true
   become_user: "{{ global.user }}"
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh
@@ -12,6 +13,7 @@
     - "sudo env PATH=$PATH:/home/{{ global.user }}/.nvm/versions/node/$(node -v)/bin pm2 startup systemd -u {{ global.user }} --hp /home/{{ global.user }}"
 
 - name: "PM2 | LogRotate"
+  become: true
   become_user: "{{ global.user }}"
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh
@@ -28,6 +30,7 @@
     - "pm2 set pm2-logrotate:rotateInterval '0 12 * * 0'"
 
 - name: "PM2 | Start"
+  become: true
   become_user: "{{ global.user }}"
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh
@@ -43,6 +46,7 @@
     - "pm2 start  {{ flux_os.path }}/start.sh --max-memory-restart 2G --restart-delay 30000 --max-restarts 40 --name flux --time"
 
 - name: "PM2 | Save"
+  become: true
   become_user: "{{ global.user }}"
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh

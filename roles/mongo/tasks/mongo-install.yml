@@ -32,6 +32,7 @@
      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse"
     state: present
     filename: "{{ mongo.list4 }}"
+    mode: 644
   when:
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
@@ -42,6 +43,7 @@
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/7.0 multiverse"
     state: present
     filename: "{{ mongo.list7 }}"
+    mode: 644
   when:
     - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
     - avx_check.stdout != '0'
