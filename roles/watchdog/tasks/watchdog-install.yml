@@ -6,6 +6,7 @@
     clone: true
     force: true
     version: master
+  become: true
   become_user: "{{ global.user }}"
 
 - name: Download and Install Git hooks

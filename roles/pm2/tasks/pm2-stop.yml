@@ -1,5 +1,6 @@
 ---
 - name: "PM2 | Stop"
+  become: true
   become_user: "{{ global.user }}"
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh
