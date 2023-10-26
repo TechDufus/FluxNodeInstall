@@ -1,5 +1,6 @@
 ---
 - name: "PM2 | Purge"
+  become: true
   become_user: "{{ global.user }}"
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh

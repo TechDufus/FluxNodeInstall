@@ -7,4 +7,5 @@
     executable: /bin/bash
     chdir: "/home/{{ global.user }}"
     creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}/bin/pm2"
+  become: true
   become_user: "{{ global.user }}"

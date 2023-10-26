@@ -30,6 +30,7 @@
   args:
     stdin: "{{ nvm_installer.content }}"
   changed_when: false
+  become: true
   become_user: "{{ global.user }}"
 
 - name: Install Node 16 with nvm and check version
@@ -41,4 +42,5 @@
     executable: /bin/bash
     chdir: "/home/{{ global.user }}"
     creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}"
+  become: true
   become_user: "{{ global.user }}"
