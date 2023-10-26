@@ -18,10 +18,10 @@
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
 
-- name: Add mongo key 6.0
+- name: Add mongo key 7.0
   ansible.builtin.apt_key:
     keyring: "{{ mongo.keyring }}"
-    url: "{{ mongo.path6 }}"
+    url: "{{ mongo.path7 }}"
   when:
     - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
     - avx_check.stdout != '0'
@@ -36,12 +36,12 @@
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
 
-- name: Add APT Repository 6.0
+- name: Add APT Repository 7.0
   ansible.builtin.apt_repository:
     repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
-      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
+      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/7.0 multiverse"
     state: present
-    filename: "{{ mongo.list6 }}"
+    filename: "{{ mongo.list7 }}"
   when:
     - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
     - avx_check.stdout != '0'
@@ -56,7 +56,7 @@
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
 
-- name: Install Mongo 6.0
+- name: Install Mongo 7.0
   ansible.builtin.apt:
     name:
       - mongodb-org

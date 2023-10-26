@@ -22,6 +22,12 @@
     url: "{{ mongo.path6 }}"
     state: absent
 
+- name: Remove mongo key 7.0
+  ansible.builtin.apt_key:
+    keyring: "{{ mongo.keyring }}"
+    url: "{{ mongo.path7 }}"
+    state: absent
+
 - name: Removing APT Repository 4.0
   ansible.builtin.apt_repository:
     repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
@@ -35,6 +41,13 @@
       https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
     state: absent
     filename: "{{ mongo.list6 }}"
+
+- name: Remove APT Repository 7.0
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
+      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/7.0 multiverse"
+    state: absent
+    filename: "{{ mongo.list7 }}"
 
 - name: Remove Mongo
   ansible.builtin.apt:
