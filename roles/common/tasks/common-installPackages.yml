@@ -20,3 +20,21 @@
     state: present
   failed_when: false
   loop: "{{ apt.packages.yolo }}"
+
+- name: Install Python
+  ansible.builtin.apt:
+    name: python
+    state: present
+    update_cache: true
+  register: python_install
+  ignore_errors: true
+
+- name: Python Failed, Installing Python3
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  loop:
+    - python3
+    - python-is-python3
+  when: python_install is failed
