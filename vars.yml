@@ -95,7 +95,6 @@ apt:
       - g++-multilib
       - autoconf
       - ncurses-dev
-      - python
       - wget
       - curl
       - bc
