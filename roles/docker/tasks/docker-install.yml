@@ -30,6 +30,9 @@
     groups: docker
     append: true
 
+- name: Reset SSH connection for docker group
+  ansible.builtin.meta: reset_connection
+
 - name: Start Docker service
   ansible.builtin.service:
     name: docker
