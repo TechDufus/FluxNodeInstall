@@ -27,6 +27,8 @@ mongo:
   list4: # Path to MongoDB 4.4 APT source list
   path6: # Path to MongoDB 6.0 APT key
   list6: # Path to MongoDB 6.0 APT source list
+  path7: # Path to MongoDB 7.0 APT key
+  list7: # Path to MongoDB 7.0 APT source list
   mongo4:
   # packages takes a list of dictionaries with the following keys:
     packages:

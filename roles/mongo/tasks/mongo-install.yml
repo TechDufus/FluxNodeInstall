@@ -18,10 +18,10 @@
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
 
-- name: Add mongo key 6.0
+- name: Add mongo key
   ansible.builtin.apt_key:
     keyring: "{{ mongo.keyring }}"
-    url: "{{ mongo.path6 }}"
+    url: "{{ mongo.path }}"
   when:
     - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
     - avx_check.stdout != '0'
@@ -37,16 +37,25 @@
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
 
-- name: Add APT Repository 6.0
+- name: Add APT Repository
   ansible.builtin.apt_repository:
     repo: "deb [arch={{ system_arch }} signed-by={{ mongo.keyring }}]
-      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 multiverse"
+      https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/7.0 multiverse"
     state: present
-    filename: "{{ mongo.list6 }}"
+    filename: "{{ mongo.list }}"
     mode: 644
   when:
     - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
     - avx_check.stdout != '0'
+
+# This is just to cleanup the depricated repo file
+# that was created when we used mongo.path6 and mongo.list6
+# This can be removed sometime in the future when we are sure
+# that no one is using the old repo file
+- name: Cleanup Depricated Repo File
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/mongodb-org-6.0
+    state: absent
 
 - name: Install Mongo 4.0
   ansible.builtin.apt:
@@ -58,7 +67,7 @@
     - ansible_distribution_release == 'focal'
     - avx_check.stdout == '0'
 
-- name: Install Mongo 6.0
+- name: Install Mongo
   ansible.builtin.apt:
     name:
       - mongodb-org
