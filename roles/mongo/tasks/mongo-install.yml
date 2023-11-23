@@ -48,6 +48,15 @@
     - (ansible_distribution_release == 'focal' or ansible_distribution_release == 'jammy')
     - avx_check.stdout != '0'
 
+# This is just to cleanup the depricated repo file
+# that was created when we used mongo.path6 and mongo.list6
+# This can be removed sometime in the future when we are sure
+# that no one is using the old repo file
+- name: Cleanup Depricated Repo File
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/mongodb-org-6.0
+    state: absent
+
 - name: Install Mongo 4.0
   ansible.builtin.apt:
     name: "{{ item.name }}={{ item.version }}"
