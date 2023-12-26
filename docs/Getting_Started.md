@@ -1,6 +1,8 @@
 Getting Started
 ===============
 
+To see a live video of the installation process, please see the [FluxNodeInstall Video](https://youtu.be/dpSusGBasCY).
+
 This is a quick guide to get you started with the `FluxNodeInstall` Ansible playbook.
 
 This project is meant to be [FORKED](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and customized to your needs. It is not meant to be run as is.
