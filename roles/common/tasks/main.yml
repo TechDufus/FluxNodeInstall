@@ -93,3 +93,18 @@
     - common-purgeAlias
     - purge
     - never
+
+- name: Update System OS
+  ansible.builtin.include_tasks:
+    file: common-updateOS.yml
+    apply:
+      tags:
+        - common-updateOS
+        - common
+        - all
+      become: true
+  tags:
+    - common-updateOS
+    - common
+    - all
+    - never
