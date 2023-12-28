@@ -11,18 +11,18 @@
 - name: Check for pending reboot
   ansible.builtin.stat:
     path: /var/run/reboot-required
-  register: common_updateOS_reboot_required
+  register: common_updateos_reboot_required
   changed_when: false
 
 - name: REBOOT REQUIRED - IF THIS IS YELLOW THIS NODE NEEDS TO REBOOT
   ansible.builtin.command: echo "This needs to reboot"
-  when: common_updateOS_reboot_required.stat.exists
+  when: common_updateos_reboot_required.stat.exists
 
 - name: "Rebooting..."
   ansible.builtin.reboot:
     reboot_timeout: 300
     msg: "Reboot initiated by Ansible FluxNodeInstall for OS updates"
   when:
-    - common_updateOS_reboot_required.stat.exists
-    - global.rebootIfRequired is defined
-    - global.rebootIfRequired
+    - common_updateos_reboot_required.stat.exists
+    - global.reboot_if_required is defined
+    - global.reboot_if_required

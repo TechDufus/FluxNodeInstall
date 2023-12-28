@@ -1,7 +1,7 @@
 # This file is used to store variables that are used in the flux.yml playbook.
 global:
   user: # FluxNode User Account
-  rebootIfRequired: # (default: false) Boolean: true - Reboot after OS Upgrade if required / false - Don't reboot after OS Upgrade
+  reboot_if_required: # (default: false) Boolean: true - Reboot after OS Upgrade if required / false - Don't reboot after OS Upgrade
 
 user:
   dufus: # This can be named anything.. just needs to match the user var on the host vars
