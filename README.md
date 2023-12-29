@@ -11,7 +11,7 @@
     <a href="https://discord.io/techdufus"><img align="center" src="https://img.shields.io/discord/905178979844116520.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/></a>
 </p>
 
-This Ansible project aims to replace the current Bash script used for installing RunOnFlux nodes with a more efficient and effective method using Ansible.
+This Ansible project aims to replace the current Bash script used for installing [RunOnFlux](https://runonflux.io) nodes with a more efficient and effective method using Ansible.
 
 ### Requirements
 
