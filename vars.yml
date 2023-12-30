@@ -27,7 +27,7 @@ fluxbench:
   conf_file: "/home/{{ global.user }}/.fluxbenchmark/fluxbench.conf"
 
 nvm:
-  repo: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
+  repo: https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh
   node:
     version: 16.19.1
 
