@@ -14,6 +14,21 @@
     - all
     - never
 
+- name: Update System OS
+  ansible.builtin.include_tasks:
+    file: common-updateOS.yml
+    apply:
+      tags:
+        - common-updateOS
+        - common
+        - all
+      become: true
+  tags:
+    - common-updateOS
+    - common
+    - all
+    - never
+
 - name: Install Packages
   ansible.builtin.include_tasks:
     file: common-installPackages.yml
@@ -94,17 +109,3 @@
     - purge
     - never
 
-- name: Update System OS
-  ansible.builtin.include_tasks:
-    file: common-updateOS.yml
-    apply:
-      tags:
-        - common-updateOS
-        - common
-        - all
-      become: true
-  tags:
-    - common-updateOS
-    - common
-    - all
-    - never
