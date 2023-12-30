@@ -71,3 +71,23 @@
     - daemon
     - all
     - never
+
+- name: Start Daemon Service
+  ansible.builtin.include_tasks:
+    file: daemon-start.yml
+    apply:
+      tags:
+        - daemon-start
+  tags:
+    - daemon-start
+    - never
+
+- name: Stop Daemon Service
+  ansible.builtin.include_tasks:
+    file: daemon-stop.yml
+    apply:
+      tags:
+        - daemon-stop
+  tags:
+    - daemon-stop
+    - never

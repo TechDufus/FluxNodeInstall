@@ -1,0 +1,8 @@
+---
+- name: Ensure Scripts Exist
+  ansible.builtin.include_tasks: daemon-scripts.yml
+
+- name: Start Daemon Service
+  ansible.builtin.command: "/home/{{ global.user }}/start_daemon_service.sh"
+  become: true
+  become_user: "{{ global.user }}"
