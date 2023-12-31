@@ -1,7 +1,5 @@
 name: Ansible Lint
-on:
-  push:
-    branches: ['*']
+on: push
 
 jobs:
   lint:

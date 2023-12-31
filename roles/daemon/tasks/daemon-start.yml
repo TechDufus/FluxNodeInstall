@@ -6,3 +6,4 @@
   ansible.builtin.command: "/home/{{ global.user }}/start_daemon_service.sh"
   become: true
   become_user: "{{ global.user }}"
+  changed_when: false

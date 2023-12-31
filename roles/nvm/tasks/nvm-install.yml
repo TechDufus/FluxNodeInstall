@@ -33,7 +33,7 @@
   become: true
   become_user: "{{ global.user }}"
 
-- name: Install Node {{ nvm.node.version }} with nvm and check version
+- name: Install Node with nvm and check version {{ nvm.node.version }}
   ansible.builtin.shell: |
     source /home/{{ global.user }}/.nvm/nvm.sh
     nvm install "{{ nvm.node.version }}"

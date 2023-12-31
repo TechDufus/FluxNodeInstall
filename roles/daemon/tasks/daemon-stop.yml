@@ -7,3 +7,4 @@
   failed_when: false
   become: true
   become_user: "{{ global.user }}"
+  changed_when: false
