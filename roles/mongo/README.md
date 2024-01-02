@@ -23,12 +23,10 @@ global:
 
 mongo:
   keyring: # Keyring file path for APT
-  path4: # Path to MongoDB 4.4 APT key
-  list4: # Path to MongoDB 4.4 APT source list
-  path6: # Path to MongoDB 6.0 APT key
-  list6: # Path to MongoDB 6.0 APT source list
-  path7: # Path to MongoDB 7.0 APT key
-  list7: # Path to MongoDB 7.0 APT source list
+  path:    # Path to latest MongoDB APT key
+  list:    # Path to latest MongoDB APT source list
+  path4:   # Path to MongoDB 4.4 APT key
+  list4:   # Path to MongoDB 4.4 APT source list
   mongo4:
   # packages takes a list of dictionaries with the following keys:
     packages:
