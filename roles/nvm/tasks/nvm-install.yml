@@ -1,31 +1,34 @@
 ---
 - name: Check if NVM is installed
-  ansible.builtin.command: command -v nvm
+  ansible.builtin.shell: command -v nvm
   changed_when: false
   failed_when: false
   register: nvm_installed
 
 - name: Check if Node is installed
-  ansible.builtin.command: command -v node
-  args:
-    executable: /bin/bash -i
+  ansible.builtin.shell: command -v node
   changed_when: false
   failed_when: false
   register: node_installed
 
 - name: Get Installed Node Version
-  ansible.builtin.command: node --version | cut -c2-
-  args:
-    executable: /bin/bash -i
+  ansible.builtin.shell: node --version | cut -c2-
   register: node_version
   changed_when: false
   failed_when: false
   when: node_installed.stdout != ""
 
+- name: Set Node Version
+  ansible.builtin.set_fact:
+    node_installed_version: "{{ node_version.stdout }}"
+  when: node_installed.stdout != ""
+
 - name: Check if Node Update is needed
   ansible.builtin.assert:
     that:
-      - node_version.stdout | version(nvm.node.version, '!=')
+      - node_installed_version is version_compare(nvm.node.version, '!=')
+    success_msg: "Node Version Needs to be Updated / Reinstalled."
+    fail_msg: "Node Version is already up to date."
   register: node_update_needed
   when: node_installed.stdout != ""
 
@@ -87,3 +90,51 @@
     creates: "/home/{{ global.user }}/.nvm/versions/node/v{{ nvm.node.version }}"
   become: true
   become_user: "{{ global.user }}"
+
+- name: Install Logrotate
+  ansible.builtin.include_role:
+    name: logrotate
+    tasks_from: logrotate-install.yml
+    apply:
+      tags:
+        - nvm-install
+        - nvm
+  when:
+    - node_update_needed is defined
+    - node_update_needed
+
+- name: Install PM2
+  ansible.builtin.include_role:
+    name: pm2
+    tasks_from: pm2-install.yml
+    apply:
+      tags:
+        - nvm-install
+        - nvm
+  when:
+    - node_update_needed is defined
+    - node_update_needed
+
+- name: Install Watchdog
+  ansible.builtin.include_role:
+    name: watchdog
+    tasks_from: watchdog-install.yml
+    apply:
+      tags:
+        - nvm-install
+        - nvm
+  when:
+    - node_update_needed is defined
+    - node_update_needed
+
+- name: Start PM2
+  ansible.builtin.include_role:
+    name: pm2
+    tasks_from: pm2-conf.yml
+    apply:
+      tags:
+        - nvm-install
+        - nvm
+  when:
+    - node_update_needed is defined
+    - node_update_needed
