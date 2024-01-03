@@ -11,14 +11,14 @@
   ansible.builtin.set_fact:
     system_arch: "{{ ansible_machine | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
 
-- name: Add GPG Keys
+- name: Remove GPG Keys
   ansible.builtin.apt_key:
     keyserver: hkp://keyserver.ubuntu.com:80
     id: 4B69CA27A986265D
     keyring: "{{ daemon.keyring }}"
     state: absent
 
-- name: Add Daemon APT Repository
+- name: Remove Daemon APT Repository
   ansible.builtin.apt_repository:
     repo: "deb [arch={{ system_arch }} signed-by={{ daemon.keyring }}] https://apt.runonflux.io/ {{ ansible_distribution_release }} main"
     state: absent
