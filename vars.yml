@@ -118,10 +118,6 @@ logrotate:
       path: "/var/log/mongodb/*.log"
       rotate: "daily"
       number: "14"
-    - name: "docker_debug_log"
-      path: "/var/lib/docker/containers/*/*.log"
-      rotate: "daily"
-      number: "7"
 
 ufw:
   allow_out:
