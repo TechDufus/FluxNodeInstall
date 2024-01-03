@@ -1,0 +1,7 @@
+---
+- name: Ensure Old Entries Removed
+  ansible.builtin.file:
+    path: "/etc/logrotate.d/{{ item.name }}"
+    state: absent
+    force: true
+  loop: "{{ logrotate.legacy }}"
