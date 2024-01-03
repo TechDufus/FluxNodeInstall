@@ -10,5 +10,6 @@ module.exports = {
   {% endif %}
   testnet: {{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['testnet'] | default(false)|string|lower }},
   blockedPorts: {{ user[hostvars[inventory_hostname].user]['blocked_ports'] | default([]) }},
+  blockedRepositories: {{ user[hostvars[inventory_hostname].user]['blocked_repos'] | default([]) }},
   }
 }
