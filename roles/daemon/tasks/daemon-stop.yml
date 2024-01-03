@@ -1,0 +1,10 @@
+---
+- name: Ensure Scripts Exist
+  ansible.builtin.include_tasks: daemon-scripts.yml
+
+- name: Stop Daemon Service
+  ansible.builtin.command: "/home/{{ global.user }}/stop_daemon_service.sh"
+  failed_when: false
+  become: true
+  become_user: "{{ global.user }}"
+  changed_when: false

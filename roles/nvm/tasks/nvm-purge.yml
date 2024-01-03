@@ -1,4 +1,14 @@
 ---
+- name: Stopping Flux via PM2
+  ansible.builtin.include_role:
+    name: pm2
+    tasks_from: pm2-stop.yml
+
+- name: Stopping Daemon
+  ansible.builtin.include_role:
+    name: daemon
+    tasks_from: daemon-stop.yml
+
 - name: Remove nvm and node files
   ansible.builtin.file:
     path: "{{ item }}"
