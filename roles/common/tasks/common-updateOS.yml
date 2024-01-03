@@ -1,0 +1,29 @@
+---
+- name: Update OS
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: full
+    autoremove: true
+    autoclean: true
+    force_apt_get: true
+    cache_valid_time: 3600
+
+- name: Check for pending reboot
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: common_updateos_reboot_required
+  changed_when: false
+
+- name: REBOOT REQUIRED - IF THIS TASK IS NOT SKIPPED, YOUR SERVER IS PENDING A REBOOT
+  ansible.builtin.command: echo "This needs to reboot"
+  when: common_updateos_reboot_required.stat.exists
+  changed_when: false
+
+- name: "Rebooting..."
+  ansible.builtin.reboot:
+    reboot_timeout: 300
+    msg: "Reboot initiated by Ansible FluxNodeInstall for OS updates"
+  when:
+    - common_updateos_reboot_required.stat.exists
+    - global.reboot_if_required is defined
+    - global.reboot_if_required
