@@ -1,5 +1,48 @@
 ---
-# Should we detect for an existing nvm / node is installed
+- name: Check if NVM is installed
+  ansible.builtin.command: command -v nvm
+  changed_when: false
+  failed_when: false
+  register: nvm_installed
+
+- name: Check if Node is installed
+  ansible.builtin.command: command -v node
+  args:
+    executable: /bin/bash -i
+  changed_when: false
+  failed_when: false
+  register: node_installed
+
+- name: Get Installed Node Version
+  ansible.builtin.command: node --version | cut -c2-
+  args:
+    executable: /bin/bash -i
+  register: node_version
+  changed_when: false
+  failed_when: false
+  when: node_installed.stdout != ""
+
+- name: Check if Node Update is needed
+  ansible.builtin.assert:
+    that:
+      - node_version.stdout | version(nvm.node.version, '!=')
+  register: node_update_needed
+  when: node_installed.stdout != ""
+
+# To trick ansible into running the purge tasks here,
+# we need to apply the 'install' tags to the purge tasks
+- name: Purge NVM and Node
+  ansible.builtin.include_role:
+    name: nvm
+    tasks_from: nvm-purge.yml
+    apply:
+      tags:
+        - nvm-install
+        - nvm
+        - all
+  when:
+    - node_update_needed is defined
+    - node_update_needed
 
 - name: Ensure NVM Directory exists
   ansible.builtin.file:

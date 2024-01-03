@@ -29,7 +29,7 @@ fluxbench:
 nvm:
   repo: https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh
   node:
-    version: 16.19.1
+    version: 20.9.0
 
 ip:
   url1: https://api.ipify.org
