@@ -53,7 +53,7 @@ docker:
 
 mongo:
   keyring: /usr/share/keyrings/mongodb-archive-keyring.gpg
-  path: https://www.mongodb.org/static/pgp/server-7.0.asc
+  path: https://pgp.mongodb.com/server-7.0.asc
   list: /etc/apt/sources.list.d/mongodb-org
   path4: https://www.mongodb.org/static/pgp/server-4.4.asc
   list4: /etc/apt/sources.list.d/mongodb-org-4.4
