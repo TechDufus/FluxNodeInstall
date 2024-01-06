@@ -43,7 +43,7 @@
   args:
     executable: /bin/bash
   loop:
-    - "pm2 start  {{ flux_os.path }}/start.sh --max-memory-restart 2G --restart-delay 30000 --max-restarts 40 --name flux --time"
+    - "pm2 start  {{ flux_os.path }}/start.sh --max-memory-restart 1500M --restart-delay 30000 --max-restarts 40 --name flux --time"
 
 - name: "PM2 | Save"
   become: true
