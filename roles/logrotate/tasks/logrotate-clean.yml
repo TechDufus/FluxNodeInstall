@@ -1,9 +1,7 @@
 ---
-- name: Purge Log Rotate
+- name: Ensure Old Entries Removed
   ansible.builtin.file:
     path: "/etc/logrotate.d/{{ item.name }}"
     state: absent
     force: true
-  loop:
-    - "{{ logrotate.service }}"
-    - "{{ logrotate.legacy }}"
+  loop: "{{ logrotate.legacy }}"

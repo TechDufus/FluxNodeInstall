@@ -27,3 +27,19 @@
     - logrotate-purge
     - purge
     - never
+
+- name: Cleanup Log Rotate
+  ansible.builtin.include_tasks:
+    file: logrotate-clean.yml
+    apply:
+      tags:
+        - logrotate-install
+        - logrotate-clean
+        - logrotate
+        - all
+  tags:
+    - logrotate-install
+    - logrotate-clean
+    - logrotate
+    - all
+    - never

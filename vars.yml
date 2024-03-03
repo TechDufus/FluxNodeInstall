@@ -118,6 +118,7 @@ logrotate:
       path: "/var/log/mongodb/*.log"
       rotate: "daily"
       number: "14"
+  legacy:
     - name: "docker_debug_log"
       path: "/var/lib/docker/containers/*/*.log"
       rotate: "daily"
