@@ -107,4 +107,19 @@
   tags:
     - common-purgeAlias
     - purge
+    - nevero
+
+- name: Deploy install_conf.json
+  ansible.builtin.include_tasks:
+    file: common-installFluxInstallConf.yml
+    apply:
+      tags:
+        - common-installFluxInstallConf
+        - common
+        - all
+      become: true
+  tags:
+    - common-installFluxInstallConf
+    - common
+    - all
     - never

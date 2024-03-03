@@ -1,0 +1,8 @@
+---
+- name: "Deploy install_conf.json to /home/{{ global.user }}/install_conf.json"
+  ansible.builtin.copy:
+    src: "{{ global.fluxPath }}/install_conf.json"
+    dest: "/home/{{ global.user }}/install_conf.json"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0644"

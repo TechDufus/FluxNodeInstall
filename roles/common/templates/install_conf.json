@@ -1,0 +1,27 @@
+{
+    "import_settings": "1",
+    "prvkey": "{{ user[hostvars[inventory_hostname].user]['identity_key'] }}",
+    "outpoint": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n]['collateral_tx'] }}",
+    "index ": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].index | default(user[hostvars[inventory_hostname].user].index) | default(0) }}",
+    "ssh_port": "22",
+    "zelid": "{{ user[hostvars[inventory_hostname].user]['zelid'] }}",
+    "kda_address": "{{ user[hostvars[inventory_hostname].user]['kda'] | default() }}",
+    "firewall_disable": "1",
+    "bootstrap_url": "{{ daemon.bootstrap_url }}",
+    "bootstrap_zip_del": "1",
+    "swapon": "1",
+    "use_old_chain": "{{ user[hostvars[inventory_hostname].user]['force_new_chain'] | ternary(1, 0) }}",
+    "node_label": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].label | default(inventory_hostname) }}",
+    "discord": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].discord_webhook | default(user[hostvars[inventory_hostname].user].watchdog.discord_webhook) | default(0) }}",
+    "ping": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].discord_ping | default(user[hostvars[inventory_hostname].user].watchdog.discord_ping) | default(0) }}",
+    "telegram_alert": "0",
+    "telegram_bot_token": "0",
+    "telegram_chat_id": "0",
+    "eps_limit": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].eps | default(user[hostvars[inventory_hostname].user].watchdog.eps) | default(0) }}",
+    "zelflux_update": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].flux_update | default(user[hostvars[inventory_hostname].user].watchdog.flux_update) | default(0) }}",
+    "zelcash_update": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].daemon_update | default(user[hostvars[inventory_hostname].user].watchdog.daemon_update) | default(0) }}",
+    "zelbench_update": "{{ user[hostvars[inventory_hostname].user][hostvars[inventory_hostname].n].bench_update | default(user[hostvars[inventory_hostname].user].watchdog.bench_update) | default(0) }}",
+    "upnp_port": "{{ hostvars[inventory_hostname].apiport | default(16127)}}",
+    "gateway_ip": "{{ hostvars[inventory_hostname].gateway}}"
+  }
+
