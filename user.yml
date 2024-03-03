@@ -24,3 +24,4 @@ user:
       collateral_tx: # String: Collateral Transaction ID
       index:         # Int:    Specify the index for this collateral. This value in optional if differs from the default index value provided above. Line should be removed if using default index above.
     blocked_ports: # Array: Array of blocked ports that FluxOS can't use. [2222, 2224, 900, 35000]. Set to [] or remove entire line if blocked ports are not desired.
+    blocked_repos: # Array: Array of blocked docker repositories that FluxOS can't use. ['test/banthis', 'block/dontrunonme']. Set to [] or remove entire line if blocked repos are not desired.
