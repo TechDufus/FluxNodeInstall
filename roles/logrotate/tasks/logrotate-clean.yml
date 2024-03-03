@@ -4,4 +4,5 @@
     path: "/etc/logrotate.d/{{ item.name }}"
     state: absent
     force: true
+  become: true
   loop: "{{ logrotate.legacy }}"
