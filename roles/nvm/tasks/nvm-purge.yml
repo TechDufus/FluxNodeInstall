@@ -9,6 +9,36 @@
     name: daemon
     tasks_from: daemon-stop.yml
 
+- name: Purge Logrotate
+  ansible.builtin.include_role:
+    name: logrotate
+    tasks_from: logrotate-purge.yml
+    apply:
+      tags:
+        - nvm-purge
+        - purge
+      become: true
+
+- name: Purge PM2
+  ansible.builtin.include_role:
+    name: pm2
+    tasks_from: pm2-purge.yml
+    apply:
+      tags:
+        - nvm-purge
+        - purge
+      become: true
+
+- name: Purge Watchdog
+  ansible.builtin.include_role:
+    name: watchdog
+    tasks_from: watchdog-purge.yml
+    apply:
+      tags:
+        - nvm-purge
+        - purge
+      become: true
+
 - name: Remove nvm and node files
   ansible.builtin.file:
     path: "{{ item }}"

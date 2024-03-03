@@ -6,6 +6,7 @@
     source /home/{{ global.user }}/.nvm/nvm.sh
     {{ item }}
   changed_when: false
+  ignore_errors: true
   args:
     executable: /bin/bash
   loop:
