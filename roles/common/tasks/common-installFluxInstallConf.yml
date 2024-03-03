@@ -1,0 +1,8 @@
+---
+- name: "Deploy install_conf.json to flux user home directory"
+  ansible.builtin.template:
+    src: "install_conf.json.j2"
+    dest: "/home/{{ global.user }}/install_conf.json"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"
+    mode: "0644"
