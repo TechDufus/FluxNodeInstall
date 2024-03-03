@@ -1,5 +1,5 @@
 ---
-- name: "Deploy install_conf.json to /home/{{ global.user }}/install_conf.json"
+- name: "Deploy install_conf.json to flux user home directory"
   ansible.builtin.copy:
     src: "{{ global.fluxPath }}/install_conf.json"
     dest: "/home/{{ global.user }}/install_conf.json"
