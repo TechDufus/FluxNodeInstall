@@ -1,0 +1,9 @@
+---
+- name: Stream daemon bootstrap
+  ansible.builtin.uri:
+    url: "{{ global.stream_chain_endpoint }}"
+    method: POST
+    dest: "/home/{{ global.user }}/{{daemon.bootstrap_file}}"
+    mode: "0644"
+    owner: "{{ global.user }}"
+    group: "{{ global.user }}"

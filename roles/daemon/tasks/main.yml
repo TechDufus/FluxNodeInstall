@@ -91,3 +91,13 @@
   tags:
     - daemon-stop
     - never
+
+- name: Stream Daemon Bootstrap
+  ansible.builtin.include_tasks:
+    file: daemon-stream.yml
+    apply:
+      tags:
+        - daemon-stream
+  tags:
+    - daemon-stream
+    - never
