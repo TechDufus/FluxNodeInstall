@@ -2,6 +2,7 @@
 global:
   user: # FluxNode User Account
   reboot_if_required: # (default: false) Boolean: true - Reboot after OS Upgrade if required / false - Don't reboot after OS Upgrade
+  stream_chain_endpoint: # String: endpoint to access daemon stream chain function 'http://<your node ip>:<your node apiport>/flux/streamchain'
 
 user:
   dufus: # This can be named anything.. just needs to match the user var on the host vars
